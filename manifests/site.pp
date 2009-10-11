@@ -1,6 +1,7 @@
 class vim {
 	package { "vim":
 		ensure => present,
+		allowcdrom => true,
 	}
 	file { "/root/.vimrc":
 		owner => root,
@@ -13,7 +14,8 @@ class vim {
 
 class bash {
 	package { "bash":
-		ensure => present
+		ensure => present,
+		allowcdrom => true,
 	}
 	file { "/root/.bashrc":
 		owner => root,
