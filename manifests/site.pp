@@ -5,7 +5,7 @@ class vim {
 	file { "/root/.vimrc":
 		owner => root,
 		group => root,
-		mode => 400,
+		mode => 600,
 		source => "puppet://puppet/files/root/.vimrc",
 		require => Package["vim"]
 	}
@@ -18,7 +18,7 @@ class bash {
 	file { "/root/.bashrc":
 		owner => root,
 		group => root,
-		mode => 400,
+		mode => 600,
 		source => "puppet://puppet/files/root/.bashrc",
 		require => Package["bash"]
 	}
