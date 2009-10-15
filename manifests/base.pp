@@ -12,6 +12,20 @@ class vim {
 	}
 }
 
+class less {
+	package { "less":
+		ensure => present,
+		allowcdrom => true,
+	}
+}
+
+class rsync {
+	package { "rsync":
+		ensure => present,
+		allowcdrom => true,
+	}
+}
+
 class bash {
 	package { "bash":
 		ensure => present,
@@ -53,5 +67,5 @@ class ssh {
 
 
 node basenode {
-	include vim, bash, ssh
+	include vim, bash, ssh, less, rsync
 }
