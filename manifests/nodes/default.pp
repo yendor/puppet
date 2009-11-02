@@ -1,0 +1,4 @@
+node default inherits basenode {
+}
+
+
