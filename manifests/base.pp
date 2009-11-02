@@ -53,6 +53,13 @@ class apticron {
 
 class logcheck {
 	package { "logcheck":
+		ensure => absent,
+		allowcdrom => true
+	}
+}
+
+class logwatch {
+	package { "logwatch":
 		ensure => present,
 		allowcdrom => true
 	}
