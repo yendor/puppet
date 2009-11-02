@@ -44,6 +44,20 @@ class bash {
 	}
 }
 
+class apticron {
+	package { "apticron":
+		ensure => present,
+		allowcdrom => true
+	}
+}
+
+class logcheck {
+	package { "logcheck":
+		ensure => present,
+		allowcdrom => true
+	}
+}
+
 class ssh {
 	package { "openssh-server":
 		ensure => present,
@@ -65,7 +79,28 @@ class ssh {
 	}
 }
 
+class mail::aliases {
+	file { "/etc/aliases" :
+	  mode => 644,
+	  owner => "root",
+	  group => "root",
+	  alias => 'aliases';
+	}
+
+	exec { "newaliases" :
+	  command => "/usr/bin/newaliases",
+	  refreshonly => true,
+	  subscribe => File['aliases'];
+	} 
+	mailalias { "root":
+		recipient => "rodnet+server-$hostname@gmail.com",
+		ensure => present
+	}
+}
+
+
 
 node basenode {
-	include vim, bash, ssh, less, rsync
+	include vim, bash, ssh, less, rsync, apticron, logcheck, mail::aliases
 }
+
