@@ -98,12 +98,44 @@ class mail::aliases {
 	  command => "/usr/bin/newaliases",
 	  refreshonly => true,
 	  subscribe => File['aliases']
-	} 
+	}
 
 	mailalias { "root":
 		recipient => "rodnet+server-$hostname@gmail.com",
 		ensure => present
 	}
+}
+
+class tripwire {
+	package {
+		tripwire:
+			ensure => present
+	}
+
+	file { "/etc/tripwire/site.key":
+		owner => root,
+		group => root,
+		mode => 600,
+		source => "puppet://puppet/files/etc/tripwire/site.key",
+		require => Package["tripwire"]
+	}
+
+	file { "/etc/tripwire/tw.cfg":
+		owner => root,
+		group => root,
+		mode => 600,
+		source => "puppet://puppet/files/etc/tripwire/tw.cfg",
+		require => Package["tripwire"]
+	}
+
+	file { "/etc/tripwire/$hostname-local.key":
+		owner => root,
+		group => root,
+		mode => 600,
+		source => "puppet://puppet/files/etc/tripwire/local.key",
+		require => Package["tripwire"]
+	}
+
 }
 
 
