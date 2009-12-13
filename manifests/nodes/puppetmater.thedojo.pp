@@ -1,4 +1,4 @@
-node "puppetmaster.thedojo" inherits basenode {
+node "puppetmaster.thedojo" inherits xennode {
 }
 
 

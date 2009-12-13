@@ -1,5 +1,3 @@
-node "secondstring" inherits basenode {
-
-	include tripwire 
+node "secondstring" inherits xennode {
 }
 
