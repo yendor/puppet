@@ -1,0 +1,14 @@
+deb <%= mirror %> <%= lsbdistcodename %> main contrib non-free
+deb-src <%= mirror %> <%= lsbdistcodename %> main contrib non-free
+
+deb http://security.debian.org/ <%= lsbdistcodename %>/updates main contrib non-free
+deb-src http://security.debian.org/ <%= lsbdistcodename %>/updates main contrib non-free
+
+<% if has_variable?('includeVolitile') and includeVolitile == true then %>
+deb http://volatile.debian.org/debian-volatile <%= lsbdistcodename %>/volatile main
+deb-src http://volatile.debian.org/debian-volatile <%= lsbdistcodename %>/volatile main
+<% end %>
+
+<% if has_variable?('includeBackports') and includeBackports == true then %>
+deb http://www.backports.org/debian <%= lsbdistcodename %>-backports main contrib non-free
+<% end %>
