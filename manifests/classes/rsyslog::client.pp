@@ -1,4 +1,5 @@
 class rsyslog::client {
+	include rsyslog
 	file { "/var/spool/rsyslog":
 		mode => 700,
 		owner => "root",
