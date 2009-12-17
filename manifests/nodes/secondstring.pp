@@ -1,6 +1,6 @@
-node "secondstring" inherits xennode {
-	$includeBackports = true
-	$mirror = "http://ftp.iinet.net.au/debian/debian/"
-	include rsyslog::client, rsyslog, lenny-backports-keyring, sources-list, stunnel-client
+node "secondstring" {
+    $mirror="http://ftp.au.debian.org/debian"
+	include common
+	include node-remote-syslog
 }
 
