@@ -1,6 +1,6 @@
 node "secondstring" {
     $mirror="http://ftp.au.debian.org/debian"
 	include common
-	include node-remote-syslog
+	include edge-remote-logging
 }
 

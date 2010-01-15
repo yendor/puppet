@@ -1,4 +1,4 @@
-class rsyslog::client {
+class rsyslog::midpoint {
 	include rsyslog
 	file { "/var/spool/rsyslog":
 		mode => 700,
@@ -7,11 +7,11 @@ class rsyslog::client {
 		ensure => directory,
 		require => Package["rsyslog"],
 	}
-	file { "/etc/rsyslog.d/remote.conf":
+	file { "/etc/rsyslog.d/midpoint.conf":
 		owner => "root",
 		group => "root",
-		mode => 700,
-		source => "puppet://puppet/files/etc/rsyslog.d/remote.conf",
+		mode => 600,
+		source => "puppet://puppet/files/etc/rsyslog.d/midpoint.conf",
 		require => Package["rsyslog"],
 		notify => Exec["reload-rsyslog"],
 	}
