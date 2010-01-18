@@ -4,6 +4,8 @@ node "recordkeeper.thedojo" {
 
 	include common
 	include rsyslog::loghost, sources-list, backports-keyring
+
+	include fail2ban
 }
 
 

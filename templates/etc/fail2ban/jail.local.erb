@@ -1,0 +1,48 @@
+[DEFAULT]
+
+ignoreip = 127.0.0.1
+bantime  = 1800
+maxretry = 6
+
+# "backend" specifies the backend used to get files modification. Available
+# options are "gamin", "polling" and "auto".
+# yoh: For some reason Debian shipped python-gamin didn't work as expected
+#      This issue left ToDo, so polling is default backend for now
+backend = gamin
+
+#
+# Destination email address used solely for the interpolations in
+# jail.{conf,local} configuration files.
+destemail = root@localhost
+
+# Default action to take: ban only
+action = iptables[name=%(__name__)s, port=%(port)s]
+
+[ssh]
+enabled = true
+port	= ssh
+filter	= sshd
+logpath  = /var/log/auth.log
+
+[apache]
+enabled = true
+port	= http
+filter	= apache-auth
+logpath = /var/www/vhosts/*/logs/error_log
+
+[dovecot-incoming-mail]
+enabled  = true
+port     = pop3,imap2,pop3s,imaps
+filter   = dovecot
+logpath  = /var/log/mail.log
+
+[plesk-incoming-mail]
+<% if has_variable?('isPlesk') and isPlesk == true then %>
+enabled	= true
+<% else %>
+enabled = false
+<% end %>
+port	= pop3,imap2,pop3s,imaps
+filter	= plesk-dovecot
+logpath	= /opt/psa/var/log/maillog
+
