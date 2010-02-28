@@ -4,10 +4,9 @@ class ssh {
         allowcdrom => true,
     }
 
-	realize(
-		Ssh_authorized_key['rodney-windows-home'],
-		Ssh_authorized_key['rodney-macbook']
-	)
-
+	exec { "reload-sshd":
+		command => "/usr/sbin/invoke-rc.d ssh restart",
+		refreshonly => true
+	}
 }
 
