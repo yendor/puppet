@@ -10,7 +10,7 @@ class sources-list {
 	}
 
     exec{"update-packgelist":
-		command => "/usr/bin/apt-get update"
+		command => "/usr/bin/apt-get update",
         refreshonly => true,
         subscribe => File["/etc/apt/sources.list"],
         require => File["/etc/apt/sources.list"],
