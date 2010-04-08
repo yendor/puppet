@@ -38,7 +38,7 @@ node "puppetmaster.thedojo" {
     # set up the cache itself
     tinydns::cache { "dnscache":
         directory => $dnscache,
-        listen_address "192.168.1.15",
+        listen_address => "192.168.1.15",
         ensure => present
     }
 
