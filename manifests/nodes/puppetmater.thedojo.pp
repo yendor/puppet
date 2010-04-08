@@ -4,7 +4,7 @@ node "puppetmaster.thedojo" {
 	include midpoint-remote-logging
 	include git
 
-	include tinydns
+	include djbdns
 
 
     $tinydns = "/etc/tinydns"
