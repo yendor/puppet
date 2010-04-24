@@ -6,7 +6,7 @@ class user::virtual {
 		comment	=> "Rodney Amato",
 		home	=> "/home/rodney.amato",
 		shell	=> "/bin/bash",
-		groups	=> ["sudo"],
+		groups	=> ["sudo", "adm"],
 		managehome => "true"
 	}
 
