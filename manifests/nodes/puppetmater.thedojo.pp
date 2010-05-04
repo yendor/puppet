@@ -4,6 +4,8 @@ node "puppetmaster.thedojo" {
 	include midpoint-remote-logging
 	include git
 
+	test3{ "testing": }
+
     # include tinydns
     #
     #
