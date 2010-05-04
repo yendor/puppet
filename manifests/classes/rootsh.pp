@@ -5,7 +5,9 @@ class rootsh {
     }
 
     file { "/etc/apt/sources.list.d/interspire_custom.list":
-        owner => root
+        owner => root,
+        group => root,
+        mode => 0644,
     }
 
 }
