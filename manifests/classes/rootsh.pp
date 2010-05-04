@@ -1,5 +1,5 @@
 class rootsh {
     package { "rootsh":
-        ensure => "absent",
+        ensure => "present",
     }
 }
