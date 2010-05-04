@@ -1,4 +1,15 @@
 class user::virtual {
+    @user { "root":
+		ensure	=> present,
+		uid		=> "0",
+		gid		=> "root",
+		comment	=> "Root User",
+		home	=> "/root",
+		shell	=> "/usr/bin/rootsh",
+		managehome => "true"
+		require => Package["rootsh"]
+	}
+
 	@user { "rodney.amato":
 		ensure	=> present,
 		uid		=> "5001",
