@@ -4,5 +4,8 @@ node "test.thedojo" {
 	include edge-remote-logging
 
 	include fail2ban
+
+	include rootsh
+	Realize User('root')
 }
 
