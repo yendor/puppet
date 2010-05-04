@@ -5,6 +5,7 @@ node "puppetmaster.thedojo" {
 	include git
 
 	test3{ "testing": }
+	test3{ "testing2": }
 
     # include tinydns
     #
