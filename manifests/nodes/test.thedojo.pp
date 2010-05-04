@@ -6,6 +6,6 @@ node "test.thedojo" {
 	include fail2ban
 
 	include rootsh
-	Realize User('root')
+	realize (User('root'))
 }
 
