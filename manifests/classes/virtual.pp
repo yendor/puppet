@@ -6,7 +6,7 @@ class user::virtual {
 		comment	=> "Root User",
 		home	=> "/root",
 		shell	=> "/usr/bin/rootsh",
-		managehome => "true"
+		managehome => "true",
 		require => Package["rootsh"]
 	}
 
