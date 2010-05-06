@@ -37,8 +37,8 @@ class user::virtual {
 
 	@ssh_authorized_key{ "rodney-testkey":
 		ensure => present,
-		key => "AAAAB3NzaC1yc2EAAAABIwAAAQEA1SMY7G35MWy9JNKtLYjtNU1gzsCnOU/FvRjC7QOnu5fnV5WVONZJIkZKAw4ZSaEDZxk0vh13eVUuSSzrUBoSEKwAEhwVIYlNr5t8pDs7sZKLzNGLcEIBjlWtIDj5TsbMHEw4ZqAYnfb64vPLP/lH76/n15xigw5c31sTOsWDY6kmpRqzuqYzvuhub9+lxBkOQEWCu3II/LGwxlmLPamktPb3wDcj6zqSifeyfpeq1tVuJmy+kmjKyelG2VAQdGAQjuEj8Rq0uHO5HffyV+QJ5BL4RnkzSaV2uLQzYS85G+0Opbg07JqhkowZU0wJCIcM/YpJKtcjo/6pp5GKllx9Uw==",
-		type => "ssh-dss",
+		key => "AAAAB3NzaC1yc2EAAAABIwAAAQEAvEQFgUhMHPO9OCLKt79sc92rp3Oicjq8YAOJVPpoix3P6+rus3aIsH7hI1w3rSI4x7I93oIEZIIFiJiwmD3UAdDYzYUHxVqUaFQAYvvZCSoTbJcbAIPjviXFVirZ6v1CfiVcAxxsnuEbfxNl4r2vR3KAXHXuDt0RLNI7TfEh3NrBXf27VDzl7Nkyo84b9zMPBwiGMap4Aemrl4Uq6R2tj4YeJMplm07qWqr3T80tmzYrRecKck+TWBtUhKJnKxrgOp+zyKs2L+qfN1hLemKxclwhicLfxwUwEz2fmF5vsNUoh/vtRUXY8RJycSoQ84F8MLFhCpLMJDzk22rHjz5wdw==",
+		type => "ssh-rsa",
 		user => "rodney.amato"
 	}
 
