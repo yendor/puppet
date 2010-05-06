@@ -38,7 +38,7 @@ class user::virtual {
 	@ssh_authorized_key{ "rodney-testkey":
 		ensure => present,
 		key => "AAAAB3NzaC1yc2EAAAABIwAAAQEA1SMY7G35MWy9JNKtLYjtNU1gzsCnOU/FvRjC7QOnu5fnV5WVONZJIkZKAw4ZSaEDZxk0vh13eVUuSSzrUBoSEKwAEhwVIYlNr5t8pDs7sZKLzNGLcEIBjlWtIDj5TsbMHEw4ZqAYnfb64vPLP/lH76/n15xigw5c31sTOsWDY6kmpRqzuqYzvuhub9+lxBkOQEWCu3II/LGwxlmLPamktPb3wDcj6zqSifeyfpeq1tVuJmy+kmjKyelG2VAQdGAQjuEj8Rq0uHO5HffyV+QJ5BL4RnkzSaV2uLQzYS85G+0Opbg07JqhkowZU0wJCIcM/YpJKtcjo/6pp5GKllx9Uw==",
-		type => "ssh-rsa",
+		type => "ssh-dsa",
 		user => "rodney.amato"
 	}
 
