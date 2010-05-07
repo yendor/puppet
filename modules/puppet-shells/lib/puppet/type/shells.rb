@@ -1,3 +1,5 @@
+require 'puppet/provider/parsedfile'
+
 Puppet::Type.newtype(:shells) do
   @doc = "Manage shells in /etc/shells. For example::
 
