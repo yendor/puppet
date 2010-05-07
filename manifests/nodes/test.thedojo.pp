@@ -7,5 +7,25 @@ node "test.thedojo" {
 
 	include rootsh
 	realize (User['root'])
+
+	shells { "/bin/bash":
+	    ensure => present
+	}
+
+	shells { "/bin/false":
+	    ensure => present
+	}
+
+	shells { "/bin/sh":
+	    ensure => present
+	}
+
+	shells { "/usr/sbin/nologin":
+	    ensure => present
+	}
+
+	shells { "/bin/sync":
+	    ensure => present
+	}
 }
 
