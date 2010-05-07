@@ -13,6 +13,7 @@ Puppet::Type.newtype(:shells) do
   newparam(:shell, :namevar => true) do
     desc "The shell to manage"
     isnamevar
+    resource[:provider] = :parsed
   end
 
   newproperty(:target) do
