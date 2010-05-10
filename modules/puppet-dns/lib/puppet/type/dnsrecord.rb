@@ -16,4 +16,7 @@ Puppet::Type.newtype(:dnsrecord) do
     desc "The time to live of the record"
   end
 
+  newparam(:value) do
+    desc "The value to point the dns record to"
+  end
 end
