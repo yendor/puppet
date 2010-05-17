@@ -20,9 +20,9 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
             hash[:value] = $3
             hash[:ttl] = $5
           end
+          return hash
         end
-        return hash
-    end
+
 
     def self.to_line(hash)
       return super unless hash[:record_type] == :parsed
