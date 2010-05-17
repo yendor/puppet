@@ -10,11 +10,10 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
     info "The tinydns data file '%s' " % :ttl
 
-    @fields = [:type, :fqdn, :value, :ttl]
     @optional = [:ttl]
 
     record_line self.name,
-        :fields => @fields,
+        :fields => %w{type fqdn value ttl},
         :joiner => ":",
         :separator => ":",
         :rts => true,
