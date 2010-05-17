@@ -8,7 +8,7 @@ Puppet::Type.newtype(:dnsrecord) do
     isnamevar
   end
 
-  newparam(:type) do
+  newparam(self.:type) do
     desc "The dns record type, A, TXT, MX, NS, PTR, SRV, AAAA"
   end
 
