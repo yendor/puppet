@@ -3,7 +3,7 @@ Puppet::Type.newtype(:dnsrecord) do
 
   ensurable
 
-  newproperty(:fqdn, :namevar => true) do
+  newparam(:fqdn, :namevar => true) do
     desc "The fully qualified name"
     isnamevar
   end
