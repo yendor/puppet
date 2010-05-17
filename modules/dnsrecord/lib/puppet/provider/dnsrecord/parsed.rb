@@ -8,5 +8,6 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :comment, :match => /^#/;
     text_line :blank, :match => /^\s*$/;
 
-    record_line :parsed, :fields => %w{name}
+    record_line :parsed,
+        :fields => %w{type name:value::ttl::}
 end
