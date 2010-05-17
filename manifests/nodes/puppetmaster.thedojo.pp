@@ -5,7 +5,7 @@ node "puppetmaster.thedojo" {
 
     dnsrecord {"login.thedojo":
         ensure => "present",
-        "type" => "a",
+        recordtype => "a",
         value => "192.168.1.12",
         ttl => 300,
     }
