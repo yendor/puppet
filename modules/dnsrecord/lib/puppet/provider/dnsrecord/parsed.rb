@@ -9,14 +9,14 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :blank, :match => /^\s*$/;
 
     record_line self.name,
-        :fields => %w{type fqdn value ttl},
+        :fields => %w{type name value ttl},
         :joiner => ":",
         :separator => ":" do |line|
           hash = {}
 
-          if line.sub!(/(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):/)
+          if line.sub!(/(.):([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):/)
             hash[:type] = $1
-            hash[:fqdn] = $2
+            hash[:name] = $2
             hash[:value] = $3
             hash[:ttl] = $5
           end
@@ -25,7 +25,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
 
     def self.to_line(hash)
-      str = "%s:%s:%s::%s:" % [hash[:type], hash[:fqdn], hash[:value], hash[:ttl]]
+      str = "%s:%s:%s::%s:" % [hash[:type], hash[:name], hash[:value], hash[:ttl]]
     end
 
 end
