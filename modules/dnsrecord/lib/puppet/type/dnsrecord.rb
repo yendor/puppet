@@ -8,15 +8,15 @@ Puppet::Type.newtype(:dnsrecord) do
     isnamevar
   end
 
-  newproperty(:type) do
+  newparam(:type) do
     desc "The dns record type, A, TXT, MX, NS, PTR, SRV, AAAA"
   end
 
-  newproperty(:ttl) do
+  newparam(:ttl) do
     desc "The time to live of the record"
   end
 
-  newproperty(:value) do
+  newparam(:value) do
     desc "The value to point the dns record to"
   end
 
