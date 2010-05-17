@@ -8,5 +8,6 @@ Puppet::Type.type(:shells).provide(:parsed, :parent => Puppet::Provider::ParsedF
     text_line :comment, :match => /^#/;
     text_line :blank, :match => /^\s*$/;
 
-    record_line :parsed, :fields => %w{name}
+    record_line :parsed,
+        :fields => %w{name value ttl}
 end
