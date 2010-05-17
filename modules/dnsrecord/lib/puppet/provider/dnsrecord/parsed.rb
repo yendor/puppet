@@ -8,7 +8,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :comment, :match => /^#/;
     text_line :blank, :match => /^\s*$/;
 
-    debug :type
+    self.info "The tinydns data file"
 
     @fields = [:type, :fqdn, :value, :ttl]
     @optional = [:ttl]
