@@ -1,33 +1,35 @@
-Puppet::Type.newtype(:dnsrecord) do
-  @doc = "Manage dns records"
+module Puppet
+  newtype(:dnsrecord) do
+    @doc = "Manage dns records"
 
-  ensurable
+    ensurable
 
-  newparam(:fqdn, :namevar => true) do
-    desc "The fully qualified name"
-    isnamevar
-  end
+    newparam(:fqdn, :namevar => true) do
+      desc "The fully qualified name"
+      isnamevar
+    end
 
-  newparam(:type) do
-    desc "The dns record type, A, TXT, MX, NS, PTR, SRV, AAAA"
-  end
+    newparam(:type) do
+      desc "The dns record type, A, TXT, MX, NS, PTR, SRV, AAAA"
+    end
 
-  newparam(:ttl) do
-    desc "The time to live of the record"
-  end
+    newparam(:ttl) do
+      desc "The time to live of the record"
+    end
 
-  newparam(:value) do
-    desc "The value to point the dns record to"
-  end
+    newparam(:value) do
+      desc "The value to point the dns record to"
+    end
 
-  newproperty(:target) do
-    desc "The file in which to store the tinydns data file in plain text."
+    newproperty(:target) do
+      desc "The file in which to store the tinydns data file in plain text."
 
-    defaultto { if @resource.class.defaultprovider.ancestors.include?(Puppet::Provider::ParsedFile)
-            @resource.class.defaultprovider.default_target
-        else
-            nil
-        end
-    }
+      defaultto { if @resource.class.defaultprovider.ancestors.include?(Puppet::Provider::ParsedFile)
+              @resource.class.defaultprovider.default_target
+          else
+              nil
+          end
+      }
+    end
   end
 end
