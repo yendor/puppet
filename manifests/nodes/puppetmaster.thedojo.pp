@@ -8,6 +8,7 @@ node "puppetmaster.thedojo" {
         type => "a",
         value => "192.168.1.12",
         ttl => 300,
+        provider => "tinydns",
     }
 
 }
