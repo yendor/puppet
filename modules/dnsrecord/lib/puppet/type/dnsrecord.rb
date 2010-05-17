@@ -19,4 +19,15 @@ Puppet::Type.newtype(:dnsrecord) do
   newparam(:value) do
     desc "The value to point the dns record to"
   end
+
+  newproperty(:target) do
+    desc "The file in which to store the tinydns data file in plain text."
+
+    defaultto { if @resource.class.defaultprovider.ancestors.include?(Puppet::Provider::ParsedFile)
+            @resource.class.defaultprovider.default_target
+        else
+            nil
+        end
+    }
+  end
 end
