@@ -1,4 +1,4 @@
-class postfix {
+class postfix::standard {
     package { "postfix":
         ensure => "present",
     }
