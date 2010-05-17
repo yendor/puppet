@@ -9,8 +9,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :blank, :match => /^\s*$/;
 
     record_line self.name,
-        :fields => %w{type name value ttl}
-        do |line|
+        :fields => %w{type name value ttl},
+        :separator => ":" do |line|
           hash = {}
 
           if line.sub!(/(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):/)
