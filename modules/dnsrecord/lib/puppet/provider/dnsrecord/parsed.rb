@@ -9,8 +9,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :blank, :match => /^\s*$/;
 
     record_line self.name,
-        :fields => %w{name type fqdn value ttl},
-        :optional => %w{type fqdn value ttl},
+        :fields => %w{type fqdn value ttl},
         :joiner => ":",
         :separator => ":"
 end
