@@ -11,5 +11,22 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     record_line self.name,
         :fields => %w{type fqdn value ttl},
         :joiner => ":",
-        :separator => ":"
+        :separator => ":" do |line|
+          hash = {}
+
+          if line.sub!(/(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):)
+            hash[:type] = $1
+            hash[:fqdn] = $2
+            hash[:value] = $3
+            hash[:ttl] = $5
+          end
+        end
+        return hash
+    end
+
+    self.to_line(hash)
+      return super unless hash[:record_type] == :parsed
+      str = "%s%s:%s::%s:" % [hash[:type], hash[:fqdn], hash[:value], hash[:ttl]]
+    end
+
 end
