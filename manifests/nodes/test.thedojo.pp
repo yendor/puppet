@@ -5,8 +5,6 @@ node "test.thedojo" {
 
 	include fail2ban
 
-    include postfix::standard
-
 	include rootsh
 	realize (User['root'])
 
