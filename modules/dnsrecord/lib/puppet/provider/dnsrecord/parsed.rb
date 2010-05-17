@@ -10,7 +10,6 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
     record_line :parsed,
         :fields => [:type, :fqdn, :value, :ttl],
-        :optional => [:ttl],
         :joiner => ":",
         :separator => ":",
         :rts => true
