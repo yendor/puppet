@@ -25,7 +25,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
 
     def self.to_line(hash)
-      return unless hash[:type]
+      return nil unless hash[:type]
       str = "%s%s:%s::%s:" % [hash[:type], hash[:name], hash[:value], hash[:ttl]]
     end
 
