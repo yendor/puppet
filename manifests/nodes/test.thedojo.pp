@@ -21,7 +21,7 @@ node "test.thedojo" {
 	}
 
 	shells { "/usr/sbin/nologin":
-	    ensure => present
+	    ensure => absent
 	}
 
 	shells { "/bin/sync":
