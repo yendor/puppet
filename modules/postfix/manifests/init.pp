@@ -12,7 +12,7 @@ class postfix::standard {
         owner => "root",
         group => "root",
         mode => 0644,
-        content => template("puppet-postfix/main.cf.erb"),
+        content => template("postfix/main.cf.erb"),
         require => Package["postfix"],
         notify => Service["postfix"]
     }
