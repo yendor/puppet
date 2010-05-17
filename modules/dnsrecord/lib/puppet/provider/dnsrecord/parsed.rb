@@ -8,7 +8,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :comment, :match => /^#/;
     text_line :blank, :match => /^\s*$/;
 
-    info "The tinydns data file '%s' " % :type
+    info "The tinydns data file '%s' " % type
 
     @fields = [:type, :fqdn, :value, :ttl]
     @optional = [:ttl]
