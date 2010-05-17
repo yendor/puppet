@@ -25,7 +25,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
 
     def self.to_line(hash)
-      str = "%s%s:%s::%s:" % [hash[:type], hash[:fqdn], hash[:value], hash[:ttl]]
+      str = "%s:%s:%s::%s:" % [hash[:type], hash[:fqdn], hash[:value], hash[:ttl]]
     end
 
 end
