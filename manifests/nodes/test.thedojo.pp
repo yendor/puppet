@@ -8,6 +8,8 @@ node "test.thedojo" {
 	include rootsh
 	realize (User['root'])
 
+	include postfix
+
 	shells { "/bin/bash":
 	    ensure => present
 	}
