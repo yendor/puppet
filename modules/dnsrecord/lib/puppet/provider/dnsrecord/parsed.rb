@@ -13,7 +13,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         :separator => ":" do |line|
           hash = {}
 
-          if line.sub(/(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):/)
+          if line =~ (/(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*):/)
             hash[:type] = $1
             hash[:name] = $2
             hash[:value] = $3
