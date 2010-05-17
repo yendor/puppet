@@ -3,11 +3,11 @@ node "puppetmaster.thedojo" {
   include common
   include git
 
-  dnsrecord { "login.thedojo":
+/*  dnsrecord { "login.thedojo":
     ensure => "present",
     type => "a",
     value => "192.168.1.12",
     ttl => 300,
-  }
+  }*/
 
 }
