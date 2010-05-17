@@ -12,5 +12,5 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         :fields => [:type, :name, :value, :ttl],
         :optional => [:ttl],
         :joiner => ":",
-        :seperator => ":"
+        :separator => ":"
 end
