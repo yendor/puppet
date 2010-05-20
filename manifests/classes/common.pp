@@ -8,4 +8,14 @@ class common {
 	include sources-list, backports-keyring
 
 	include user::unixadmins
+
+	include dnsrecord::tinydns
+
+  dnsrecord { "$fqdn":
+    ensure => "present",
+    type => "=",
+    value => "$ipaddress",
+    ttl => 300,
+    notify => Exec["rebuild-tinydns-data"]
+  }
 }
