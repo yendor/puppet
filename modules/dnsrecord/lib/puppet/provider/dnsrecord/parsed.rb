@@ -10,30 +10,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
     record_line self.name,
         :fields => %w{type name value ttl},
-        :optional => %w{ttl},
-        :separator => ":" do |line|
-          hash = {}
+        :optional => %w{ttl}
 
-          line =~ /^(.)/
-
-          case $1
-            when "=", "+"
-              parts = line[1, line.length].split(':')
-              parts.each do |part|
-                unless hash[:name]
-                  hash[:name] = part
-                  next
-                end
-
-                unless hash[:value]
-                  hash[:value] = part
-                  next
-                end
-              end
-          end
-
-          return hash
-        end
 
     def self.to_line(hash)
       return nil unless hash[:type]
