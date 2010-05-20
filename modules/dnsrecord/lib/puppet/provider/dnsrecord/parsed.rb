@@ -30,7 +30,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     def self.to_line(hash)
       return nil unless hash[:type]
 
-      str = "%s%s:%s" % [hash[:type], hash[:name], hash[:value]]
+      str = hash[:type]
+      str += [hash[:name], hash[:value], :absent, hash[:ttl]].join(":")
     end
 
 end
