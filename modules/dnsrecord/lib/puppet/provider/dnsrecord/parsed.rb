@@ -23,15 +23,14 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
           # +puppet.interspire:174.37.171.132
           # &interspire.corp::whitebook.interspire:::
 
-          if line =~ (/^(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)\s*$/)
-            hash[:type] = $1
-            hash[:name] = $2
-            hash[:value] = $3
-            hash[:ttl] = $5
-          elsif line =~ (/^(.)([^:]*):([^:]*)\s*$/)
-            hash[:type] = $1
-            hash[:name] = $2
-            hash[:value] = $3
+          line =~ /^(.)/
+
+          case $1
+            when "."
+              if line =~ (/^(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)\s*$/)
+                 hash[:type] = $1
+                 hash[:name] = $2
+                 hash[:value] = $3
           end
 
           return hash
@@ -40,14 +39,12 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     def self.to_line(hash)
       return nil unless hash[:type]
 
-      if hash[:type] == "."
-        str = "%s%s:%s" % [hash[:type], hash[:name], hash[:value]]
-        if hash[:ttl]
-          str += ":%s" % [hash[:ttl]]
-        end
+      case hash[:type]
+        when "."
+          str = "%s%s:%s" % [hash[:type], hash[:name], hash[:value]]
       end
 
-      # str = "%s%s:%s::%s:" % [hash[:type], hash[:name], hash[:value], hash[:ttl]]
+      str
     end
 
 end
