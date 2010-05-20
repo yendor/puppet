@@ -27,10 +27,9 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
           case $1
             when "."
-              if line =~ (/^(.)([^:]*):([^:]*)\s*$/)
-                 hash[:type] = $1
-                 hash[:name] = $2
-                 hash[:value] = $3
+              parts = line[1, line.length].split(':')
+              parts.each do |part|
+                puts part
               end
           end
 
