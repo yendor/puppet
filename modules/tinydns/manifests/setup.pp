@@ -4,4 +4,12 @@ class tinydns::setup {
     command => "/usr/bin/make",
     refreshonly => true
   }
+
+  package { "djbdns":
+    ensure => "present"
+  }
+
+  package { "make":
+    ensure => "present"
+  }
 }
