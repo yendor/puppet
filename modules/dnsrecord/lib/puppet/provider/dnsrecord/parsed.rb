@@ -28,6 +28,24 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
                   next
                 end
               end
+            when "&"
+              parts = line[1, line.length].split(':')
+              parts.each do |part|
+                unless hash[:name]
+                  hash[:name] = part
+                  next
+                end
+
+                unless emptyone
+                  emptyone = part
+                  next
+                end
+
+                unless hash[:value]
+                  hash[:value] = part
+                  next
+                end
+              end
           end
 
           return hash
@@ -43,6 +61,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
           str += [hash[:name], hash[:value], "", hash[:ttl], ""].join(":").sub(/:+$/, "")
         when "."
           str += [hash[:name], hash[:value]].join(":").sub(/:+$/, "")
+        when "&"
+          str += [hash[:name], "", hash[:value]].join(":").sub(/:+$/, "")
       end
     end
 
