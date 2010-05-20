@@ -25,10 +25,11 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
           line =~ /^(.)/
 
+          info "DEBUG: $1"
+
           case $1
             when "."
               parts = line[1, line.length].split(':')
-              info parts
               parts.each do |part|
                 puts part
               end
