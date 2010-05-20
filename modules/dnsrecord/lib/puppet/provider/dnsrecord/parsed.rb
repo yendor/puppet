@@ -20,7 +20,15 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
             when "=", "+"
               parts = line[1, line.length].split(':')
               parts.each do |part|
-                puts part
+                unless hash[:name]
+                  hash[:name] = part
+                  next
+                end
+
+                unless hash[:value]
+                  hash[:value] = part
+                  next
+                end
               end
           end
 
