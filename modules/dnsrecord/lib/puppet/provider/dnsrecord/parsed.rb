@@ -27,7 +27,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
           case $1
             when "."
-              if line =~ (/^(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)\s*$/)
+              if line =~ (/^(.)([^:]*):([^:]*)\s*$/)
                  hash[:type] = $1
                  hash[:name] = $2
                  hash[:value] = $3
