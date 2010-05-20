@@ -9,7 +9,7 @@ class common {
 
 	include user::unixadmins
 
-	include tinydns
+	include tinydns::setup
 
   @@tinydns::dnsrecord { "$fqdn":
     ensure => "present",
