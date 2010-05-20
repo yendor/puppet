@@ -15,7 +15,7 @@ node "puppetmaster.thedojo" {
 
   dnsrecord { "crowd.thedojo":
     ensure => "present",
-    type => "a",
+    type => "=",
     value => "192.168.1.12",
     ttl => 300,
     notify => Exec["reload-tinydns"]
