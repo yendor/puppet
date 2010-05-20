@@ -31,6 +31,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
                  hash[:type] = $1
                  hash[:name] = $2
                  hash[:value] = $3
+              end
           end
 
           return hash
