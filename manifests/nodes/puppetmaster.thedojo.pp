@@ -23,4 +23,6 @@ node "puppetmaster.thedojo" {
     value => "192.168.1.11",
     notify => Exec["rebuild-tinydns-data"]
   }
+
+  Dnsrecord <<|  |>>
 }
