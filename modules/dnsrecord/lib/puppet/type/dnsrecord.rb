@@ -11,6 +11,10 @@ module Puppet
 
     newproperty(:type) do
       desc "The dns record type, A, TXT, MX, NS, PTR, SRV, AAAA"
+      validate do |value|
+        unless value =~ /^(?:\.|=|\+|&|)$/
+          raise ArgumentError, "%s is not a valid tinydns record type" % value
+        end
     end
 
     newproperty(:ttl) do

@@ -13,6 +13,15 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         :separator => ":" do |line|
           hash = {}
 
+          # rev dns zone
+          # .1.1.10.in-addr.arpa:10.1.1.1:
+          # interspire zone
+          # .interspire:10.1.1.1:
+          # Lines that start with = setup forward and reverse dns
+          # =portal.interspire:10.1.1.1
+          # +puppet.interspire:174.37.171.132
+          # &interspire.corp::whitebook.interspire:::
+
           if line =~ (/^(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)\s*$/)
             hash[:type] = $1
             hash[:name] = $2
