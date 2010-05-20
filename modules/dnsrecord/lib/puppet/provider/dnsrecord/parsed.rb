@@ -17,7 +17,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
           line =~ /^(.)/
 
           case $1
-            when "."
+            when "="
               parts = line[1, line.length].split(':')
               parts.each do |part|
                 puts part
@@ -32,10 +32,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
       str = hash[:type]
 
-      puts  hash[:type]
-
       case hash[:type]
-        when "."
+        when "="
           str += [hash[:name], hash[:value], "", hash[:ttl], ""].join(":").sub(/:+$/, "")
       end
     end
