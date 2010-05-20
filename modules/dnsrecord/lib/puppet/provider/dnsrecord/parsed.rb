@@ -13,7 +13,6 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         :separator => ":" do |line|
           hash = {}
 
-          # alogin.thedojo:192.168.1.12::300:
           if line =~ (/^(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)\s*$/)
             hash[:type] = $1
             hash[:name] = $2
