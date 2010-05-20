@@ -10,7 +10,7 @@ node "puppetmaster.thedojo" {
     type => "=",
     value => "192.168.1.12",
     ttl => 300,
-    notify => "reload-tinydns"
+    notify => Exec["reload-tinydns"]
   }
 
 }
