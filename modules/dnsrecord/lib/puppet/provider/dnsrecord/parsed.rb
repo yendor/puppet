@@ -14,9 +14,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         :separator => ":" do |line|
           hash = {}
 
-          case line[1, 2]
+          case line[0, 1]
             when "=", "+"
-
               parts = line[1, line.length].split(':')
               parts.each do |part|
                 unless hash[:name]
