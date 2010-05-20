@@ -10,7 +10,7 @@ class common {
 
 	include tinydns::setup
 
-  @@tinydns::dnsrecord { "$fqdn":
+  @@dnsrecord { "$fqdn":
     ensure => "present",
     type => "=",
     value => "$ipaddress",

@@ -3,26 +3,26 @@ node "puppetmaster.thedojo" {
   include common
   include git
 
-  tinydns::dnsrecord { "thedojo":
+  dnsrecord { "thedojo":
     ensure => present,
     type => ".",
     value => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
 
-  tinydns::dnsrecord { "1.1.10.in-addr.arpa":
+  dnsrecord { "1.1.10.in-addr.arpa":
     ensure => present,
     type => ".",
     value => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
 
-  tinydns::dnsrecord { "login.thedojo":
+  dnsrecord { "login.thedojo":
     ensure => present,
     type => "+",
     value => "192.168.1.12",
     notify => Exec["rebuild-tinydns-data"]
   }
 
-  Tinydns_dnsrecord <<| |>>
+  Dnsrecord <<| |>>
 }
