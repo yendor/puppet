@@ -37,7 +37,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
       return nil unless hash[:type]
 
       if hash[:type] == "."
-        str = "%s%s:%s" % % [hash[:type], hash[:name], hash[:value]]
+        str = "%s%s:%s" % [hash[:type], hash[:name], hash[:value]]
         if hash[:ttl]
           str += ":%s" % [hash[:ttl]]
         end
