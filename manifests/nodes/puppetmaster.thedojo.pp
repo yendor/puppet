@@ -17,12 +17,5 @@ node "puppetmaster.thedojo" {
     notify => Exec["rebuild-tinydns-data"]
   }
 
-  dnsrecord { "thedojo.corp":
-    ensure => present,
-    type => "&",
-    value => "192.168.1.11",
-    notify => Exec["rebuild-tinydns-data"]
-  }
-
   Dnsrecord <<|  |>>
 }
