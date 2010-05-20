@@ -23,11 +23,15 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
           # +puppet.interspire:174.37.171.132
           # &interspire.corp::whitebook.interspire:::
 
-          if line =~ (/^(.)([^:]*):([^:]*):?([^:]*):?([^:]*):?([^:]*)\s*$/)
+          if line =~ (/^(.)([^:]*):([^:]*):([^:]*):([^:]*):([^:]*)\s*$/)
             hash[:type] = $1
             hash[:name] = $2
             hash[:value] = $3
             hash[:ttl] = $5
+          elsif line =~ (/^(.)([^:]*):([^:]*)\s*$/)
+            hash[:type] = $1
+            hash[:name] = $2
+            hash[:value] = $3
           end
 
           return hash
