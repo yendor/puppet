@@ -3,11 +3,14 @@ node "puppetmaster.thedojo" {
   include common
   include git
 
+  include tinydns
+
   dnsrecord { "login.thedojo":
     ensure => "present",
     type => "=",
     value => "192.168.1.12",
     ttl => 300,
+    notify => "reload-tinydns"
   }
 
 }
