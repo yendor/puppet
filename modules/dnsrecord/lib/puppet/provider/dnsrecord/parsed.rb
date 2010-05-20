@@ -31,6 +31,9 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
       return nil unless hash[:type]
 
       str = hash[:type]
+
+      puts  hash[:type]
+
       case hash[:type]
         when "."
           str += [hash[:name], hash[:value], "", hash[:ttl], ""].join(":").sub(/:+$/, "")
