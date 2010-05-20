@@ -9,9 +9,9 @@ class common {
 
 	include user::unixadmins
 
-	include dnsrecord::tinydns
+	include tinydns
 
-  @@dnsrecord { "$fqdn":
+  @@tinydns::dnsrecord { "$fqdn":
     ensure => "present",
     type => "=",
     value => "$ipaddress",
