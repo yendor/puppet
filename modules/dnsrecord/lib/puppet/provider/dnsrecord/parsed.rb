@@ -41,6 +41,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
       case hash[:type]
         when "=", "+"
           str += [hash[:name], hash[:value], "", hash[:ttl], ""].join(":").sub(/:+$/, "")
+        when "."
+          str += [hash[:name], "", hash[:value]].join(":").sub(/:+$/, "")
       end
     end
 
