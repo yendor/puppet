@@ -3,7 +3,7 @@ node "puppetmaster.thedojo" {
   include common
   include git
 
-  include tinydns
+  include dnsrecord::tinydns
 
   dnsrecord { "login.thedojo":
     ensure => "present",
