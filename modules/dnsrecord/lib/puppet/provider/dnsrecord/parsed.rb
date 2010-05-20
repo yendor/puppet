@@ -13,6 +13,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         :optional => %w{ttl},
         :separator => ":" do |line|
           hash = {}
+          empty = {}
 
           case line[0, 1]
             when "=", "+", "."
@@ -36,8 +37,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
                   next
                 end
 
-                unless emptyone
-                  emptyone = part
+                unless empty[1]
+                  empty[1] = part
                   next
                 end
 
