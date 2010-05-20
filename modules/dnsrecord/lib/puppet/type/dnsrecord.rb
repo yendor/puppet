@@ -15,6 +15,7 @@ module Puppet
         unless value =~ /^(?:\.|=|\+|&|)$/
           raise ArgumentError, "%s is not a valid tinydns record type" % value
         end
+      end
     end
 
     newproperty(:ttl) do
