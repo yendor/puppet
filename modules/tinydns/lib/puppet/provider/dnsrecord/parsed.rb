@@ -19,9 +19,9 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
             when "=", "+", "."
               parts = line[1, line.length].split(':')
 
-              :name = parts[0] if parts[0]
-              :value = parts[1] if parts[1]
-              :ttl = parts[2] if parts[2]
+              hash[:name] = parts[0] if parts[0]
+              hash[:value] = parts[1] if parts[1]
+              hash[:ttl] = parts[2] if parts[2]
 
             when "&"
               parts = line[1, line.length].split(':')
