@@ -27,6 +27,14 @@ node "puppetmaster.thedojo" {
     notify => Exec["rebuild-tinydns-data"]
   }
 
+  dnsrecord { "alias for the puppet.thedojo dns entry":
+    ensure => present,
+    type => "+",
+    fqdn => "puppet.thedojo",
+    ipaddr => "192.168.1.15",
+    notify => Exec["rebuild-tinydns-data"]
+  }
+
   dnsrecord { "txt record for thedojo":
     ensure => present,
     fqdn => "thedojo",
