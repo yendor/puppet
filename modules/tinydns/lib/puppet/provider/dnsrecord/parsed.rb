@@ -5,6 +5,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
     desc "The tinydns data file"
 
+
+
     text_line :comment, :match => %r{^#}, :post_parse => proc { |hash|
         if hash[:line] =~ /Puppet Name: (.+)\s*$/
             hash[:name] = $1
@@ -98,5 +100,25 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
       end
     end
+
+    def self.prefetch_hook(records)
+      name = nil
+      result = records.each { |record|
+        case record[:record_type]
+          when :comment
+            if record[:name]
+              name = record[:name]
+              record[:skip] = true
+            end
+          when :blank
+            # skip it
+          else
+            if name
+              record[:name] = name
+              name = nil
+            end
+        end
+      }.reject { |record| record[:skip] }
+      result
 
 end
