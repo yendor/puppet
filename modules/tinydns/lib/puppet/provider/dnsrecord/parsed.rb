@@ -68,9 +68,9 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     def self.to_line(hash)
       return nil unless hash[:type]
 
-      puts hash.to_json
+      str = hash[:name]
 
-      str = hash[:type]
+      str += hash[:type]
 
       case hash[:type]
         when "%"
