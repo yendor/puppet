@@ -1,8 +1,8 @@
 class midpoint-remote-logging {
-	include wget, backports-keyring, sources-list, rsyslog::midpoint
+	include wget, backports-keyring, sources-list
 
 	host { "loghost":
-		ensure => present,
+		ensure => absent,
 		ip => "192.168.1.18",
 	}
 }
