@@ -9,7 +9,7 @@ module Puppet
       isnamevar
     end
 
-    newparam(:fqdn) do
+    newproperty(:fqdn) do
       desc "The fully qualified name"
     end
 
