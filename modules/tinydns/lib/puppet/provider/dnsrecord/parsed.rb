@@ -70,6 +70,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
       str = hash[:name]
 
+      puts str
+
       str += hash[:type]
 
       case hash[:type]
