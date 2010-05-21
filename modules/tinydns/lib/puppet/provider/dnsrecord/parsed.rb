@@ -23,7 +23,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
             when "%"
               # % is a location record for split horizon dns
               hash[:name] = parts[0] if parts[0]
-              hash[:value] = parts[1] if parts[1]
+              hash[:ip] = parts[1] if parts[1]
             when ".", "&"
               # . is soa, ns and a record, & is ns and a record
               hash[:fqdn] = parts[0] if parts[0]
@@ -72,16 +72,16 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
       case hash[:type]
         when "%"
-          str += [hash[:name], hash[:value]]
+          str += [hash[:fqdn], hash[:ip]]
         when ".", "&"
-          str += [hash[:name], hash[:value], hash[:host], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:ip], hash[:host], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
         when "=", "+"
-          str += [hash[:name], hash[:value], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:ip], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
 
         when "@"
-          str += [hash[:name], hash[:value], hash[:host], hash[:priority], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:ip], hash[:host], hash[:priority], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
         when "'", "^", "C"
-          str += [hash[:name], hash[:value], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:value], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
 
       end
     end
