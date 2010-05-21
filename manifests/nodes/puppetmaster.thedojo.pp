@@ -7,7 +7,7 @@ node "puppetmaster.thedojo" {
     ensure => present,
     type => ".",
     fqdn => "thedojo",
-    ip => "192.168.1.15",
+    ipaddr => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
 
@@ -15,7 +15,7 @@ node "puppetmaster.thedojo" {
     ensure => present,
     type => ".",
     fqdn => "1.168.192.in-addr.arpa",
-    ip => "192.168.1.15",
+    ipaddr => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
 
@@ -23,7 +23,7 @@ node "puppetmaster.thedojo" {
     ensure => present,
     type => "+",
     fqdn => "login.thedojo",
-    ip => "192.168.1.12",
+    ipaddr => "192.168.1.12",
     notify => Exec["rebuild-tinydns-data"]
   }
 

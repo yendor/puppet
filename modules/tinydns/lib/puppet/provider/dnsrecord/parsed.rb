@@ -23,11 +23,11 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
             when "%"
               # % is a location record for split horizon dns
               hash[:name] = parts[0] if parts[0]
-              hash[:ip] = parts[1] if parts[1]
+              hash[:ipaddr] = parts[1] if parts[1]
             when ".", "&"
               # . is soa, ns and a record, & is ns and a record
               hash[:fqdn] = parts[0] if parts[0]
-              hash[:ip] = parts[1] if parts[1]
+              hash[:ipaddr] = parts[1] if parts[1]
               hash[:host] = parts[2] if parts[2]
               hash[:ttl] = parts[3] if parts[3]
               hash[:stamp] = parts[4] if parts[4]
@@ -35,14 +35,14 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
             when "=", "+"
               # + is a record, = is a record and ptr record
               hash[:fqdn] = parts[0] if parts[0]
-              hash[:ip] = parts[1] if parts[1]
+              hash[:ipaddr] = parts[1] if parts[1]
               hash[:ttl] = parts[2] if parts[2]
               hash[:stamp] = parts[3] if parts[3]
               hash[:location] = parts[4] if parts[4]
             when "@"
               # MX Record
               hash[:fqdn] = parts[0] if parts[0]
-              hash[:ip] = parts[1] if parts[1]
+              hash[:ipaddr] = parts[1] if parts[1]
               hash[:host] = parts[2] if parts[2]
               hash[:priority] = parts[3] if parts[3]
               hash[:ttl] = parts[4] if parts[4]
@@ -72,14 +72,14 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
       case hash[:type]
         when "%"
-          str += [hash[:fqdn], hash[:ip]]
+          str += [hash[:fqdn], hash[:ipaddr]]
         when ".", "&"
-          str += [hash[:fqdn], hash[:ip], hash[:host], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:ipaddr], hash[:host], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
         when "=", "+"
-          str += [hash[:fqdn], hash[:ip], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:ipaddr], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
 
         when "@"
-          str += [hash[:fqdn], hash[:ip], hash[:host], hash[:priority], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
+          str += [hash[:fqdn], hash[:ipaddr], hash[:host], hash[:priority], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
         when "'", "^", "C"
           str += [hash[:fqdn], hash[:value], hash[:ttl], hash[:stamp], hash[:location]].join(":").sub(/:+$/, "")
 

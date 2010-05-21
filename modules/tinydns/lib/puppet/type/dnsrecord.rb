@@ -26,7 +26,7 @@ module Puppet
       desc "The time to live of the record"
     end
 
-    newproperty(:ip) do
+    newproperty(:ipaddr) do
       desc "The value to point the dns record to"
     end
 
