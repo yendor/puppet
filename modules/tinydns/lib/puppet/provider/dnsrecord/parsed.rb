@@ -26,23 +26,23 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
               hash[:value] = parts[1] if parts[1]
             when ".", "&"
               # . is soa, ns and a record, & is ns and a record
-              hash[:name] = parts[0] if parts[0]
-              hash[:value] = parts[1] if parts[1]
+              hash[:fqdn] = parts[0] if parts[0]
+              hash[:ip] = parts[1] if parts[1]
               hash[:host] = parts[2] if parts[2]
               hash[:ttl] = parts[3] if parts[3]
               hash[:stamp] = parts[4] if parts[4]
               hash[:location] = parts[5] if parts[5]
             when "=", "+"
               # + is a record, = is a record and ptr record
-              hash[:name] = parts[0] if parts[0]
-              hash[:value] = parts[1] if parts[1]
+              hash[:fqdn] = parts[0] if parts[0]
+              hash[:ip] = parts[1] if parts[1]
               hash[:ttl] = parts[2] if parts[2]
               hash[:stamp] = parts[3] if parts[3]
               hash[:location] = parts[4] if parts[4]
             when "@"
               # MX Record
-              hash[:name] = parts[0] if parts[0]
-              hash[:value] = parts[1] if parts[1]
+              hash[:fqdn] = parts[0] if parts[0]
+              hash[:ip] = parts[1] if parts[1]
               hash[:host] = parts[2] if parts[2]
               hash[:priority] = parts[3] if parts[3]
               hash[:ttl] = parts[4] if parts[4]
@@ -50,7 +50,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
               hash[:location] = parts[6] if parts[6]
             when "'", "^", "C"
               # ' is TXT Record, ^ is ptr record, C is CNAME record
-              hash[:name] = parts[0] if parts[0]
+              hash[:fqdn] = parts[0] if parts[0]
               hash[:value] = parts[1] if parts[1]
               hash[:ttl] = parts[2] if parts[2]
               hash[:stamp] = parts[3] if parts[3]

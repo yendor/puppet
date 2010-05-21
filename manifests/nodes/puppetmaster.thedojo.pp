@@ -7,21 +7,23 @@ node "puppetmaster.thedojo" {
     ensure => present,
     type => ".",
     fqdn => "thedojo",
-    value => "192.168.1.15",
+    ip => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
 
-  dnsrecord { "1.1.10.in-addr.arpa":
+  dnsrecord { "reverse dns for 192.168.1.0/24 subnet":
     ensure => present,
     type => ".",
-    value => "192.168.1.15",
+    fqdn => "1.168.192.in-addr.arpa",
+    ip => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
 
-  dnsrecord { "login.thedojo":
+  dnsrecord { "alias for login.thedojo":
     ensure => present,
     type => "+",
-    value => "192.168.1.12",
+    fqdn => "login.thedojo",
+    ip => "192.168.1.12",
     notify => Exec["rebuild-tinydns-data"]
   }
 

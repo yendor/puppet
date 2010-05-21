@@ -4,9 +4,13 @@ module Puppet
 
     ensurable
 
-    newparam(:fqdn, :namevar => true) do
-      desc "The fully qualified name"
+    newparam(:name, :namevar => true) do
+      desc "A text description of the rule"
       isnamevar
+    end
+
+    newparam(:fqdn) do
+      desc "The fully qualified name"
     end
 
     newproperty(:type) do
@@ -22,8 +26,12 @@ module Puppet
       desc "The time to live of the record"
     end
 
-    newproperty(:value) do
+    newproperty(:ip) do
       desc "The value to point the dns record to"
+    end
+
+    new property(:value) do
+      desc "The value of the TXT record, who who to point the PTR or CNAME record to"
     end
 
     newproperty(:stamp) do
