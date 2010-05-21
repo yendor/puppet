@@ -62,7 +62,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
               # : is a generic record
           end
 
-          puts hash
+          puts hash.to_json
 
           return hash
         end
