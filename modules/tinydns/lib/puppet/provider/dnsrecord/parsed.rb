@@ -78,7 +78,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
       str = ""
 
       if hash[:name]
-        str = "# Puppet Name: %s\n" % record[:name]
+        str = "# Puppet Name: %s\n" % hash[:name]
       end
 
       str += hash[:type]
