@@ -3,9 +3,10 @@ node "puppetmaster.thedojo" {
   include common
   include git
 
-  dnsrecord { "thedojo":
+  dnsrecord { "nameserver for thdojo":
     ensure => present,
     type => ".",
+    fqdn => "thedojo",
     value => "192.168.1.15",
     notify => Exec["rebuild-tinydns-data"]
   }
