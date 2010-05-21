@@ -30,7 +30,7 @@ module Puppet
       desc "The value to point the dns record to"
     end
 
-    new property(:value) do
+    newproperty(:value) do
       desc "The value of the TXT record, who who to point the PTR or CNAME record to"
     end
 
