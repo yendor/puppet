@@ -19,7 +19,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
           parts = line[1, line.length].split(':')
 
-          puts parts
+          puts hash
 
           case hash[:type]
             when "%"
