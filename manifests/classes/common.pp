@@ -10,10 +10,11 @@ class common {
 
 	include tinydns::setup
 
-  @@dnsrecord { "$fqdn":
+  @@dnsrecord { "forward and reverse dns for $fqdn":
     ensure => "present",
     type => "=",
-    value => "$ipaddress",
+    fqdn => "$fqdn",
+    ipaddr => "$ipaddress",
     ttl => 300,
     notify => Exec["rebuild-tinydns-data"]
   }
