@@ -24,5 +24,11 @@ node "puppetmaster.thedojo" {
     notify => Exec["rebuild-tinydns-data"]
   }
 
+  dnsrecord { "thedojo":
+    ensure => present,
+    type => "'",
+    value => "v=spf1 a mx"
+  }
+
   Dnsrecord <<| |>>
 }
