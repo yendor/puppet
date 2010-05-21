@@ -120,5 +120,5 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
         end
       }.reject { |record| record[:skip] }
       result
-
+    end
 end
