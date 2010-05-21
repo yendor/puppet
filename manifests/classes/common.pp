@@ -4,7 +4,7 @@ class common {
   include postfix::standard
 
 	$includeBackports=true
-	include sources-list, backports-keyring
+	include sources-list, backports-keyring, syslog-ng
 
 	include user::unixadmins
 
