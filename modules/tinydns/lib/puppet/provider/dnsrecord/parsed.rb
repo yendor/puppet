@@ -27,22 +27,9 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
             when "&"
               parts = line[1, line.length].split(':')
-              parts.each do |part|
-                unless hash[:name]
-                  hash[:name] = part
-                  next
-                end
 
-                unless empty[1]
-                  empty[1] = part
-                  next
-                end
-
-                unless hash[:value]
-                  hash[:value] = part
-                  next
-                end
-              end
+              hash[:name] = parts[0] if parts[0]
+              hash[:value] = parts[2] if parts[2]
           end
 
           return hash
