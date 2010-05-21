@@ -62,13 +62,13 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
               # : is a generic record
           end
 
-          puts hash.to_json
-
           return hash
         end
 
     def self.to_line(hash)
       return nil unless hash[:type]
+
+      puts hash.to_json
 
       str = hash[:type]
 
