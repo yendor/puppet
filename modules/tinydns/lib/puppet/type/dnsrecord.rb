@@ -26,6 +26,22 @@ module Puppet
       desc "The value to point the dns record to"
     end
 
+    newproperty(:stamp) do
+      desc "The timestamp of the dns record"
+    end
+
+    newproperty(:location) do
+      desc "The location to which dns records apply in split horizon dns setups"
+    end
+
+    newproperty(:host) do
+      desc "The host name to use in dns records for mx and ns entries"
+    end
+
+    newproperty(:priority) do
+      desc "The priority of the mx record"
+    end
+
     newproperty(:target) do
       desc "The file in which to store the tinydns data file in plain text."
 
