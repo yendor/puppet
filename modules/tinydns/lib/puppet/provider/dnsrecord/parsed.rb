@@ -9,7 +9,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :blank, :match => /^\s*$/;
 
     record_line self.name,
-        :fields => %w{type name fqdn value ttl stamp location priority host ip},
+        :fields => %w{type fqdn value ttl stamp location priority host ip},
         :optional => %w{ttl stamp location priority host ip value},
         :separator => ":" do |line|
           hash = {}
@@ -22,7 +22,7 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
           case hash[:type]
             when "%"
               # % is a location record for split horizon dns
-              hash[:name] = parts[0] if parts[0]
+              hash[:fqdn] = parts[0] if parts[0]
               hash[:ipaddr] = parts[1] if parts[1]
             when ".", "&"
               # . is soa, ns and a record, & is ns and a record
