@@ -69,8 +69,6 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
               # : is a generic record
           end
 
-          puts hash
-
           return hash
         end
 
