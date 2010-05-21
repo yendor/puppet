@@ -5,7 +5,12 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
     desc "The tinydns data file"
 
-    text_line :comment, :match => /^#/;
+    text_line :comment, :match => %r{^#}, :post_parse => proc { |record|
+        if record[:line] =~ /Puppet Name: (.+)\s*$/
+            record[:name] = $1
+        end
+    }
+
     text_line :blank, :match => /^\s*$/;
 
     record_line self.name,
@@ -70,7 +75,13 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     def self.to_line(hash)
       return nil unless hash[:type]
 
-      str = hash[:type]
+      str = ""
+
+      if hash[:name]
+        str = "# Puppet Name: %s\n" % record[:name]
+      end
+
+      str += hash[:type]
 
       case hash[:type]
         when "%"
