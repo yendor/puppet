@@ -19,6 +19,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
 
           parts = line[1, line.length].split(':')
 
+          puts parts
+
           case hash[:type]
             when "%"
               # % is a location record for split horizon dns
