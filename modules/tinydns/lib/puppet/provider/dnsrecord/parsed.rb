@@ -9,8 +9,8 @@ Puppet::Type.type(:dnsrecord).provide(:parsed, :parent => Puppet::Provider::Pars
     text_line :blank, :match => /^\s*$/;
 
     record_line self.name,
-        :fields => %w{type fqdn value ttl stamp location priority host ip},
-        :optional => %w{ttl stamp location priority host ip value},
+        :fields => %w{type fqdn value ttl stamp location priority host ipaddr},
+        :optional => %w{ttl stamp location priority host ipaddr value},
         :separator => ":" do |line|
           hash = {}
           empty = {}
