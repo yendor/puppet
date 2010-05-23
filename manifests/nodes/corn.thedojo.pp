@@ -13,5 +13,9 @@ node "corn.thedojo" {
   package { "kernel-package":
     ensure => "present"
   }
+
+  package { "fakeroot":
+    ensure => "present"
+  }
 }
 
