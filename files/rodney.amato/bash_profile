@@ -1,0 +1,42 @@
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# Append to the history file
+shopt -s histappend
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+PS1='\[\033[01;32m\]\u\[\033[01;33m\]@\[\033[01;32m\]\h\[\033[01;33m\]:\[\033[01;36m\]\w\[\033[01;33m\]$":\[\033[01;32m\]%s")\[\033[01;33m\]\$\[\033[00m\] '
+
+if [ -f "$HOME/.bash_aliases" ]; then
+    source "$HOME/.bash_aliases"
+fi
+
+if [ -f /etc/bash_completion ]; then
+    source /etc/bash_completion
+fi
+
+if [ -f "$HOME/push-pull/push-pull-bash-completion" ]; then
+    source "$HOME/push-pull/push-pull-bash-completion"
+fi
+
+if [ -d "$HOME/bin" ]; then
+	PATH="$PATH:$HOME/bin"
+fi
+
+EDITOR="vim"
+PAGER="less"
+
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+
+# don't put duplicate lines in the history. See bash(1) for more options
+# and ignore same sucessive entries.
+HISTCONTROL="ignoredups ignoreboth"
+
+export EDITOR PATH PAGER HISTCONTROL

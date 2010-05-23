@@ -1,0 +1,31 @@
+alias vi='vim'
+
+# Alias to reload my bash settings
+reload()
+{
+	if [ -f ~/.bashrc ]; then
+		source ~/.bashrc
+	else
+		source ~/.bash_profile;
+	fi
+}
+
+# Do a wget with headers
+alias http_headers='wget -S -O -'
+
+# Grep aliases
+alias cgrep='grep --color=always -s'
+
+# Generic Syntax checking function. Only php syntax checks are implemented so far
+syntax_check()
+{
+	ext=$(echo $1 | awk -F '.' '{ print $(NF) }')
+	case "$ext" in
+		"php")
+		php -l $1
+		return $?
+		;;
+	esac
+	return 0
+}
+
