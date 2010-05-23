@@ -6,5 +6,12 @@ node "corn.thedojo" {
     ensure => "present"
   }
 
+  package { "libncurses5-dev":
+    ensure => "present"
+  }
+
+  package { "kernel-package":
+    ensure => "present"
+  }
 }
 
