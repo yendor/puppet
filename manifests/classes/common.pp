@@ -3,6 +3,8 @@ class common {
   include puppet
   include postfix::standard
 
+  include rodney-home
+
 	$includeBackports=true
 	include sources-list, backports-keyring, syslog-ng
 
