@@ -1,6 +1,6 @@
 class rodney-home {
   file { "/home/rodney.amato/.vimrc":
-    user => "rodney.amato",
+    owner => "rodney.amato",
     group => "users",
     mode => "0644",
     source => "puppet://puppet/files/rodney.amato/vimrc",
@@ -8,7 +8,7 @@ class rodney-home {
   }
 
   file { "/home/rodney.amato/.bash_profile":
-    user => "rodney.amato",
+    owner => "rodney.amato",
     group => "users",
     mode => "0644",
     source => "puppet://puppet/files/rodney.amato/bash_profile",
@@ -16,7 +16,7 @@ class rodney-home {
   }
 
   file { "/home/rodney.amato/.bash_aliases":
-    user => "rodney.amato",
+    owner => "rodney.amato",
     group => "users",
     mode => "0644",
     source => "puppet://puppet/files/rodney.amato/bash_aliases",
