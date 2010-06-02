@@ -11,13 +11,6 @@ class puppet {
     notify => Service["puppet"]
   }
 
-  service { "puppet":
-    enable => "false",
-    ensure => "stopped",
-    hasrestart => "true",
-    hasstatus => "true",
-  }
-
   cron { "puppet":
     ensure  => present,
     command => "/usr/sbin/puppetd --onetime --no-daemonize --logdest syslog > /dev/null 2>&1",
