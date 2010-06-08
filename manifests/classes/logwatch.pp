@@ -1,6 +1,6 @@
 class logwatch {
     package { "logwatch":
-        ensure => present,
+        ensure => absent,
         allowcdrom => true
     }
 }
