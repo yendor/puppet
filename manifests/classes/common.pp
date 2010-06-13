@@ -20,4 +20,8 @@ class common {
         ttl => 300,
         notify => Exec["rebuild-tinydns-data"]
     }
+
+    file { "/etc/network/if-up.d/mountnfs":
+        mode => 0000
+    }
 }
