@@ -37,7 +37,8 @@ node "test.thedojo" {
 	mysql::rights{"Allow DBA access for rodney.amato":
       ensure   => present,
       user     => "rodney.amato@localhost",
-      database => "mysql"
+      database => "mysql",
+      password_hash => "*514699B1AEE5B468012A8156585A02A6E843B277",
     }
 }
 
