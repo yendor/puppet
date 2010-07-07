@@ -28,11 +28,11 @@ node "test.thedojo" {
 	    ensure => present
 	}
 
-    # mysql::user { "Allow access for rodney.amato":
-    #     ensure => present,
-    #     name => "rodney.amato@localhost",
-    #     password_hash => "*514699B1AEE5B468012A8156585A02A6E843B277",
-    # }
+    mysql::user { "Allow access for rodney.amato":
+        ensure => present,
+        name => "rodney.amato@localhost",
+        password_hash => "*514699B1AEE5B468012A8156585A02A6E843B277",
+    }
 
 	mysql::rights{"Allow DBA access for rodney.amato":
       ensure   => present,
