@@ -36,7 +36,6 @@ node "test.thedojo" {
 
     mysql_user { "rodney@localhost":
       password_hash => mysql_password($password),
-      require => File["/root/.my.cnf"],
     }
 
     mysql_grant { "rodney@localhost DBA Access":
