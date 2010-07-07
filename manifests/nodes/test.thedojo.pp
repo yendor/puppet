@@ -34,11 +34,13 @@ node "test.thedojo" {
     #     password_hash => "*514699B1AEE5B468012A8156585A02A6E843B277",
     # }
 
-	mysql::rights{"Allow DBA access for rodney.amato":
-      ensure   => present,
-      user     => "rodney.amato@localhost",
-      database => "mysql",
-      password => "alpha",
+    mysql_user { "rodney@localhost":
+      password_hash => mysql_password($password),
+      require => File["/root/.my.cnf"],
+    }
+
+    mysql_grant { "rodney@localhost DBA Access":
+      privileges => "all",
     }
 }
 
