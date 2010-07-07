@@ -38,7 +38,7 @@ node "test.thedojo" {
       password_hash => "*514699B1AEE5B468012A8156585A02A6E843B277",
     }
 
-    mysql_grant { "rodney@localhost DBA Access":
+    mysql_grant { "rodney@localhost":
       privileges => "all",
     }
 }
