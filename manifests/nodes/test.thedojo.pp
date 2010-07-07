@@ -28,8 +28,6 @@ node "test.thedojo" {
 	    ensure => present
 	}
 
-
-	include mysql::server
 	mysql::user { "Allow access for rodney.amato":
 	    ensure => present,
 	    name => "rodney.amato@localhost",
