@@ -38,7 +38,7 @@ node "test.thedojo" {
       ensure   => present,
       user     => "rodney.amato@localhost",
       database => "mysql",
-      password_hash => "*514699B1AEE5B468012A8156585A02A6E843B277",
+      password => "alpha",
     }
 }
 
