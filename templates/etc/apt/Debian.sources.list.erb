@@ -10,5 +10,5 @@ deb-src http://volatile.debian.org/debian-volatile <%= lsbdistcodename %>/volati
 <% end %>
 
 <% if has_variable?('includeBackports') and includeBackports == true then %>
-deb http://www.backports.org/debian <%= lsbdistcodename %>-backports main contrib non-free
+deb http://backports.debian.org/debian-backports <%= lsbdistcodename %>-backports main contrib non-free
 <% end %>
