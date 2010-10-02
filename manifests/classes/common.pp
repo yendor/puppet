@@ -10,8 +10,6 @@ class common {
 
     include user::unixadmins
 
-    include tinydns::setup
-
     @@dnsrecord { "forward and reverse dns for $fqdn":
         ensure => "present",
         type => "=",
