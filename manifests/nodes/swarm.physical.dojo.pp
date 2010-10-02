@@ -6,6 +6,5 @@ node "swarm.physical.dojo" {
 
      virtual-machine::kvm { "puppet":
         ensure => present,
-        vg => "vg01"
     }
 }
