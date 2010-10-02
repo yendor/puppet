@@ -9,7 +9,7 @@ node "swarm.physical.dojo" {
     }
 
     virtual-machine::kvm { "leech":
-        ensure => present,
+        ensure => absent,
         extra_args => "url=http://192.168.1.15/preseed.cfg"
     }
 }
