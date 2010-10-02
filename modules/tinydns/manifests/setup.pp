@@ -23,7 +23,7 @@ class tinydns::setup {
         comment => "Tinydns User",
         home => "/dev/null",
         shell => "/bin/false",
-        uid => 100,
+        uid => 30000,
     }
 
     user { "dnscache":
@@ -31,7 +31,7 @@ class tinydns::setup {
         comment => "Tinydns User",
         home => "/dev/null",
         shell => "/bin/false",
-        uid => 101,
+        uid => 30001,
     }
 
     user { "dnslog":
@@ -39,7 +39,7 @@ class tinydns::setup {
         comment => "Tinydns User",
         home => "/dev/null",
         shell => "/bin/false",
-        uid => 102,
+        uid => 30002,
     }
 
     package { "djbdns":
