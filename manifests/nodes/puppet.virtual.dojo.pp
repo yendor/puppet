@@ -2,9 +2,7 @@ node "puppet.virtual.dojo" {
   $mirror="http://ftp.au.debian.org/debian"
   include common
   include git
-  include tinydns
-
-  tinydns::setup()
+  include tinydns::setup
 
   dnsrecord { "nameserver for thdojo":
     ensure => present,
