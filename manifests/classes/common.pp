@@ -6,7 +6,7 @@ class common {
     include rodney-home
 
     $includeBackports=true
-    include sources-list, backports-keyring, syslog-ng
+    include sources-list, syslog-ng
 
     include user::unixadmins
 
