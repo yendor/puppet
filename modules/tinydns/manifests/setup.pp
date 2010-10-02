@@ -3,19 +3,19 @@ class tinydns::setup {
         cwd => "/etc/tinydns/root",
         command => "/usr/bin/make",
         refreshonly => true,
-        requires => Package["djbdns"]
+        require => Package["djbdns"]
     }
 
     exec { "tinydns-setup":
         command => "/usr/bin/tinydns-conf tinydns dnslog /etc/tinydns 127.0.0.1",
         creates => "/etc/tinydns",
-        requires => Package["djbdns"]
+        require => Package["djbdns"]
     }
 
     exec { "dnscache-setup":
         command => "/usr/bin/dnscache-conf dnscache dnslog /etc/dnscache $ipaddress",
         creates => "/etc/dnscache",
-        requires => Package["djbdns"]
+        require => Package["djbdns"]
     }
 
     user { "tinydns":
