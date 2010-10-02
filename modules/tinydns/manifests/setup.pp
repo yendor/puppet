@@ -3,7 +3,8 @@ class tinydns::setup {
         cwd => "/etc/tinydns/root",
         command => "/usr/bin/make",
         refreshonly => true,
-        require => [Package["djbdns"], Exec["tinydns-setup"], Exec["dnscache-setup"]]
+        require => [Package["djbdns"], Exec["tinydns-setup"], Exec["dnscache-setup"]],
+        notify => Service["dnscache"]
     }
 
     exec { "tinydns-setup":
@@ -62,5 +63,15 @@ class tinydns::setup {
 
     file { "/etc/dnscache/root/servers/$domain":
         content => "127.0.0.1"
+    }
+
+    service { "dnscache":
+        provider => "daemontools",
+        path => "/etc/dnscache";
+    }
+
+    service { "tinydns":
+        provider => "daemontools",
+        path => "/etc/dnscache";
     }
 }
