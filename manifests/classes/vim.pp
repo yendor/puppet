@@ -7,7 +7,7 @@ class vim {
         owner => root,
         group => root,
         mode => 600,
-        source => "puppet://puppet/files/root/.vimrc",
+        source => "puppet:///files/root/.vimrc",
         require => Package["vim"]
     }
 }

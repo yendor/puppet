@@ -3,7 +3,7 @@ class rodney-home {
     owner => "rodney.amato",
     group => "users",
     mode => "0644",
-    source => "puppet://puppet/files/rodney.amato/vimrc",
+    source => "puppet:///files/rodney.amato/vimrc",
     require => User["rodney.amato"]
   }
 
@@ -11,7 +11,7 @@ class rodney-home {
     owner => "rodney.amato",
     group => "users",
     mode => "0644",
-    source => "puppet://puppet/files/rodney.amato/bash_profile",
+    source => "puppet:///files/rodney.amato/bash_profile",
     require => User["rodney.amato"]
   }
 
@@ -19,7 +19,7 @@ class rodney-home {
     owner => "rodney.amato",
     group => "users",
     mode => "0644",
-    source => "puppet://puppet/files/rodney.amato/bash_aliases",
+    source => "puppet:///files/rodney.amato/bash_aliases",
     require => User["rodney.amato"]
   }
 }

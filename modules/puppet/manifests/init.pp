@@ -7,7 +7,7 @@ class puppet {
     owner => root,
     group => root,
     mode => 0644,
-    source => "puppet://puppet/files/puppet/default"
+    source => "puppet:///files/puppet/default"
   }
 
   cron { "puppet":

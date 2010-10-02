@@ -7,7 +7,7 @@ class bash {
         owner => root,
         group => root,
         mode => 600,
-        source => "puppet://puppet/files/root/.bashrc",
+        source => "puppet:///files/root/.bashrc",
         require => Package["bash"]
     }
     package { "bash-completion":

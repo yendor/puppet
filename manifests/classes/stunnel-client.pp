@@ -5,7 +5,7 @@ class stunnel-client {
 		owner => "root",
 		group => "root",
 		mode => "600",
-		source => "puppet://puppet/files/etc/stunnel/stunnel-client.conf",
+		source => "puppet:///files/etc/stunnel/stunnel-client.conf",
 		notify => Exec["reload-stunnel"]
 	}
 
@@ -13,7 +13,7 @@ class stunnel-client {
 		owner => "root",
 		group => "root",
 		mode => "644",
-		source => "puppet://puppet/files/etc/default/stunnel4",
+		source => "puppet:///files/etc/default/stunnel4",
 		notify => Exec["reload-stunnel"]
 	}
 

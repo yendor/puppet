@@ -11,7 +11,7 @@ class rsyslog::midpoint {
 		owner => "root",
 		group => "root",
 		mode => 600,
-		source => "puppet://puppet/files/etc/rsyslog.d/midpoint.conf",
+		source => "puppet:///files/etc/rsyslog.d/midpoint.conf",
 		require => Package["rsyslog"],
 		notify => Exec["reload-rsyslog"],
 	}

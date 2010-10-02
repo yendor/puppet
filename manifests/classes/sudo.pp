@@ -7,6 +7,6 @@ class sudo {
 		owner => "root",
 		group => "root",
 		mode => 0440,
-		source => "puppet://puppet/files/etc/sudoers"
+		source => "puppet:///files/etc/sudoers"
 	}
 }

@@ -11,7 +11,7 @@ class rsyslog::edge {
 		owner => "root",
 		group => "root",
 		mode => 600,
-		source => "puppet://puppet/files/etc/rsyslog.d/edge.conf",
+		source => "puppet:///files/etc/rsyslog.d/edge.conf",
 		require => Package["rsyslog"],
 		notify => Exec["reload-rsyslog"],
 	}

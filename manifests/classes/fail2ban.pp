@@ -19,7 +19,7 @@ class fail2ban {
 		mode => 0600,
 		owner => root,
 		group => root,
-		source => "puppet://puppet/files/etc/fail2ban/filter.d/dovecot.conf",
+		source => "puppet:///files/etc/fail2ban/filter.d/dovecot.conf",
 		notify => Exec["reload-fail2ban"],
 	}
 
@@ -27,7 +27,7 @@ class fail2ban {
 		mode => 0600,
 		owner => root,
 		group => root,
-		source => "puppet://puppet/files/etc/fail2ban/filter.d/plesk-dovecot.conf",
+		source => "puppet:///files/etc/fail2ban/filter.d/plesk-dovecot.conf",
 		notify => Exec["reload-fail2ban"],
 	}
 
