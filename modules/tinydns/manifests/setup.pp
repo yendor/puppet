@@ -3,7 +3,7 @@ class tinydns::setup {
         cwd => "/etc/tinydns/root",
         command => "/usr/bin/make",
         refreshonly => true,
-        require => Package["djbdns"]
+        require => [Package["djbdns"], Exec["tinydns-setup"], Exec["dnscache-setup"]]
     }
 
     exec { "tinydns-setup":
