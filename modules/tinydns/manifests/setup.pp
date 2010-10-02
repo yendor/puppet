@@ -49,4 +49,14 @@ class tinydns::setup {
     package { "make":
         ensure => "present"
     }
+
+    file { "/etc/service/tinydns":
+        ensure => "/etc/tinydns",
+        require => [Exec["tinydns-setup"], Exec["dnscache-setup"]]
+    }
+
+    file { "/etc/service/dnscache":
+        ensure => "/etc/dnscache",
+        require => [Exec["tinydns-setup"], Exec["dnscache-setup"]]
+    }
 }
