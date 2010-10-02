@@ -15,7 +15,7 @@ class virtual-machine-server {
         ensure => present
     }
     service { "libvirt-bin":
-        ensure => true,
+        ensure => running,
         enable => true,
         hasstatus => true,
         restart => "/etc/init.d/libvirt-bin reload",
