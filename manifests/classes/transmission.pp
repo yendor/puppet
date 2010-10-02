@@ -14,6 +14,7 @@ class transmission {
         owner => "root",
         group => "root",
         mode => "0644",
-        notify => Service["transmission-daemon"]
+        notify => Service["transmission-daemon"],
+        require => Package["transmission-daemon"]
     }
 }
