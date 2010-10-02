@@ -4,8 +4,9 @@ class transmission {
     }
 
     service { "transmission-daemon":
+        ensure => running,
         hasrestart => true,
-        hasreload => true
+        hasstatus => true
     }
 
     file { "/etc/transmission-daemon/settings.json":
@@ -13,5 +14,6 @@ class transmission {
         owner => "root",
         group => "root",
         mode => "0644",
+        notify => Service["transmission-daemon"]
     }
 }
