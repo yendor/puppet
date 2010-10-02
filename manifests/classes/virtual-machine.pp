@@ -35,7 +35,7 @@ class virtual-machine {
             absent: {
                 exec { "virt_stop_vm_${name}":
                     command => "/usr/bin/virsh -c qemu:///system destroy ${name}",
-                    onlyif => "/usr/bin/virsh -c qemu:///system dominfo ${name} | /bin/grep -q 'State:          running'",
+                    onlyif => "/usr/bin/virsh -c qemu:///system domstate ${name}",
                     notify => Service["libvirt-bin"],
                     refreshonly => true
                 }
