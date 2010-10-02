@@ -15,6 +15,7 @@ class virtual-machine {
                 exec { "lvcreate_disk_${name}":
                     command => "/sbin/lvcreate -n ${name} -L +${disk_size} ${vg}",
                     creates => "/dev/mapper/${vg}-${name}",
+                    unless => "/usr/bin/stat /dev/mapper/${vg}-${name}",
                 }
                 exec { "virt-install_${name}":
                     command => "/usr/bin/virt-install --connect qemu:///system -n ${name} -r ${ram} --vcpus=${cpus} -f /dev/mapper/${vg}-${name} -c ${iso} --vnc --noautoconsole --os-type linux --os-variant debianLenny --accelerate $network --hvm",
