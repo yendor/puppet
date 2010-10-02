@@ -19,7 +19,7 @@ class git {
     }
 
     package { "libdifflcs-ruby":
-    	ensure => prsent,
+    	ensure => present,
     }
 
     package { "ruby1.8-dev":
