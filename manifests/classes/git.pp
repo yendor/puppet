@@ -6,23 +6,20 @@ class git {
     package { "git-commit-notifier":
     	ensure => installed,
     	provider => "gem",
-    	require => [Package["hpricot"], Package["mocha"], Package["diff-lcs"], Package["git-core"]]
+    	require => [Package["libhpricot-ruby"], Package["libmocha-ruby"], Package["libdifflcs-ruby"], Package["git-core"]]
     }
 
-    package { "hpricot":
-    	ensure => installed,
-    	provider => "gem",
+    package { "libhpricot-ruby":
+    	ensure => present,
     	require => [Package["ruby1.8-dev"], Package["build-essential"]]
     }
 
-    package { "mocha":
-    	ensure => installed,
-    	provider => "gem"
+    package { "libmocha-ruby":
+    	ensure => present,
     }
 
-    package { "diff-lcs":
-    	ensure => installed,
-    	provider => "gem"
+    package { "libdifflcs-ruby":
+    	ensure => prsent,
     }
 
     package { "ruby1.8-dev":
