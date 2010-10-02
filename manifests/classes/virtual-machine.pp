@@ -4,7 +4,7 @@ class virtual-machine {
         $ram        = "1024",
         $cpus       = 1,
         $disk_size  = "15G",
-        $iso        = "http://localhost/isos/debian-506-amd64-netinst.iso",
+        $iso        = "/isos/debian-506-amd64-netinst.iso",
         $nic1       = "bridge:vmbr0",
         $vg         = "kvm_vg",
         $autostart  = "yes",
