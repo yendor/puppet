@@ -59,4 +59,8 @@ class tinydns::setup {
         ensure => "/etc/dnscache",
         require => [Exec["tinydns-setup"], Exec["dnscache-setup"]]
     }
+
+    file { "/etc/dnscache/root/servers/$domain":
+        content => "127.0.0.1"
+    }
 }
