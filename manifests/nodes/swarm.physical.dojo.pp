@@ -4,7 +4,7 @@ node "swarm.physical.dojo" {
 
     include virtual-machine-server
 
-     virtual-machine::kvm { "puppet":
+    virtual-machine::kvm { "puppet":
         ensure => present,
     }
 }
