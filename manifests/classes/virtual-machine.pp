@@ -4,7 +4,7 @@ class virtual-machine {
         $ram        = "1024",
         $cpus       = 1,
         $disk_size  = "15G",
-        $iso        = "/isos/debian-506-amd64-netinst.iso",
+        $iso        = "http://localhost/isos/debian-506-amd64-netinst.iso",
         $nic1       = "bridge:vmbr0",
         $vg         = "kvm_vg",
         $autostart  = "yes",
@@ -20,7 +20,7 @@ class virtual-machine {
                     unless => "/usr/bin/stat /dev/mapper/${vg}-${name}",
                 }
                 exec { "virt-install_${name}":
-                    command => "/usr/bin/virt-install --connect qemu:///system -n ${name} -r ${ram} --vcpus=${cpus} -f /dev/mapper/${vg}-${name} -c ${iso} --vnc --noautoconsole --os-type linux --os-variant debianLenny --accelerate $network --hvm --extra-args=\"$extra_args_to_use\"",
+                    command => "/usr/bin/virt-install --connect qemu:///system -n ${name} -r ${ram} --vcpus=${cpus} -f /dev/mapper/${vg}-${name} -l ${iso} --vnc --noautoconsole --os-type linux --os-variant debianLenny --accelerate $network --hvm --extra-args=\"$extra_args_to_use\"",
                     creates => "/etc/libvirt/qemu/${name}.xml",
                     require => [Package["virtinst"],Package["libvirt-bin"],Service["libvirt-bin"],Exec["lvcreate_disk_${name}"]],
                     unless => "/usr/bin/stat /etc/libvirt/qemu/${name}.xml",
