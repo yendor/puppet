@@ -6,7 +6,7 @@ class ssh-server {
 
     service { "ssh":
         ensure => running,
-        hasresart => true,
+        hasrestart => true,
         hasstatus => true,
         require => Package["openssh-server"]
     }
