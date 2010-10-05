@@ -12,4 +12,9 @@ node "swarm.physical.dojo" {
         ensure => present,
         extra_args => "auto=true url=http://192.168.1.10/preseed.cfg"
     }
+
+    virtual-machine::kvm { "test":
+        ensure => present,
+        extra_args => "auto=true url=http://192.168.1.10/preseed.cfg"
+    }
 }
