@@ -51,6 +51,14 @@ class tinydns::setup {
         ensure => "present"
     }
 
+    package { "bsdutils":
+        ensure => "present"
+    }
+
+    package { "daemontools":
+        ensure => "present"
+    }
+
     file { "/etc/service/tinydns":
         ensure => "/etc/tinydns",
         require => [Exec["tinydns-setup"], Exec["dnscache-setup"]]
@@ -70,8 +78,36 @@ class tinydns::setup {
         path => "/etc/dnscache";
     }
 
+    service { "dnscache-log":
+        provider => "daemontools",
+        path => "/etc/dnscache/log";
+    }
+
     service { "tinydns":
         provider => "daemontools",
-        path => "/etc/dnscache";
+        path => "/etc/tinydns";
+    }
+
+    service { "tinydns-log":
+        provider => "daemontools",
+        path => "/etc/tinydns/log";
+    }
+
+    file { "/etc/tinydns/log/run":
+        owner => "root",
+        group => "root",
+        mode => "0755",
+        content => "files/tinydns-log",
+        require => [Exec["tinydns-setup"], Package["daemontools"], Package["bsdutils"]],
+        notify => Service["tinydns-log"]
+    }
+
+    file { "/etc/dnscache/log/run":
+        owner => "root",
+        group => "root",
+        mode => "0755",
+        content => "files/dnscache-log",
+        require => [Exec["dnscache-setup"], Package["daemontools"], Package["bsdutils"]],
+        notify => Service["dnscache-log"]
     }
 }

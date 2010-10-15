@@ -1,0 +1,2 @@
+#!/bin/sh
+exec setuidgid dnslog logger -t tinydns -p daemon.info
