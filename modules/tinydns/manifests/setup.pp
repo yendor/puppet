@@ -97,7 +97,7 @@ class tinydns::setup {
         owner => "root",
         group => "root",
         mode => "0755",
-        source => "files/tinydns-log",
+        source => "puppet:///modules/tinydns/tinydns-log",
         require => [Exec["tinydns-setup"], Package["daemontools"], Package["bsdutils"]],
         notify => Service["tinydns-log"]
     }
@@ -106,7 +106,7 @@ class tinydns::setup {
         owner => "root",
         group => "root",
         mode => "0755",
-        source => "files/dnscache-log",
+        source => "puppet:///modules/tinydns/dnscache-log",
         require => [Exec["dnscache-setup"], Package["daemontools"], Package["bsdutils"]],
         notify => Service["dnscache-log"]
     }
