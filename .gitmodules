@@ -3,4 +3,4 @@
 	url = git@github.com:yendor/puppet-mysql.git
 [submodule "modules/pgsqlauth"]
 	path = modules/pgsqlauth
-	url = git@github.com:yendor/puppet-pgsqlauth.git
+	url = git://github.com/yendor/puppet-pgsqlauth.git
