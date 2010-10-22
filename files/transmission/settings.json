@@ -15,6 +15,6 @@
     "rpc-whitelist": "127.0.0.1",
     "upload-limit": 15,
     "upload-limit-enabled": 1,
-    "ratio-limit": 0,
+    "ratio-limit": 0.01,
     "ratio-limit-enabled": 1
 }
