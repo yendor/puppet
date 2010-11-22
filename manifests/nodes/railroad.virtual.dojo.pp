@@ -2,7 +2,7 @@ node "railroad.virtual.dojo" {
   $mirror="http://ftp.au.debian.org/debian"
   include common
 
-	package { "rubygems":
+	package { "rubygems1.8":
 		ensure => "1.3.4-1~bpo50+1"
 	}
 
