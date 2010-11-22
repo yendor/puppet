@@ -11,6 +11,16 @@ node "railroad.virtual.dojo" {
 		provider => "gem"
 	}
 	
+	package { "ruby1.8-dev":
+		ensure => "present"
+	}
+	
+	package { "unicorn":
+		provider => "gem",
+		ensure => "present",
+		requires => Package["ruby1.8-dev"]
+	}
+	
 	package { "i18n":
 		ensure => "present",
 		provider => "gem"
