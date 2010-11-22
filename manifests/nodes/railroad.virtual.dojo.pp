@@ -6,7 +6,7 @@ node "railroad.virtual.dojo" {
 	
 	include nginx
 	
-	nginx::site{ "nessus"
+	nginx::site{ "nessus":
 		ensure => present
 	}
 }
