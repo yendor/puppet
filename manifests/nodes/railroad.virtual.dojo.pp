@@ -6,8 +6,8 @@ node "railroad.virtual.dojo" {
 		ensure => "1.3.4-1~bpo50+1"
 	}
 
-	# package { "rails":
-	# 	ensure => "3.0.3",
-	# 	provider => "gem"
-	# }
+	package { "rails":
+		ensure => "3.0.3",
+		provider => "gem"
+	}
 }
