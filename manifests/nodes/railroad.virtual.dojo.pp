@@ -3,9 +3,9 @@ node "railroad.virtual.dojo" {
   include common
 
 	package { "rubygems1.8":
-		ensure => "1.3.4-1~bpo50+1"
+		ensure => "1.3.7-3"
 	}
-
+	
 	package { "rails":
 		ensure => "3.0.3",
 		provider => "gem"
