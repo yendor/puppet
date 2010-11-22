@@ -19,7 +19,7 @@ class nginx {
   define site ( $ensure = 'present' ) {
       case $ensure {
          'present' : {
-            exec { "/bin/ln -s /etc/nginx/sites-available/$name /etc/nginx/sites-enabled/name":
+            exec { "/bin/ln -s /etc/nginx/sites-available/$name /etc/nginx/sites-enabled/$name":
                creates => "/etc/nginx/sites-enabled/$name",
                notify => Exec["reload-nginx"],
                require => [Package["nginx"], File["/etc/nginx/sites-available/$name"]]
