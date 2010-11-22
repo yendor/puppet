@@ -19,10 +19,6 @@ node "railroad.virtual.dojo" {
 		ensure => "present",
 		provider => "gem"
 	}
-	package { "activemodel":
-		ensure => "present",
-		provider => "gem"
-	}
 	package { "rack":
 		ensure => "present",
 		provider => "gem"
