@@ -10,4 +10,9 @@ node "railroad.virtual.dojo" {
 		ensure => "3.0.3",
 		provider => "gem"
 	}
+	
+	package { "unicorn":
+		ensure => "present",
+		provider => "gem"
+	}
 }
