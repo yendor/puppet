@@ -1,0 +1,21 @@
+upstream nessus {
+	server unix:/tmp/nessus-reporting.sock;
+}
+
+
+server {
+	listen   80;
+	server_name  localhost;
+
+	access_log  /var/log/nginx/localhost.access.log;
+
+	location / {
+		if (!-f $request_filename) {
+			break;
+			proxy_pass http://nessus;
+		}
+		root /home/rodney.amato/nessus-reporting/public/;
+
+	}
+
+}

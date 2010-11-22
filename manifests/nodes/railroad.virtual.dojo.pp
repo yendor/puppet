@@ -3,4 +3,10 @@ node "railroad.virtual.dojo" {
   include common
 
 	include railsserver
+	
+	include nginx
+	
+	nginx::site{ "nessus"
+		ensure => present
+	}
 }
