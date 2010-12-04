@@ -1,11 +1,11 @@
 Listen 8140
 
 <VirtualHost *:8140>
-	ServerName puppet
+	ServerName <%= fqdn %>
 	SSLEngine on
 	SSLCipherSuite SSLv2:-LOW:-EXPORT:RC4+RSA
-	SSLCertificateFile /var/lib/puppet/ssl/certs/puppet.pem
-	SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/puppet.pem
+	SSLCertificateFile /var/lib/puppet/ssl/certs/<%= fqdn %>.pem
+	SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/<%= fqdn %>.pem
 	SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
 	SSLCACertificateFile /var/lib/puppet/ssl/ca/ca_crt.pem
 	#SSLCARevocationFile /var/lib/puppet/ssl/ca/ca_crl.pem

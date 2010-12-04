@@ -70,7 +70,7 @@ class puppetmaster {
     }
     
     file { "/etc/apache2/sites-available/puppetmaster": 
-        source => "puppet:///modules/puppetmaster/apachehost-rack",
+        content => template("puppetmaster/apachehost-rack.erb"),
         backup => false
     }
     
