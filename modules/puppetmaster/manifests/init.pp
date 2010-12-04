@@ -15,7 +15,7 @@ class puppetmaster {
     
     package { "rails-ruby1.8":
         ensure => "2.3.5-1~bpo50+1",
-        requires => "libactiverecord-ruby1.8"
+        require => "libactiverecord-ruby1.8"
     }
     
     package { "librack-ruby1.8":
@@ -28,12 +28,12 @@ class puppetmaster {
     
     package { "libactiverecord-ruby1.8":
         ensure => "2.3.5-1~bpo50+1",
-        requires => "libactivesupport-ruby1.8"
+        require => "libactivesupport-ruby1.8"
     }
     
     package { "libactivesupport-ruby1.8":
         ensure => "2.3.5-1~bpo50+1",
-        requires => Package["librack-ruby1.8"]
+        require => Package["librack-ruby1.8"]
     }
     
     package { "libjs-jquery":
