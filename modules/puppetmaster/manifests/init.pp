@@ -16,7 +16,7 @@ class puppetmaster {
     
     package { "rails-ruby1.8":
         ensure => "2.3.5-1~bpo50+1",
-        require => Package["libactiverecord-ruby1.8"]
+        require => Package["libactiverecord-ruby1.8", "rake"]
     }
     
     package { "librack-ruby1.8":
