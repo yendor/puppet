@@ -71,7 +71,8 @@ class puppetmaster {
     
     file { "/etc/apache2/sites-available/puppetmaster": 
         content => template("puppetmaster/apachehost-rack.erb"),
-        backup => false
+        backup => false,
+        notify => Service["apache2"]
     }
     
     file { "/etc/apache2/sites-enabled/puppetmaster":
@@ -109,7 +110,8 @@ class puppetmaster {
     
     file { "/etc/apache2/sites-enabled/000-default":
         ensure => absent,
-        backup => false
+        backup => false,
+        notify => Service["apache2"]
     }
     
     file { "/etc/default/puppetmaster":
