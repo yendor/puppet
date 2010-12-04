@@ -89,7 +89,6 @@ class puppetmaster {
         ensure => present,
         source => "puppet:///modules/puppetmaster/defaults-rack",
         backup => false,
-        require => Package["puppetmaster"]
     }
     
 }
