@@ -1,3 +1,0 @@
-import "*"
-
-class tinydns {}
