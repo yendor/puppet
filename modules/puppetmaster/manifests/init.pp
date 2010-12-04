@@ -39,21 +39,21 @@ class puppetmaster {
     file { "/etc/apache2/sites-enabled/puppetmaster":
         ensure => "/etc/apache2/sites-available/puppetmaster",
         backup => false,
-        require => [Service["apache2"], File["/etc/apache2/sites-available/puppetmaster"]],
+        require => [File["/etc/apache2/sites-available/puppetmaster"]],
         notify => Service["apache2"]
     }
     
     file { "/etc/apache2/mods-enabled/passenger.conf":
         ensure => "../mods-available/passenger.conf",
         backup => false,
-        require => [Service["apache2"], Package["libapache2-mod-passenger"]],
+        require => [Package["libapache2-mod-passenger"]],
         notify => Service["apache2"]
     }
     
     file { "/etc/apache2/mods-enabled/passenger.load":
         ensure => "../mods-available/passenger.load",
         backup => false,
-        require => [Service["apache2"], Package["libapache2-mod-passenger"]],
+        require => [Package["libapache2-mod-passenger"]],
         notify => Service["apache2"]
     }
     
