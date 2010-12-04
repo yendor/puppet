@@ -94,6 +94,18 @@ class puppetmaster {
         notify => Service["apache2"]
     }
     
+    file { "/etc/apache2/mods-enabled/ssl.conf":
+        ensure => "../mods-available/ssl.conf",
+        backup => false,
+        notify => Service["apache2"]
+    }
+    
+    file { "/etc/apache2/mods-enabled/ssl.load":
+        ensure => "../mods-available/ssl.load",
+        backup => false,
+        notify => Service["apache2"]
+    }
+    
     file { "/etc/default/puppetmaster":
         ensure => present,
         source => "puppet:///modules/puppetmaster/defaults-rack",
