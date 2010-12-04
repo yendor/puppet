@@ -22,6 +22,10 @@ class puppetmaster {
         ensure => "1.1.0-4~bpo50+1"
     }
     
+    package { "librack-ruby":
+        ensure => "1.1.0-4~bpo50+1"
+    }
+    
     package { "rake":
         ensure => "0.8.7-1~bpo50+1"
     }
@@ -33,7 +37,7 @@ class puppetmaster {
     
     package { "libactivesupport-ruby1.8":
         ensure => "2.3.5-1~bpo50+1",
-        require => Package["librack-ruby1.8"]
+        require => Package["librack-ruby"]
     }
     
     package { "libjs-jquery":
