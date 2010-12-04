@@ -2,7 +2,7 @@ class puppetmaster {
     $puppet_version = "2.6.2-1~bpo50+1"
     package { "puppetmaster":
         ensure => $puppet_version,
-        require => File["/etc/default/puppetmaster"]
+        require => [File["/etc/default/puppetmaster"], Package["libapache2-mod-passenger"]]
     }
     
     package { "puppet-common":
@@ -10,7 +10,8 @@ class puppetmaster {
     }
     
     package { "libapache2-mod-passenger":
-        ensure => "2.2.11debian-1~bpo50+1"
+        ensure => "2.2.11debian-1~bpo50+1",
+        require => Package["apache2"]
     }
     
     package { "rails-ruby1.8":
