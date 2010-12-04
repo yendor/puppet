@@ -4,3 +4,6 @@
 [submodule "modules/pgsqlauth"]
 	path = modules/pgsqlauth
 	url = git://github.com/yendor/puppet-pgsqlauth.git
+[submodule "modules/puppet"]
+	path = modules/puppet
+	url = git://github.com/yendor/puppet-puppet.git
