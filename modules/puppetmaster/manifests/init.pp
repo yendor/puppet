@@ -26,11 +26,13 @@ class puppetmaster {
     }
     
     package { "libactiverecord-ruby1.8":
-        ensure => "2.3.5-1~bpo50+1"
+        ensure => "2.3.5-1~bpo50+1",
+        requires => "libactivesupport-ruby1.8"
     }
     
     package { "libactivesupport-ruby1.8":
-        ensure => "2.3.5-1~bpo50+1"
+        ensure => "2.3.5-1~bpo50+1",
+        requires => Package["librack-ruby1.8"]
     }
     
     package { "libjs-jquery":
