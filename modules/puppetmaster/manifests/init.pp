@@ -17,7 +17,7 @@ class puppetmaster {
     }
     
     package { "librack-ruby1.8":
-        ensure => "1.1.0-4~bpo50+"
+        ensure => "1.1.0-4~bpo50+1"
     }
     
     package { "rake":
