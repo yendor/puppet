@@ -88,7 +88,8 @@ class puppetmaster {
     file { "/etc/default/puppetmaster":
         ensure => present,
         source => "puppet:///modules/puppetmaster/defaults-rack",
-        backup => false
+        backup => false,
+        require => Package["puppetmaster"]
     }
     
 }
