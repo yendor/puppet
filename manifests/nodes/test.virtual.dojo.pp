@@ -3,4 +3,6 @@ node "test.virtual.dojo" {
   $includeBackports=true
   include common
   # include puppetmaster
+  
+  include kvm::server
 }
