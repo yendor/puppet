@@ -1,7 +1,8 @@
 class puppetmaster {
     $puppet_version = "2.6.2-1~bpo50+1"
     package { "puppetmaster":
-        ensure => $puppet_version
+        ensure => $puppet_version,
+        require => File["/etc/default/puppetmaster"]
     }
     
     package { "puppet-common":
