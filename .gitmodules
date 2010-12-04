@@ -7,3 +7,6 @@
 [submodule "modules/puppet"]
 	path = modules/puppet
 	url = git://github.com/yendor/puppet-puppet.git
+[submodule "modules/puppetmaster"]
+	path = modules/puppetmaster
+	url = git://github.com/yendor/puppet-puppetmaster.git
