@@ -32,10 +32,6 @@ class puppetmaster {
         ensure => "2.3.5-1~bpo50+1"
     }
     
-    package { "librack-ruby1.8":
-        ensure => "1.1.0-4~bpo50+1"
-    }
-    
     package { "libjs-jquery":
         ensure => "1.4.2-2~bpo50+1"
     }
