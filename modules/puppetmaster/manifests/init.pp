@@ -20,6 +20,38 @@ class puppetmaster {
         ensure => "1.1.0-4~bpo50+"
     }
     
+    package { "rake":
+        ensure => "0.8.7-1~bpo50+1"
+    }
+    
+    package { "libactiverecord-ruby1.8":
+        ensure => "2.3.5-1~bpo50+1"
+    }
+    
+    package { "libactivesupport-ruby1.8":
+        ensure => "2.3.5-1~bpo50+1"
+    }
+    
+    package { "librack-ruby1.8":
+        ensure => "1.1.0-4~bpo50+1"
+    }
+    
+    package { "libjs-jquery":
+        ensure => "1.4.2-2~bpo50+1"
+    }
+    
+    package { "libi18n-ruby1.8":
+        ensure => "0.3.6-1~bpo50+1"
+    }
+    
+    package { "libtzinfo-ruby1.8":
+        ensure => "0.3.19-1~bpo50+1"
+    }
+    
+    package { "libmemcache-client-ruby1.8":
+        ensure => "1.7.8-1~bpo50+1"
+    }
+    
     package { "apache2":
         ensure => "present"
     }
