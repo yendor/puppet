@@ -20,6 +20,17 @@ class puppetmaster {
         ensure => "1.1.0-4~bpo50+"
     }
     
+    package { "apache2":
+        ensure => "present"
+    }
+    
+    service { "apache2":
+        ensure => running,
+        hasstatus => true,
+        hasrestart => true,
+        require => Package["apache2"]
+    }
+    
     file { "/etc/apache2/sites-available/puppetmaster": 
         source => "puppet:///modules/puppetmaster/apachehost-rack",
         backup => false
