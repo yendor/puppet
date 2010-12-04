@@ -37,7 +37,7 @@ class virtual-machine-server {
     }
     
     file { "/sys/kernel/mm/ksm/run":
-        contents => "1",
+        content => "1",
         backup => false,
         require => Package["linux-image-2.6.32-bpo.5-amd64"]
     }
