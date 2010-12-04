@@ -2,6 +2,7 @@ Listen 8140
 
 <VirtualHost *:8140>
 	ServerName <%= fqdn %>
+	ServerAlias puppet
 	SSLEngine on
 	SSLCipherSuite SSLv2:-LOW:-EXPORT:RC4+RSA
 	SSLCertificateFile /var/lib/puppet/ssl/certs/<%= fqdn %>.pem
