@@ -85,4 +85,10 @@ class puppetmaster {
         notify => Service["apache2"]
     }
     
+    file { "/etc/default/puppetmaster":
+        ensure => present,
+        source => "puppet:///modules/puppetmaster/defaults-rack",
+        backup => false
+    }
+    
 }
