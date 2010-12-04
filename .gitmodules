@@ -10,3 +10,6 @@
 [submodule "modules/puppetmaster"]
 	path = modules/puppetmaster
 	url = git://github.com/yendor/puppet-puppetmaster.git
+[submodule "modules/tinydns"]
+	path = modules/tinydns
+	url = git://github.com/yendor/puppet-tinydns.git
