@@ -24,7 +24,7 @@ class common {
     }
     
     augeas{ "boot_delay":
-           context => "/files/boot/grub/menu.lst",
-           changes => "set timeout 5",
-     }
+        context => "/files/boot/grub/menu.lst",
+        changes => "set timeout 5",
+    }
 }
