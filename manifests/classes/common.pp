@@ -22,4 +22,9 @@ class common {
     file { "/etc/network/if-up.d/mountnfs":
         mode => 0000
     }
+    
+    augeas{ "boot_delay":
+           context => "/files/boot/grub/menu.lst",
+           changes => "set timeout 5",
+     }
 }
