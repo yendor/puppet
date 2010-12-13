@@ -4,7 +4,7 @@ node "leech.virtual.dojo" {
 
   include transmission
 
-  augeaus { "root_partition_noatime":
+  augeas { "root_partition_noatime":
       contect => "/files/etc/fstab",
       changes => "set *[file = '/']/opt errors=remount-ro,noatime,nodiratime",
   }
