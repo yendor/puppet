@@ -1,14 +1,27 @@
 class railsserver {
+	$ruby_version = "1.8.7.302-2~bpo50+1"
+	
 	package { "rubygems1.8":
 		ensure => "1.3.7-3"
 	}
+	
+	package { "libruby1.8":
+		ensure => "$ruby_version"
+	}
+	
+	package { "ruby1.8":
+		ensure => "$ruby_version",
+		require => Package["libruby1.8"]
+	}
+	
 	package { "rails":
 		ensure => "3.0.3",
 		provider => "gem",
 		require => Package["rubygems1.8"]
 	}
 	package { "ruby1.8-dev":
-		ensure => "present"
+		ensure => "$ruby_version"
+		require => Package["libruby1.8"]
 	}
 	package { "unicorn":
 		provider => "gem",
