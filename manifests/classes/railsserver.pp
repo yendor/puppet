@@ -20,7 +20,7 @@ class railsserver {
 		require => Package["rubygems1.8"]
 	}
 	package { "ruby1.8-dev":
-		ensure => "$ruby_version"
+		ensure => "$ruby_version",
 		require => Package["libruby1.8"]
 	}
 	package { "unicorn":
