@@ -10,6 +10,10 @@ class common {
 
     include user::unixadmins
 
+	package { "debian-goodies":
+		ensure => present
+	}
+
     @@dnsrecord { "forward and reverse dns for $fqdn":
         ensure => "present",
         type => "=",
