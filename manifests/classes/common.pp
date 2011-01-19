@@ -36,7 +36,7 @@ class common {
 		if ($lsbdistcodename == "lenny") {
 			if ($includeBackports) {
 				file { "/etc/apt/preferences":
-					source => "files/apt/$lsbdistcodename.preferences"
+					source => "puppet:///files/apt/$lsbdistcodename.preferences"
 				}
 			}
 		}
