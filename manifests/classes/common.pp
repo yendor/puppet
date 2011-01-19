@@ -31,4 +31,14 @@ class common {
         context => "/files/boot/grub/menu.lst",
         changes => "set timeout 5",
     }
+
+	case $operatingsystem ? {
+		Debian => case $lsbdistcodename ? { 
+			lenny => {
+				file { "/etc/apt/preferences":
+					source => "files/apt/$lsbdistcodename.preferences"
+				}
+			}
+		}
+    }
 }
