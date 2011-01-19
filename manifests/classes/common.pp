@@ -32,9 +32,4 @@ class common {
         changes => "set timeout 5",
     }
 
-	if ($operatingsystem == "Debian" && $lsbdistcodename == "lenny" && $includeBackports) {
-		file { "/etc/apt/preferences":
-			source => "files/apt/$lsbdistcodename.preferences"
-		}
-	}
 }
