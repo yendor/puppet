@@ -1,5 +1,5 @@
 class disk {
-	define scheduler($scheduler = 'deadline') {
+	define scheduler($scheduler = 'cfq') {
 		include grub
 		
 		exec { "live_kernel_scheduler_${name}":
@@ -10,8 +10,8 @@ class disk {
 		
 		augeas { "boot_kernel_scheduler_${name}":
 			context => "/files/boot/grub/menu.lst",
-			changes => "set debian/defoptions elevator=noop",
-			onlyif  => "get debian/defoptions != noop",
+			changes => "set debian/defoptions/elevator ${scheduler}",
+			onlyif  => "get debian/defoptions/elevator != ${scheduler}",
 			notify => Exec["update-grub"],
 		}
 	}
