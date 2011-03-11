@@ -10,7 +10,6 @@ node "test.virtual.dojo" {
 	}
 
 	disk::readahead { "vda":
-		size => "2048"
 	}
 
 	# augeas { "root_partition_noatime":
