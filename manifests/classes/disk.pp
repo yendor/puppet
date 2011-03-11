@@ -19,7 +19,7 @@ class disk {
 	define readahead($size = '65536') {
 		file { "/sys/block/${name}/queue/read_ahead_kb":
 			content => $size,
-			onlyif => "test -f /sys/block/${name}/queue/read_ahead_kb",
+			backup => false,
 		}
 	}
 }
