@@ -4,7 +4,7 @@ class disk {
 		
 		exec { "live_kernel_scheduler_${name}":
 			command => "/bin/echo ${scheduler} > /sys/block/${name}/queue/scheduler",
-			unless => "/usr/bin/test $(/bin/sed -r 's{(.*\\[|\\].*){{g' /sys/block/${name}/queue/scheduler) = '${scheduler}'"
+			unless => "/usr/bin/test $(/bin/sed -r 's{(.*\\[|\\].*){{g' /sys/block/${name}/queue/scheduler) = '${scheduler}'",
 			onlyif => "test -f /sys/block/${name}/queue/read_ahead_kb",			
 		}
 		
