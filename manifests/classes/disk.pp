@@ -10,8 +10,8 @@ class disk {
 		
 		augeas { "boot_kernel_scheduler_${name}":
 			context => "/files/boot/grub/menu.lst",
-			changes => "set debian/defoptions/elevator ${scheduler}",
-			onlyif  => "get debian/defoptions/elevator != ${scheduler}",
+			changes => "set debian/defoptions elevator=${scheduler}",
+			onlyif  => "get debian/defoptions != elevator=${scheduler}",
 			notify => Exec["update-grub"],
 		}
 	}
