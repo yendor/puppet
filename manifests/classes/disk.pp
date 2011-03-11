@@ -5,10 +5,10 @@ class disk {
 			unless => "/usr/bin/test $(/bin/sed -r 's{(.*\\[|\\].*){{g' /sys/block/${name}/queue/scheduler) = '${scheduler}'"
 		}
 		
-		# augeas { "boot_kernel_scheduler_${name}":
-		#             context => "/files/etc/grub.conf",
-		#             changes => "setm title kernel/elevator noop",
-		#             onlyif => "get title/kernel/elevator != noop"
-		#         }
+		augeas { "boot_kernel_scheduler_${name}":
+			context => "/files/boot/grub/menu.lst",
+			changes => "set debian/defoptions elevator=noop",
+			onlyif  => "get debian/defoptions != noop"
+		}
 	}
 }
