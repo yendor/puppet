@@ -6,7 +6,7 @@ node "test.virtual.dojo" {
 
 	# include kvm::server
 	disk::scheduler{ "vda":
-		scheduler => "noop"
+		scheduler => "deadline"
 	}
 
 	# augeas { "root_partition_noatime":
