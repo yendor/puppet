@@ -17,9 +17,10 @@ class disk {
 	}
 	
 	define readahead($size = '65536') {
-		file { "/sys/block/${name}/queue/read_ahead_kb":
-			content => $size,
-			backup => false,
+		exec { "disk_scheduler_${name}":
+			command => "/bin/echo ${size} > /sys/block/${name}/queue/read_ahead_kb",
+			unless => "/usr/bin/test $(/bin/cat /sys/block/${name}/queue/read_ahead_kb) = '${size}'",
+			onlyif => "/usr/bin/test -f /sys/block/${name}/queue/read_ahead_kb",			
 		}
 	}
 }
