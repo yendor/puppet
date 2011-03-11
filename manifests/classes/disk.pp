@@ -1,7 +1,7 @@
 class disk {
-	include grub
-	
 	define scheduler($scheduler = 'deadline') {
+		include grub
+		
 		exec { "live_kernel_scheduler_${name}":
 			command => "/bin/echo ${scheduler} > /sys/block/${name}/queue/scheduler",
 			unless => "/usr/bin/test $(/bin/sed -r 's{(.*\\[|\\].*){{g' /sys/block/${name}/queue/scheduler) = '${scheduler}'"
