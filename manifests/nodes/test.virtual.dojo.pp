@@ -4,6 +4,8 @@ node "test.virtual.dojo" {
 	include common
 	# include puppetmaster
 
+	include grub
+
 	# include kvm::server
 	disk::scheduler{ "vda":
 		scheduler => "deadline"
