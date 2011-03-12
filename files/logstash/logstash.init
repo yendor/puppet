@@ -10,7 +10,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/var/lib/gems/1.8/bin/logstash
-DAEMON_OPTS="-f /etc/logstash/config.yaml"
+DAEMON_OPTS="-d -f /etc/logstash/config.yaml"
 NAME=logstash
 DESC="logstash"
 PIDFILE="/var/run/logstash/${NAME}.pid"
