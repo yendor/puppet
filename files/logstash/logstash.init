@@ -1,0 +1,79 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          logstash
+# Required-Start:    $network $named $remote_fs $syslog
+# Required-Stop:     $network $named $remote_fs $syslog
+# Should-Start:      logstashmaster
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+### END INIT INFO                                                                                                                                          
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/var/lib/gems/1.8/bin/logstash
+DAEMON_OPTS="-f /etc/logstash/config.yaml"
+NAME=logstash
+DESC="logstash"
+PIDFILE="/var/run/logstash/${NAME}.pid"
+
+test -x $DAEMON || exit 0
+
+[ -r /etc/default/logstash ] && . /etc/default/logstash
+
+. /lib/lsb/init-functions
+
+is_true() {
+    if [ "x$1" = "xtrue" -o "x$1" = "xyes" -o "x$1" = "x0" ] ; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+reload_logstash_agent() {
+	start-stop-daemon --stop --quiet --signal HUP --pidfile $PIDFILE 
+}
+
+start_logstash_agent() {
+	start-stop-daemon --start --quiet --pidfile $PIDFILE \
+	    --startas $DAEMON -- $NAME $DAEMON_OPTS
+}
+
+stop_logstash_agent() {
+	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+}
+
+status_logstash_agent() {
+	status_of_proc -p "${PIDFILE}" "${DAEMON}" "${NAME}"
+}
+
+case "$1" in
+    start)
+	log_begin_msg "Starting $DESC"
+	start_logstash_agent
+	log_end_msg $?
+	;;
+    stop)
+	log_begin_msg "Stopping $DESC"
+	stop_logstash_agent
+	log_end_msg $?
+	;;
+    reload)
+    	log_begin_msg "Reloading $DESC"
+        reload_logstash_agent
+    	log_end_msg $?
+    	;;
+    status)
+        status_logstash_agent
+	;;
+    restart|force-reload)
+	log_begin_msg "Restarting $DESC"
+	stop_logstash_agent
+	sleep 1
+	start_logstash_agent
+	log_end_msg $?
+	;;
+  *)
+	echo "Usage: $0 {start|stop|status|restart|force-reload|reload}" >&2
+	exit 1
+	;;
+esac
