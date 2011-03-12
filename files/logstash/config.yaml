@@ -1,7 +1,7 @@
 inputs:
-	syslog:
-		- /var/log/messages
+  syslog:
+  - /var/log/messages
 filters:
 
 outputs:
-	- stdout:///
+- stdout:///
