@@ -3,8 +3,9 @@ node "test.virtual.dojo" {
 	$includeBackports=true
 	include common
 	# include puppetmaster
-
 	# include kvm::server
+	include logstash
+	
 	disk::scheduler{ "vda":
 		scheduler => "noop"
 	}
