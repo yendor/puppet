@@ -35,7 +35,7 @@ reload_logstash_agent() {
 
 start_logstash_agent() {
 	start-stop-daemon --start --quiet --pidfile $PIDFILE \
-	    --startas $DAEMON -- $NAME $DAEMON_OPTS
+	    --startas $DAEMON -- $DAEMON_OPTS
 }
 
 stop_logstash_agent() {
