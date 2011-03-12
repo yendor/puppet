@@ -3,7 +3,7 @@
 # Provides:          logstash
 # Required-Start:    $network $named $remote_fs $syslog
 # Required-Stop:     $network $named $remote_fs $syslog
-# Should-Start:      logstashmaster
+# Should-Start:      logstash
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 ### END INIT INFO                                                                                                                                          
@@ -21,47 +21,47 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-reload_logstash_agent() {
+reload_logstash() {
 	start-stop-daemon --stop --quiet --signal HUP --pidfile $PIDFILE 
 }
 
-start_logstash_agent() {
+start_logstash() {
 	start-stop-daemon --start --quiet --pidfile $PIDFILE \
 	    --startas $DAEMON -- $DAEMON_OPTS
 }
 
-stop_logstash_agent() {
+stop_logstash() {
 	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
 }
 
-status_logstash_agent() {
+status_logstash() {
 	status_of_proc -p "${PIDFILE}" "${DAEMON}" "${NAME}"
 }
 
 case "$1" in
     start)
 		log_begin_msg "Starting $DESC"
-		start_logstash_agent
+		start_logstash
 		log_end_msg $?
 		;;
     stop)
 		log_begin_msg "Stopping $DESC"
-		stop_logstash_agent
+		stop_logstash
 		log_end_msg $?
 		;;
     reload)
 		log_begin_msg "Reloading $DESC"
-		reload_logstash_agent
+		reload_logstash
 		log_end_msg $?
 		;;
     status)
-		status_logstash_agent
+		status_logstash
 		;;
     restart|force-reload)
 		log_begin_msg "Restarting $DESC"
-		stop_logstash_agent
+		stop_logstash
 		sleep 1
-		start_logstash_agent
+		start_logstash
 		log_end_msg $?
 		;;
 	*)
