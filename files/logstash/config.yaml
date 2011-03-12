@@ -1,0 +1,7 @@
+inputs:
+	syslog:
+		- /var/log/messages
+filters:
+
+outputs:
+	- stdout:///
