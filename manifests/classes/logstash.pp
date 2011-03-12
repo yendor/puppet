@@ -3,6 +3,10 @@ class logstash {
 	package { "logstash":
 		ensure => present,
 		provider => "gem",
-		require => Package["rubygems1.8"],
+		require => Package["rubygems1.8", "make"],
+	}
+	
+	package { "make":
+		ensure => present,
 	}
 }
