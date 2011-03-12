@@ -21,14 +21,6 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-is_true() {
-    if [ "x$1" = "xtrue" -o "x$1" = "xyes" -o "x$1" = "x0" ] ; then
-        return 0
-    else
-        return 1
-    fi
-}
-
 reload_logstash_agent() {
 	start-stop-daemon --stop --quiet --signal HUP --pidfile $PIDFILE 
 }
@@ -48,32 +40,32 @@ status_logstash_agent() {
 
 case "$1" in
     start)
-	log_begin_msg "Starting $DESC"
-	start_logstash_agent
-	log_end_msg $?
-	;;
+		log_begin_msg "Starting $DESC"
+		start_logstash_agent
+		log_end_msg $?
+		;;
     stop)
-	log_begin_msg "Stopping $DESC"
-	stop_logstash_agent
-	log_end_msg $?
-	;;
+		log_begin_msg "Stopping $DESC"
+		stop_logstash_agent
+		log_end_msg $?
+		;;
     reload)
-    	log_begin_msg "Reloading $DESC"
-        reload_logstash_agent
-    	log_end_msg $?
-    	;;
+		log_begin_msg "Reloading $DESC"
+		reload_logstash_agent
+		log_end_msg $?
+		;;
     status)
-        status_logstash_agent
-	;;
+		status_logstash_agent
+		;;
     restart|force-reload)
-	log_begin_msg "Restarting $DESC"
-	stop_logstash_agent
-	sleep 1
-	start_logstash_agent
-	log_end_msg $?
-	;;
-  *)
-	echo "Usage: $0 {start|stop|status|restart|force-reload|reload}" >&2
-	exit 1
-	;;
+		log_begin_msg "Restarting $DESC"
+		stop_logstash_agent
+		sleep 1
+		start_logstash_agent
+		log_end_msg $?
+		;;
+	*)
+		echo "Usage: $0 {start|stop|status|restart|force-reload|reload}" >&2
+		exit 1
+		;;
 esac
