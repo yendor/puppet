@@ -15,7 +15,7 @@ class logstash {
 	}
 	
 	file { "/etc/logstash/config.yaml":
-		source => "puppet:///files/logstash/config.yaml"
+		source => "puppet:///files/logstash/config.yaml",
 		owner  => "root",
 		group  => "root",
 		mode   => 0644,
