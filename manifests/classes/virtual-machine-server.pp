@@ -61,7 +61,7 @@ class virtual-machine-server {
 
 	exec { "enable_ksm":
 		command => "/bin/echo 1 > /sys/kernel/mm/ksm/run",
-		unless => "/usr/bin/test $(/sys/kernel/mm/ksm/run) = '1'",
+		unless => "/usr/bin/test $(cat /sys/kernel/mm/ksm/run) = '1'",
 		onlyif => "/usr/bin/test -f /sys/kernel/mm/ksm/run",			
 	}    
 }
