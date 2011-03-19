@@ -33,10 +33,15 @@ class virtual-machine {
                 }
             }
             absent: {
+	            exec { "virt_remove_vm_${name}":
+                    command => "/usr/bin/virsh -c qemu:///system undef ${name}",
+                    onlyif => "/usr/bin/virsh -c qemu:///system domstate ${name} | /bin/grep -q 'shut off'",
+					require => Exec["virt_stop_vm_${name}"]
+                }
+
                 exec { "virt_stop_vm_${name}":
                     command => "/usr/bin/virsh -c qemu:///system destroy ${name}",
-                    onlyif => "/usr/bin/virsh -c qemu:///system domstate ${name} >/dev/null",
-                    notify => Service["libvirt-bin"],
+                    onlyif => "/usr/bin/virsh -c qemu:///system domstate ${name} | /bin/grep -q 'running'",
                 }
 
                 exec { "lvremove_disk_${name}":
@@ -48,13 +53,13 @@ class virtual-machine {
                 file { "/etc/libvirt/qemu/autostart/${name}.xml":
                     ensure => absent,
                     backup => false,
-                    require => Exec["virt_stop_vm_${name}"],
+                    require => Exec["virt_remove_vm_${name}"],
                 }
 
                 file { "/etc/libvirt/qemu/${name}.xml":
                     ensure => absent,
                     backup => false,
-                    require => Exec["virt_stop_vm_${name}"],
+                    require => Exec["virt_remove_vm_${name}"],
                 }
             }
         }
