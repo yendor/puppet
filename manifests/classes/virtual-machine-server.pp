@@ -1,27 +1,49 @@
 class virtual-machine-server {
-    package {  "linux-image-2.6.32-bpo.5-amd64":
-        ensure => present
-    }
+	
+	if ($lsbdistcodename == "lenny") {
+	    package {  "linux-image-2.6.32-bpo.5-amd64":
+	        ensure => present
+	    }
+	}
     package { "bridge-utils":
         ensure => present
     }
+
     package { "virtinst":
-        ensure => "0.500.3-2~bpo50+1"
+        ensure => $lsbdistcodename ? {
+			lenny => "0.500.3-2~bpo50+1",
+			default => "present",
+		}
     }
     package { "kvm":
-        ensure => "1:0.12.5+dfsg-3~bpo50+1"
+	    ensure => $lsbdistcodename ? {
+			lenny => "1:0.12.5+dfsg-3~bpo50+1",
+			default => "present",
+		}
     }
     package { "qemu-kvm":
-        ensure => "0.12.5+dfsg-3~bpo50+1"
+	    ensure => $lsbdistcodename ? {
+			lenny => "0.12.5+dfsg-3~bpo50+1",
+			default => "present",
+		}
     }
     package { "libvirt-bin":
-        ensure => "0.8.1-2~bpo50+1"
+	    ensure => $lsbdistcodename ? {
+			lenny => "0.8.1-2~bpo50+1",
+			default => "present",
+		}
     }    
     package { "libvirt0":
-        ensure => "0.8.1-2~bpo50+1"
+	    ensure => $lsbdistcodename ? {
+			lenny => "0.8.1-2~bpo50+1",
+			default => "present",
+		}
     }
     package { "python-libvirt":
-        ensure => "0.8.1-2~bpo50+1"
+	    ensure => $lsbdistcodename ? {
+			lenny =>  "0.8.1-2~bpo50+1",
+			default => "present",
+		}
     }
     
     service { "libvirt-bin":
@@ -31,14 +53,15 @@ class virtual-machine-server {
         restart => "/etc/init.d/libvirt-bin reload",
         require => Package["libvirt-bin"]
     }
+
     file { "/etc/libvirt/qemu/autostart":
         ensure => directory,
         backup => false
     }
-    
-    # file { "/sys/kernel/mm/ksm/run":
-    #     content => "1",
-    #     backup => false,
-    #     require => Package["linux-image-2.6.32-bpo.5-amd64"]
-    # }
+
+	exec { "enable_ksm":
+		command => "/bin/echo 1 > /sys/kernel/mm/ksm/run",
+		unless => "/usr/bin/test $(/sys/kernel/mm/ksm/run) = '1'",
+		onlyif => "/usr/bin/test -f /sys/kernel/mm/ksm/run",			
+	}    
 }
