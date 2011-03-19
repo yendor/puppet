@@ -34,7 +34,7 @@ class virtual-machine {
             }
             absent: {
 	            exec { "virt_remove_vm_${name}":
-                    command => "/usr/bin/virsh -c qemu:///system undef ${name}",
+                    command => "/usr/bin/virsh -c qemu:///system undefine ${name}",
                     onlyif => "/usr/bin/virsh -c qemu:///system domstate ${name} | /bin/grep -q 'shut off'",
 					require => Exec["virt_stop_vm_${name}"]
                 }
