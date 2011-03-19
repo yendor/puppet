@@ -28,8 +28,14 @@ class common {
     }
     
     augeas{ "boot_delay":
-        context => "/files/boot/grub/menu.lst",
-        changes => "set timeout 5",
+        context => $lsbdistcodename ? {
+			lenny => "/files/boot/grub/menu.lst",
+			squeeze => "/files/etc/default/grub",
+		},
+        changes => $lsbdistcodename ? {
+			lenny => "set timeout 5",
+			squeeze => "set GRUB_TIMEOUT 5",
+		},
     }
 
 	if ($operatingsystem == "Debian") {
