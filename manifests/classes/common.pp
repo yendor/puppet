@@ -10,7 +10,10 @@ class common {
 
     include user::unixadmins
 
-	package { "debian-goodies":
+	package { [
+		"debian-goodies",
+		"strace",
+	]:
 		ensure => present
 	}
 	
