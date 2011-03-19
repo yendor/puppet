@@ -13,13 +13,18 @@ class common {
 	package { "debian-goodies":
 		ensure => present
 	}
+	
+	file { "/bin/sh":
+		ensure => "bash",
+		backup => false
+	}
 
     @@dnsrecord { "forward and reverse dns for $fqdn":
         ensure => "present",
-        type => "=",
-        fqdn => "$fqdn",
+        type   => "=",
+        fqdn   => "$fqdn",
         ipaddr => "$ipaddress",
-        ttl => 300,
+        ttl    => 300,
         notify => Exec["rebuild-tinydns-data"]
     }
 
@@ -29,11 +34,11 @@ class common {
     
     augeas{ "boot_delay":
         context => $lsbdistcodename ? {
-			lenny => "/files/boot/grub/menu.lst",
+			lenny   => "/files/boot/grub/menu.lst",
 			squeeze => "/files/etc/default/grub",
 		},
         changes => $lsbdistcodename ? {
-			lenny => "set timeout 5",
+			lenny   => "set timeout 5",
 			squeeze => "set GRUB_TIMEOUT 5",
 		},
     }
