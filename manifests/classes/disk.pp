@@ -8,16 +8,16 @@ class disk {
 			onlyif => "/usr/bin/test -f /sys/block/${name}/queue/read_ahead_kb",			
 		}
 		
-		augeas { "boot_kernel_scheduler_${name}":
-			context => $lsbdistcodename ? {
-				lenny => "/files/boot/grub/menu.lst",
-				squeeze => "/files/etc/default/grub",
-			},
-			changes => $lsbdistcodename ? {
-				lenny => "set debian/defoptions elevator=${scheduler}",
-				squeeze => 'set GRUB_CMDLINE_LINUX_DEFAULT "quiet scheduler=noop"',
-			},
-			notify => Exec["update-grub"],
+		if ($lsbdistcodename == "lenny") {
+			augeas { "boot_kernel_scheduler_${name}":
+				context => $lsbdistcodename ? {
+					lenny => "/files/boot/grub/menu.lst",
+				},
+				changes => $lsbdistcodename ? {
+					lenny => "set debian/defoptions elevator=${scheduler}",
+				},
+				notify => Exec["update-grub"],
+			}
 		}
 	}
 	
