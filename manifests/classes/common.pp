@@ -46,7 +46,7 @@ class common {
 		},
     }
 
-	if ($operatingsystem == "Debian" && $includeBackports) {
+	if ($operatingsystem == "Debian" and $includeBackports) {
 		file { "/etc/apt/preferences":
 			content => template("apt/preferences.erb")
 		}
