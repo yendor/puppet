@@ -8,13 +8,18 @@ class virtual-machine {
         $nic1       = "bridge:vmbr0",
         $vg         = "kvm_vg",
         $autostart  = "yes",
+		$domain     = "virtual.dojo",
         $extra_args = ""
     ){
         $network = "--network=${nic1}"
-        $extra_args_to_use = "hostname=${name} domain=virtual.dojo ${extra_args}"
 		if ($autostart=="yes") {
-			$extra_args_to_use = "${extra_args_to_use} --autostart"
+			$autostart_arg = "--autostart"
+		} else {
+			$autostart_arg = ""
 		}
+		
+        $extra_args_to_use = "hostname=${name} domain=${domain} ${autostart_arg} ${extra_args}"
+
         case $ensure {
             present: {
                 exec { "lvcreate_disk_${name}":
@@ -23,7 +28,7 @@ class virtual-machine {
                     unless => "/usr/bin/stat /dev/mapper/${vg}-${name}",
                 }
                 exec { "virt-install_${name}":
-                    command => "/usr/bin/virt-install --connect qemu:///system -n ${name} -r ${ram} --vcpus=${cpus} -f /dev/mapper/${vg}-${name} -l ${iso} --vnc --noautoconsole --os-type linux --os-variant debianlenny --accelerate ${network} --hvm --extra-args=\"${extra_args_to_use}\"",
+                    command => "/usr/bin/virt-install --connect qemu:///system -n ${name} -r ${ram} --vcpus=${cpus} -f /dev/mapper/${vg}-${name} -l ${iso} --vnc --noautoconsole --os-type linux --accelerate ${network} --hvm --extra-args=\"${extra_args_to_use}\"",
                     creates => "/etc/libvirt/qemu/${name}.xml",
                     require => [Package["virtinst"],Package["libvirt-bin"],Service["libvirt-bin"],Exec["lvcreate_disk_${name}"]],
                     unless => "/usr/bin/stat /etc/libvirt/qemu/${name}.xml",
