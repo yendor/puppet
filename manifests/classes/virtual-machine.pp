@@ -70,7 +70,7 @@ class virtual-machine {
                     require => Exec["virt_remove_vm_${name}"],
                 }
             }
-			default: {
+			default {
 				err "Unknown action for virtual-machine specified"
 			}
 		}
