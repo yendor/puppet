@@ -15,7 +15,7 @@ class disk {
 			},
 			changes => $lsbdistcodename ? {
 				lenny => "set debian/defoptions elevator=${scheduler}",
-				squeeze => "set GRUB_CMDLINE_LINUX_DEFAULT \"quiet scheduler=noop\"",
+				squeeze => "set GRUB_CMDLINE_LINUX_DEFAULT 'quiet scheduler=noop'",
 			},
 			notify => Exec["update-grub"],
 		}
