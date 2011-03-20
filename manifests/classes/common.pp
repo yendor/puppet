@@ -46,13 +46,9 @@ class common {
 		},
     }
 
-	if ($operatingsystem == "Debian") {
-		if ($lsbdistcodename == "lenny") {
-			if ($includeBackports) {
-				file { "/etc/apt/preferences":
-					source => "puppet:///files/apt/$lsbdistcodename.preferences"
-				}
-			}
+	if ($operatingsystem == "Debian" && $includeBackports) {
+		file { "/etc/apt/preferences":
+			content => template("apt/preferences.erb")
 		}
 	}
 
