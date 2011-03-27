@@ -21,47 +21,47 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-reload_logstash-web() {
+reload_logstash_web() {
 	start-stop-daemon --stop --quiet --signal HUP --pidfile $PIDFILE 
 }
 
-start_logstash-web() {
+start_logstash_web() {
 	start-stop-daemon --start --quiet --pidfile $PIDFILE \
 	    --startas $DAEMON -- $DAEMON_OPTS
 }
 
-stop_logstash-web() {
+stop_logstash_web() {
 	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
 }
 
-status_logstash-web() {
+status_logstash_web() {
 	status_of_proc -p "${PIDFILE}" "${DAEMON}" "${NAME}"
 }
 
 case "$1" in
     start)
 		log_begin_msg "Starting $DESC"
-		start_logstash-web
+		start_logstash_web
 		log_end_msg $?
 		;;
     stop)
 		log_begin_msg "Stopping $DESC"
-		stop_logstash-web
+		stop_logstash_web
 		log_end_msg $?
 		;;
     reload)
 		log_begin_msg "Reloading $DESC"
-		reload_logstash-web
+		reload_logstash_web
 		log_end_msg $?
 		;;
     status)
-		status_logstash-web
+		status_logstash_web
 		;;
     restart|force-reload)
 		log_begin_msg "Restarting $DESC"
-		stop_logstash-web
+		stop_logstash_web
 		sleep 1
-		start_logstash-web
+		start_logstash_web
 		log_end_msg $?
 		;;
 	*)
