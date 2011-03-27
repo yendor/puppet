@@ -22,16 +22,16 @@ test -x $DAEMON || exit 0
 . /lib/lsb/init-functions
 
 reload_logstash() {
-	start-stop-daemon --stop --quiet --signal HUP --pidfile $PIDFILE 
+	start-stop-daemon --stop --quiet --signal HUP --pidfile $PIDFILE --name ${NAME}
 }
 
 start_logstash() {
 	start-stop-daemon --start --quiet --pidfile $PIDFILE \
-	    --startas $DAEMON -- $DAEMON_OPTS
+	    --startas $DAEMON --name ${NAME} -- $DAEMON_OPTS 
 }
 
 stop_logstash() {
-	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE
+	start-stop-daemon --stop --quiet --oknodo --pidfile $PIDFILE --name ${NAME}
 }
 
 status_logstash() {
