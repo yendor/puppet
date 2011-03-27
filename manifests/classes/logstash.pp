@@ -43,7 +43,7 @@ class logstash {
 	}
 	
 	service { "logstash":
-		ensure     => running,
+		ensure     => stopped,
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
@@ -51,7 +51,7 @@ class logstash {
 	}
 	
 	service { "logstash-web":
-		ensure     => running,
+		ensure     => stopped,
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
