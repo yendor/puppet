@@ -33,7 +33,23 @@ class logstash {
 		require => Package["logstash"]
 	}
 	
+	file { "/etc/init.d/logstash-web":
+		source => "puppet:///files/logstash/logstash-web.init",
+		owner  => "root",
+		group  => "root",
+		mode   => 0755,
+		backup => false,
+		require => Package["logstash"]
+	}
+	
 	service { "logstash":
+		ensure     => present,
+		enable     => true,
+		hasstatus  => true,
+		hasrestart => true,
+	}
+	
+	service { "logstash-web":
 		ensure     => present,
 		enable     => true,
 		hasstatus  => true,
