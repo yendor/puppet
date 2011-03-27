@@ -43,14 +43,14 @@ class logstash {
 	}
 	
 	service { "logstash":
-		ensure     => present,
+		ensure     => running,
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
 	}
 	
 	service { "logstash-web":
-		ensure     => present,
+		ensure     => running,
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
