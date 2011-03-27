@@ -1,5 +1,18 @@
 inputs:
   syslog:
+  - /var/log/aptitude
+  - /var/log/auth.log
+  - /var/log/daemon.log
+  - /var/log/debug
+  - /var/log/dmesg
+  - /var/log/dpkg.log
+  - /var/log/kern.log
+  - /var/log/mail.err
+  - /var/log/mail.info
+  - /var/log/mail.log
   - /var/log/messages
+  - /var/log/syslog
+  - /var/log/user.log
 outputs:
 - stdout:///
+- elasticsearch://localhost:9200/logstash/logs
