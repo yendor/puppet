@@ -47,6 +47,7 @@ class logstash {
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
+		require    => File["/etc/init.d/${name}"],		
 	}
 	
 	service { "logstash-web":
@@ -54,6 +55,7 @@ class logstash {
 		enable     => true,
 		hasstatus  => true,
 		hasrestart => true,
+		require    => File["/etc/init.d/${name}"],
 	}
 	
 	package { "build-essential":
