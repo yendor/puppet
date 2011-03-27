@@ -20,7 +20,8 @@ class logstash {
 		group  => "root",
 		mode   => 0644,
 		backup => false,
-		require => File["/etc/logstash"]
+		require => File["/etc/logstash"],
+		notify => Service['logstash'],
 	}
 	
 	file { "/etc/init.d/logstash":
@@ -30,6 +31,13 @@ class logstash {
 		mode   => 0755,
 		backup => false,
 		require => Package["logstash"]
+	}
+	
+	service { "logstash":
+		ensure     => present,
+		enable     => true,
+		hasstatus  => true,
+		hasrestart => true,
 	}
 	
 	package { "build-essential":
