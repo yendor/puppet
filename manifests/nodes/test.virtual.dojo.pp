@@ -23,4 +23,8 @@ node "test.virtual.dojo" {
 		ensure => "1.0.1-1~dotdeb.0"
 	}
 
+	package { "php5-fpm":
+		ensure => "5.3.6-6~dotdeb.0"
+	}
+
 }
