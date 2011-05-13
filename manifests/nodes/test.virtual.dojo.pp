@@ -20,7 +20,7 @@ node "test.virtual.dojo" {
 	# }
 	
 	package { "nginx":
-		ensure => "1.0.1"
+		ensure => "1.0.1-1~dotdeb.0"
 	}
 
 }
