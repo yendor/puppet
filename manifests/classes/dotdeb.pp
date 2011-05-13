@@ -1,5 +1,5 @@
 class dotdeb {
-	file { "/etc/apt/sources.list.d/dotdeb.conf":
+	file { "/etc/apt/sources.list.d/dotdeb.list":
 		source => $lsbdistcodename ? {
 			'lenny' => "puppet:///files/dotdeb/lenny.conf"
 		}, 
