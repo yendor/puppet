@@ -28,4 +28,10 @@ node "swarm.physical.dojo" {
         extra_args => "auto=true url=http://192.168.1.10/preseed-squeeze.cfg",
 		iso => "http://ftp.au.debian.org/debian/dists/squeeze/main/installer-amd64/"
     }
+
+    virtual-machine::kvm { "ldap":
+        ensure => present,
+        extra_args => "auto=true url=http://192.168.1.10/preseed-squeeze.cfg",
+		iso => "http://ftp.au.debian.org/debian/dists/squeeze/main/installer-amd64/"
+    }
 }
