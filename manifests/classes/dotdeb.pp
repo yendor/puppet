@@ -24,8 +24,8 @@ class dotdeb {
 	}
 	
 	exec { "apt-key-add":
-		command => "/usr/bin/apt-key add /etc/apt/keys/dotdot.gpg",
-		require => File["/etc/apt/keys/dotdot.gpg"],
+		command => "/usr/bin/apt-key add /etc/apt/keys/dotdeb.gpg",
+		require => File["/etc/apt/keys/dotdeb.gpg"],
 		refreshonly => true,
 	}
 	
