@@ -18,5 +18,9 @@ node "test.virtual.dojo" {
 	#     context => "/files/etc/fstab",
 	#     changes => "set *[file = '/']/opt errors=remount-ro,noatime,nodiratime",
 	# }
+	
+	package { "nginx":
+		ensure => "installed"
+	}
 
 }
