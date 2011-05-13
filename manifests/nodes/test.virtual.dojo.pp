@@ -5,6 +5,7 @@ node "test.virtual.dojo" {
 	# include puppetmaster
 	# include kvm::server
 	include logstash
+	include dotdeb
 	
 	disk::scheduler{ "vda":
 		scheduler => "noop"
