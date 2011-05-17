@@ -21,7 +21,7 @@ class nagios::server ($instance_name, $nagios_version='latest') {
 	}
 
 	package { "nagios-nrpe-plugin":
-        ensure => $nagios_version,
+        ensure => "installed",
         require => Package["nagios"],
     }
 
