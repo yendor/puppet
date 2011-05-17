@@ -1,7 +1,7 @@
 class nagios::server ($instance_name, $nagios_version='latest') {
 	Class["nagios::server"] -> Class["apache"]
 	Class["nagios::server"] -> Class["nagios::common"]
-	
+
 	package { "nagios3":
         alias => "nagios",
         ensure => $nagios_version,
@@ -17,7 +17,7 @@ class nagios::server ($instance_name, $nagios_version='latest') {
 	package { "nagios3-common":
 		ensure => $nagios_version
 	}
-	
+
 	package { "nagios-nrpe-plugin":
         ensure => $nagios_version,
         require => Package["nagios"],
