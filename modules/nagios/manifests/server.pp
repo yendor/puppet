@@ -1,6 +1,6 @@
 class nagios::server ($instance_name, $nagios_version='latest') {
-	Class["nagios::server"] -> Class["apache2"]
-	Class["nagios::server"] -> Class["nagios::common"]
+	# Class["nagios::server"] -> Class["apache2"]
+	# Class["nagios::server"] -> Class["nagios::common"]
 
 	package { "nagios3":
         alias => "nagios",
