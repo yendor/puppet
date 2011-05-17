@@ -7,6 +7,7 @@ node "test.virtual.dojo" {
 	include logstash
 	include dotdeb
 
+	include apache2::mpm-prefork
 	include nagios::common
 
 	class { "nagios::server":
@@ -25,11 +26,17 @@ node "test.virtual.dojo" {
 	#     changes => "set *[file = '/']/opt errors=remount-ro,noatime,nodiratime",
 	# }
 
+	# package { "nginx":
+	# 	ensure => "1.0.1-1~dotdeb.0"
+	# }
+	# 
+	# package { "php5-fpm":
+	# 	ensure => "5.3.6-6~dotdeb.0"
+	# }
 	package { "nginx":
-		ensure => "1.0.1-1~dotdeb.0"
+		ensure => absent
 	}
-
 	package { "php5-fpm":
-		ensure => "5.3.6-6~dotdeb.0"
+		ensure => absent
 	}
 }
