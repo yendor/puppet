@@ -6,7 +6,13 @@ node "test.virtual.dojo" {
 	# include kvm::server
 	include logstash
 	include dotdeb
-	
+
+	class { "nagios:common": }
+
+	class { "nagios::server":
+		$instance_name = 'home'
+	}
+
 	disk::scheduler{ "vda":
 		scheduler => "noop"
 	}
@@ -18,7 +24,7 @@ node "test.virtual.dojo" {
 	#     context => "/files/etc/fstab",
 	#     changes => "set *[file = '/']/opt errors=remount-ro,noatime,nodiratime",
 	# }
-	
+
 	package { "nginx":
 		ensure => "1.0.1-1~dotdeb.0"
 	}
@@ -26,5 +32,4 @@ node "test.virtual.dojo" {
 	package { "php5-fpm":
 		ensure => "5.3.6-6~dotdeb.0"
 	}
-
 }
