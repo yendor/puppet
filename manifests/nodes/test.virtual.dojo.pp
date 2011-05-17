@@ -9,10 +9,10 @@ node "test.virtual.dojo" {
 
 	include apache2::mpm-prefork
 	include nagios::common
-	# 
-	# class { "nagios::server":
-	# 	instance_name => 'home'
-	# }
+	
+	class { "nagios::server":
+		instance_name => 'home'
+	}
 
 	disk::scheduler{ "vda":
 		scheduler => "noop"
