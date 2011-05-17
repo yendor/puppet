@@ -10,7 +10,7 @@ node "test.virtual.dojo" {
 	class { "nagios:common": }
 
 	class { "nagios::server":
-		instance_name = 'home'
+		instance_name => 'home'
 	}
 
 	disk::scheduler{ "vda":
