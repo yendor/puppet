@@ -26,15 +26,15 @@ class nagios::files {
     }
 
     # Cgi config file for controlling access to cgi
-    rfile { "/etc/nagios3/cgi.cfg":
-        source => "/nagios/cgi.cfg",
+    file { "/etc/nagios3/cgi.cfg":
+        source => "puppet://modules/nagios/cgi.cfg",
         require => Package["nagios"],
         notify => Service["nagios"],
     }
 
     # Commands config
-    rfile { "/etc/nagios3/commands.cfg":
-        source  => "nagios/commands.cfg",
+    file { "/etc/nagios3/commands.cfg":
+        content  => "# This file is managed by puppet",
         require => Package["nagios"],
         notify  => Service["nagios"],
     }

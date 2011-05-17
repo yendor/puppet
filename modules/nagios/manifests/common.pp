@@ -2,7 +2,7 @@ class nagios::common {
 	package { "nsca": 
 		ensure => present
 	}
-    rfile { "/etc/send_nsca.cfg": 
-		source => "/nsca/send_nsca.cfg"
+    file { "/etc/send_nsca.cfg": 
+		source => "puppet:///modules/nagios/send_nsca.cfg"
 	}
 }
