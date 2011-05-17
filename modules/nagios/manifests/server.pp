@@ -8,7 +8,8 @@ class nagios::server ($instance_name, $nagios_version='latest') {
     }
 
 	package { "nagios3-core":
-		ensure => $nagios_version
+		ensure => $nagios_version,
+		require => Package["nagios3-common"],
 	}
 
 	package { "nagios3-cgi":
