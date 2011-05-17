@@ -8,11 +8,11 @@ node "test.virtual.dojo" {
 	include dotdeb
 
 	include apache2::mpm-prefork
-	# include nagios::common
-	# 
-	# class { "nagios::server":
-	# 	instance_name => 'home'
-	# }
+	include nagios::common
+	
+	class { "nagios::server":
+		instance_name => 'home'
+	}
 
 	disk::scheduler{ "vda":
 		scheduler => "noop"
