@@ -10,9 +10,15 @@ node "test.virtual.dojo" {
 	include apache2::mpm-prefork
 	include nagios::common
 	
+	file { "/etc/apache2/ssl":
+		ensure => "directory",
+	}
+	
 	class { "nagios::server":
 		instance_name => 'home',
-		nagios_version => '3.2.1-2~bpo50+1'
+		nagios_version => '3.2.1-2~bpo50+1',
+		nagios_ssl_key_file => "/etc/apache2/ssl/server.key",
+		nagios_ssl_cert_file => "/etc/apache2/ssl/server.crt",
 	}
 
 	disk::scheduler{ "vda":
