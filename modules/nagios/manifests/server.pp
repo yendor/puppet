@@ -47,7 +47,8 @@ class nagios::server (
 	}
 	
 	file { "/etc/apache2/conf.d/nagios3.conf":
-		ensure => "absent"
+		ensure => "absent",
+		notify => Service["apache2"],
 	}
 
 	apache2::site { "nagios": 
