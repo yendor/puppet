@@ -32,6 +32,14 @@ class nagios::server ($instance_name, $nagios_version='installed', $nagios_ssl_k
         require     => Package["nagios"],
     }
 
+	file { "/etc/apache2/sites-available/nagios":
+		content => template("nagios/apache2-nagios.erb"),
+		owner => "root",
+		group => "root",
+		mode => 644,
+		notify => Service["apache2"],
+	}
+
 	apache2::site { "nagios": 
 		ensure => present,
 	}
