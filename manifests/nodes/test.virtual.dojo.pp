@@ -20,6 +20,14 @@ node "test.virtual.dojo" {
 		nagios_ssl_key_file => "/etc/apache2/ssl/server.key",
 		nagios_ssl_cert_file => "/etc/apache2/ssl/server.crt",
 	}
+	
+	file { "/etc/apache2/ssl/server.key":
+		content => "# Managed by puppet"
+	}
+
+	file { "/etc/apache2/ssl/server.crt":
+		content => "# Managed by puppet"
+	}
 
 	disk::scheduler{ "vda":
 		scheduler => "noop"
