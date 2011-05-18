@@ -16,7 +16,7 @@
         SSLEngine on
         SSLVerifyClient none
 
-        <% if nagios_ssl_chain_file %>
+        <% if has_variable?(nagios_ssl_chain_file) %>
             SSLCertificateChainFile <%= nagios_ssl_chain_file %>
         <% end %>
         SSLCertificateFile <%= nagios_ssl_cert_file %>
