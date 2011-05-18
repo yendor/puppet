@@ -1,1 +1,63 @@
+###################################
 # This file is managed by puppet
+###################################
+<VirtualHost <%= nagios_web_ip %>:80>
+        ServerAdmin webmaster@<%= domain %>
+        ServerName <%= fqdn %>
+
+        RewriteEngine On
+        RewriteRule (.*) https://<%= fqdn %>$1 [R=301,L]
+</VirtualHost>
+
+<VirtualHost <%= nagios_web_ip %>:443>
+        ServerAdmin webmaster@<%= domain %>
+        ServerName <%= fqdn %>
+
+        SSLEngine on
+        SSLVerifyClient none
+
+        <% if nagios_ssl_chain_file %>
+            SSLCertificateChainFile <%= nagios_ssl_chain_file %>
+        <% end %>
+        SSLCertificateFile <%= nagios_ssl_cert_file %>
+        SSLCertificateKeyFile <%= nagios_ssl_key_file %>
+
+        SSLOptions +StdEnvVars +ExportCertData
+
+        ScriptAlias /cgi-bin/nagios3 /usr/lib/cgi-bin/nagios3
+        ScriptAlias /nagios3/cgi-bin /usr/lib/cgi-bin/nagios3
+        Alias /nagios3/stylesheets /etc/nagios3/stylesheets
+        Alias /nagios3 /usr/share/nagios3/htdocs
+        Redirect 301 / /nagios3/
+
+        <DirectoryMatch (/usr/share/nagios3/htdocs|/usr/lib/cgi-bin/nagios3)>
+                Options FollowSymLinks
+
+                DirectoryIndex index.php index.html
+
+                AllowOverride AuthConfig
+                Order Allow,Deny
+                Allow From All
+
+                AuthName "Nagios Access"
+                AuthType Basic
+                Use CrowdAuth "Nagios Web"
+        </DirectoryMatch>
+
+        # Enable this ScriptAlias if you want to enable the grouplist patch.
+        # See http://apan.sourceforge.net/download.html for more info
+        # It allows you to see a clickable list of all hostgroups in the
+        # left pane of the Nagios web interface
+        # XXX This is not tested for nagios 2.x use at your own peril
+        #ScriptAlias /nagios3/side.html /usr/lib/cgi-bin/nagios3/grouplist.cgi
+        # nagios 1.x:
+        #ScriptAlias /nagios/side.html /usr/lib/cgi-bin/nagios3/grouplist.cgi
+
+        ErrorLog /var/log/apache2/nagios-error.log
+
+        LogLevel warn
+
+        CustomLog /var/log/apache2/access-nagios.log combined
+
+</VirtualHost>
+
