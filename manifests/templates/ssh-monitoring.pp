@@ -8,7 +8,7 @@ class ssh-monitoring($instance_name, $service_groups='')
         host_name           => $fqdn, 
         service_description => "SSH",
         check_command       => "check_ssh", 
-        tag                 => "nagios_monitored_${instance_name}", 
+        instance_name       => ${instance_name}, 
         servicegroups       => $service_groups,
     }
 	
