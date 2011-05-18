@@ -19,6 +19,7 @@ node "test.virtual.dojo" {
 		nagios_version => '3.2.1-2~bpo50+1',
 		nagios_ssl_key_file => "/etc/apache2/ssl/server.key",
 		nagios_ssl_cert_file => "/etc/apache2/ssl/server.crt",
+		nagios_web_ip => "*"
 	}
 	
 	file { "/etc/apache2/ssl/server.key":

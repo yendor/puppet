@@ -1,4 +1,4 @@
-<VirtualHost <%= public_address %>:80>
+<VirtualHost <%= nagios_web_ip %>:80>
         ServerAdmin webmaster@<%= domain %>
         ServerName <%= fqdn %>
 
@@ -6,7 +6,7 @@
         RewriteRule (.*) https://<%= fqdn %>$1 [R=301,L]
 </VirtualHost>
 
-<VirtualHost <%= public_address %>:443>
+<VirtualHost <%= nagios_web_ip %>:443>
         ServerAdmin webmaster@<%= domain %>
         ServerName <%= fqdn %>
 
