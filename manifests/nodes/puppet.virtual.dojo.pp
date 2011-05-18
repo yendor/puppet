@@ -45,5 +45,9 @@ node "puppet.virtual.dojo" {
     notify => Exec["rebuild-tinydns-data"]
   }
 
+  class { "ssh-monitoring":
+	instance_name => "home",
+  }
+
   Dnsrecord <<| |>>
 }
