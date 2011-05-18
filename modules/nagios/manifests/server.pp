@@ -1,4 +1,10 @@
-class nagios::server ($instance_name, $nagios_version='installed', $nagios_ssl_key_file, $nagios_ssl_cert_file, $nagios_ssl_ca_file='') {
+class nagios::server (
+	$instance_name, 
+	$nagios_ssl_key_file, 
+	$nagios_ssl_cert_file, 
+	$nagios_version='installed', 
+	$nagios_ssl_ca_file='', 
+	$nagios_web_ip='*') {
 	# Class["nagios::server"] -> Class["apache2"]
 	# Class["nagios::server"] -> Class["nagios::common"]
 
