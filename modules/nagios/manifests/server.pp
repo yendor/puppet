@@ -1,4 +1,4 @@
-class nagios::server ($instance_name, $nagios_version='installed') {
+class nagios::server ($instance_name, $nagios_version='installed', $nagios_ssl_key_file, $nagios_ssl_cert_file, $nagios_ssl_ca_file='') {
 	# Class["nagios::server"] -> Class["apache2"]
 	# Class["nagios::server"] -> Class["nagios::common"]
 
@@ -32,7 +32,10 @@ class nagios::server ($instance_name, $nagios_version='installed') {
         require     => Package["nagios"],
     }
 
-	apache2::site { "nagios": ensure => present }
+	apache2::site { 
+		"nagios": ensure => present
+		require => File[[$nagios_ssl_cert_file, $nagios_ssl_key_file]]
+	}
 	apache2::module { "autoindex":
         ensure => absent
     }
