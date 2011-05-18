@@ -11,7 +11,8 @@ node "test.virtual.dojo" {
 	include nagios::common
 	
 	class { "nagios::server":
-		instance_name => 'home'
+		instance_name => 'home',
+		version => '3.2.1-2~bpo50+1'
 	}
 
 	disk::scheduler{ "vda":

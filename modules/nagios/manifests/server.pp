@@ -1,4 +1,4 @@
-class nagios::server ($instance_name, $nagios_version='latest') {
+class nagios::server ($instance_name, $nagios_version='installed') {
 	# Class["nagios::server"] -> Class["apache2"]
 	# Class["nagios::server"] -> Class["nagios::common"]
 
