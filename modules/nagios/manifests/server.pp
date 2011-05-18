@@ -5,8 +5,6 @@ class nagios::server (
 	$nagios_version='installed', 
 	$nagios_ssl_ca_file='', 
 	$nagios_web_ip='*') {
-	# Class["nagios::server"] -> Class["apache2"]
-	# Class["nagios::server"] -> Class["nagios::common"]
 
 	package { "nagios3":
         alias => "nagios",
