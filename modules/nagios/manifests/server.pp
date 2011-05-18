@@ -58,4 +58,8 @@ class nagios::server (
 	apache2::module { ["rewrite"]:
         ensure => present
     }
+
+	class { "nagios::resources":
+		instance_name => $instance_name
+	}
 }
