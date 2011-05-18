@@ -28,7 +28,9 @@
         ScriptAlias /nagios3/cgi-bin /usr/lib/cgi-bin/nagios3
         Alias /nagios3/stylesheets /etc/nagios3/stylesheets
         Alias /nagios3 /usr/share/nagios3/htdocs
-        Redirect 301 / /nagios3/
+        
+        RewriteEngine On
+        RewriteRule !^/nagios3/ https://<%= fqdn %>/nagios3/ [R=301,L]
 
         <DirectoryMatch (/usr/share/nagios3/htdocs|/usr/lib/cgi-bin/nagios3)>
                 Options FollowSymLinks
