@@ -5,6 +5,11 @@ node "puppet.virtual.dojo" {
   include tinydns::setup
   include puppetmaster
 
+  $storedconfig_db_user = "puppet"
+  $storedconfig_db_pass = "J2RL;wxG"
+  $storedconfig_db_name = "puppet"
+  $storedconfig_db_host = "localhost"
+
   dnsrecord { "nameserver for thdojo":
     ensure => present,
     type => ".",
@@ -47,6 +52,18 @@ node "puppet.virtual.dojo" {
 
   class { "ssh-monitoring":
 	instance_name => "home",
+  }
+
+  mysql_user { "${storedconfig_db_user}@${private_address}":
+      password_hash => mysql_password($storedconfig_db_pass),
+  }
+
+  mysql_grant { "${storedconfig_db_user}@${private_address}/${storedconfig_db_name}":
+      privileges    => "all",
+  }
+
+  mysql_database { "${storedconfig_db_name}":
+    ensure       => "present",
   }
 
   Dnsrecord <<| |>>
