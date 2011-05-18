@@ -45,6 +45,10 @@ class nagios::server (
 		mode => 644,
 		notify => Service["apache2"],
 	}
+	
+	file { "/etc/apache2/conf.d/nagios3.conf":
+		ensure => "absent"
+	}
 
 	apache2::site { "nagios": 
 		ensure => present,
