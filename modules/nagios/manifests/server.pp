@@ -49,7 +49,10 @@ class nagios::server (
 	apache2::site { "nagios": 
 		ensure => present,
 	}
-	apache2::module { "autoindex":
+	apache2::module { ["autoindex"]:
         ensure => absent
+    }
+	apache2::module { ["rewrite"]:
+        ensure => present
     }
 }
