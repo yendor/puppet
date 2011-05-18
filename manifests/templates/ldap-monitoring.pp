@@ -2,7 +2,7 @@ class ldap-monitoring($instance_name, $service_groups='')
 {
 	include nagios::common
 	
-	class { "nagios::service" 
+	class { "nagios::service":
 		name                => "ldap_${fqdn}",
         ensure              => present, 
         host_name           => $fqdn, 
