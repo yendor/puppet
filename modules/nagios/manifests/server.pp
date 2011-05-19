@@ -46,6 +46,7 @@ class nagios::server (
 	
 	file { "/etc/apache2/conf.d/nagios3.conf":
 		ensure => "absent",
+		backup => false,
 		notify => Service["apache2"],
 	}
 
@@ -61,5 +62,11 @@ class nagios::server (
 
 	class { "nagios::resources":
 		instance_name => $instance_name
+	}
+	
+	file { "/etc/nagios3/conf.d/localhost_nagios2.cfg":
+		ensure => absent,
+		backup => false,
+		notify => Service["nagios"],
 	}
 }
