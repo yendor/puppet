@@ -52,7 +52,7 @@ node "puppet.virtual.dojo" {
 
 	class { "nagios::node":
 		address => $ipaddress,
-		host_name = $hostname,
+		host_name => $hostname,
 		alias => $fqdn,
 		contact_groups => "admins"
 	}
