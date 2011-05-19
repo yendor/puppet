@@ -25,7 +25,7 @@ class nagios::service(
 		ensure  => $ensure,
 		owner   => 'nagios',
 		group   => 'nagios',
-		content => template("nagios/nagios-service.erb")
+		content => template("nagios/nagios-service.erb"),
 		tag     => "nagios_monitored_${instance_name}", 
      }
 }
