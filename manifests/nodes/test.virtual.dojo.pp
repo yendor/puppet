@@ -8,6 +8,10 @@ node "test.virtual.dojo" {
 	class { "internal-nagios-server":
 		instance_name => "home"
 	}
+	
+	class { "web-monitoring":
+		instance_name => "home",
+	}
 
 	disk::scheduler{ "vda":
 		scheduler => "noop"
