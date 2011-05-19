@@ -58,9 +58,9 @@ node "puppet.virtual.dojo" {
 		contact_groups => "admins"
 	}
 
-	class { "ssh-monitoring":
-		instance_name => "home",
-	}
+	# class { "ssh-monitoring":
+	# 	instance_name => "home",
+	# }
 
 	Dnsrecord <<| |>>
 }

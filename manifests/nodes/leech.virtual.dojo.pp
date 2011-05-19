@@ -12,9 +12,9 @@ node "leech.virtual.dojo" {
 		contact_groups => "admins"
 	}
 
-	class { "ssh-monitoring":
-		instance_name => "home",
-	}
+	# class { "ssh-monitoring":
+	# 	instance_name => "home",
+	# }
 
 	# augeas { "root_partition_noatime":
 	#     context => "/files/etc/fstab",

@@ -11,5 +11,7 @@ define host {
 	notification_period            <%= nottification_period %>
 	notification_interval          <%= notification_interval %>
 	use                            <%= use %>
+	<% if hostgroups != "" -%>
 	hostgroups                     <%= hostgroups %>
+	<% end -%>
 }
