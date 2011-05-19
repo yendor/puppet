@@ -1,7 +1,7 @@
 class web-monitoring($instance_name, 
 	$service_groups='',
 	$plain=true,
-	$secure=true,
+	$secure=true
 )
 {
 	include nagios::common
