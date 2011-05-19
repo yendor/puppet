@@ -3,7 +3,7 @@ class ssh-monitoring($instance_name, $service_groups='')
 	include nagios::common
 	
 	class { "nagios::service":
-		name                => "ssh_${fqdn}",
+		name                => "ssh",
         ensure              => present, 
         host_name           => $host_name, 
         service_description => "SSH",

@@ -21,7 +21,7 @@ class nagios::service(
     $depends_on_service = '',
     $depends_on_host_name = ''
 ) {
-	 @@file { "/etc/nagios3/conf.d/${host_name}/service-${name}.cfg":
+	 @@file { "/etc/nagios3/conf.d/${host_name}/${name}.cfg":
 		ensure  => $ensure,
 		owner   => 'nagios',
 		group   => 'nagios',
