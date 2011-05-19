@@ -56,7 +56,7 @@ node "puppet.virtual.dojo" {
   }
 
   mysql_user { "${storedconfig_db_user}@${private_address}":
-      password_hash => mysql_password($storedconfig_db_pass),
+      password_hash => '*1386929FAA9C85A3D2533B9EF970CF3F9929E0F3',
   }
 
   mysql_grant { "${storedconfig_db_user}@${private_address}/${storedconfig_db_name}":
