@@ -1,14 +1,14 @@
 node "puppet.virtual.dojo" {
   $mirror="http://ftp.au.debian.org/debian"
-  include common
-  include git
-  include tinydns::setup
-  include puppetmaster
-
   $storedconfig_db_user = "puppet"
   $storedconfig_db_pass = "J2RL;wxG"
   $storedconfig_db_name = "puppet"
   $storedconfig_db_host = "localhost"
+
+  include common
+  include git
+  include tinydns::setup
+  include puppetmaster
 
   dnsrecord { "nameserver for thdojo":
     ensure => present,
@@ -59,11 +59,11 @@ node "puppet.virtual.dojo" {
   }
 
   mysql_grant { "${storedconfig_db_user}@${private_address}/${storedconfig_db_name}":
-      privileges    => "all",
+      privileges => "all",
   }
 
   mysql_database { "${storedconfig_db_name}":
-    ensure       => "present",
+    ensure => "present",
   }
 
   Dnsrecord <<| |>>
