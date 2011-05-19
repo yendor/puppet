@@ -32,7 +32,7 @@
         RewriteEngine On
         RewriteCond %{REQUEST_URI} !^/nagios3/ 
         RewriteCond %{REQUEST_URI} !^/cgi-bin/nagios3 
-        RewriteRule - https://<%= fqdn %>/nagios3/ [R=301,L]
+        RewriteRule . /nagios3/ [R=301,L]
 
         <DirectoryMatch (/usr/share/nagios3/htdocs|/usr/lib/cgi-bin/nagios3)>
                 Options FollowSymLinks
