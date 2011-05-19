@@ -9,6 +9,7 @@ node "puppet.virtual.dojo" {
   include git
   include tinydns::setup
   include puppetmaster
+  include mysql::server::small
 
   dnsrecord { "nameserver for thdojo":
     ensure => present,
