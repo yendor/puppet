@@ -13,13 +13,13 @@ class nagios::node($instance_name,
 	$use="generic-host"
 ) {
 
-	@@file { "/etc/nagios3/conf.d/$host_name":
+	@@file { "/etc/nagios3/conf.d/${host_name}":
 		ensure => directory,
 		tag => "nagios_monitored_${instance_name}",
 		notify => Service["nagios"],
 	}
 
-	@@file { "/etc/nagios3/conf.d/$host_name/host.cfg":
+	@@file { "/etc/nagios3/conf.d/${host_name}/host.cfg":
 		content => template("nagios/nagios-node.erb"),
 		tag => "nagios_monitored_${instance_name}",
 		notify => Service["nagios"],
