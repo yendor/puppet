@@ -1,5 +1,5 @@
 class web-monitoring($instance_name, 
-	$service_groups=''
+	$service_groups='',
 	$plain=true,
 	$secure=true,
 )
