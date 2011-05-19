@@ -70,6 +70,7 @@ class nagios::server (
 		"/etc/nagios3/conf.d/services_nagios2.cfg",
 		"/etc/nagios3/conf.d/extinfo_nagios2.cfg",
 		"/etc/nagios3/conf.d/gateway_nagios3.cfg",
+		"/etc/nagios3/conf.d/host-gateway_nagios3.cfg",
 		] :
 		ensure => absent,
 		backup => false,
