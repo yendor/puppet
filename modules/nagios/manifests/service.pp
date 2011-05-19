@@ -23,8 +23,8 @@ class nagios::service(
 ) {
 	 @@file { "/etc/nagios3/conf.d/${host_name}/${name}.cfg":
 		ensure  => $ensure,
-		owner   => 'nagios',
-		group   => 'nagios',
+		owner   => 'root',
+		group   => 'root',
 		content => template("nagios/nagios-service.erb"),
 		tag     => "nagios_monitored_${instance_name}", 
      }
