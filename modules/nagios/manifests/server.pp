@@ -67,6 +67,7 @@ class nagios::server (
 	file { [
 		"/etc/nagios3/conf.d/localhost_nagios2.cfg",
 		"/etc/nagios3/conf.d/hostgroups_nagios2.cfg",
+		"/etc/nagios3/conf.d/services_nagios2.cfg",
 		] :
 		ensure => absent,
 		backup => false,
