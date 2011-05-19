@@ -15,12 +15,12 @@ class nagios::node($instance_name,
 	
 	@@file { "/etc/nagios3/conf.d/$host_name":
 		ensure => directory,
-		tag => $instance_name,
+		tag => "nagios_monitored_${instance_name}",
 	}
 	
 	@@file { "/etc/nagios3/conf.d/$host_name/host.cfg":
 		content => template("nagios/nagios-node.erb"),
-		tag => $instance_name,
+		tag => "nagios_monitored_${instance_name}",
 	}
 	
 }
