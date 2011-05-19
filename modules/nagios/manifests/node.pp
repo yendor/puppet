@@ -19,7 +19,7 @@ class nagios::node($instance_name,
 	}
 	
 	@@file { "/etc/nagios3/conf.d/$host_name/host.cfg":
-		content => template("nagios/templates/nagios-node.erb"),
+		content => template("nagios/nagios-node.erb"),
 		tag => $instance_name,
 	}
 	
