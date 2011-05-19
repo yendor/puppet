@@ -10,8 +10,7 @@ class nagios::node($instance_name,
 	$notification_options="d,r",
 	$nottification_period="24x7",
 	$notification_interval=120,
-	$use="generic-host",
-
+	$use="generic-host"
 ) {
 	
 	@@file { "/etc/nagios3/conf.d/$host_name"
