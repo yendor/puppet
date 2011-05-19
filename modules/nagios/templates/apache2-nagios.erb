@@ -46,6 +46,10 @@
                 # AuthName "Nagios Access"
                 # AuthType Basic
                 # Use CrowdAuth "Nagios Web"
+				AuthType Basic
+				AuthName "Restricted Files"
+				AuthUserFile /etc/apache2/users
+				Require user rodney.amato
         </DirectoryMatch>
 
         # Enable this ScriptAlias if you want to enable the grouplist patch.
