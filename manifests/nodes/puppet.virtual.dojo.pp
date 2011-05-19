@@ -54,7 +54,7 @@ node "puppet.virtual.dojo" {
 		instance_name => "home",
 		address => $ipaddress,
 		host_name => $hostname,
-		alias => $fqdn,
+		host_alias => $fqdn,
 		contact_groups => "admins"
 	}
 
