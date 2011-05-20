@@ -16,6 +16,11 @@ node "leech.virtual.dojo" {
 		instance_name => "home",
 		host_name => $fqdn,
 	}
+	
+	class { "transmission-monitoring":
+		instance_name => "home",
+		host_name => $fqdn,
+	}
 
 	# augeas { "root_partition_noatime":
 	#     context => "/files/etc/fstab",
