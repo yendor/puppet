@@ -50,7 +50,7 @@ node "puppet.virtual.dojo" {
 		notify => Exec["rebuild-tinydns-data"]
 	}
 
-	nagios::node { $fqdn:
+	nagios::host { $fqdn:
 		instance_name => "home",
 		address => $ipaddress,
 		host_name => $fqdn,

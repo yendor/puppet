@@ -1,4 +1,4 @@
-define nagios::node($instance_name,
+define nagios::host($instance_name,
 	$host_name,
 	$address,
 	$host_name,
