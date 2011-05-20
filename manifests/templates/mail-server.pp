@@ -6,7 +6,7 @@ class web-monitoring($instance_name,
 	$pop=true,
 	$imap=true,
 	$pops=true,
-	$imaps=true,
+	$imaps=true
 )
 {
 	include nagios::common
