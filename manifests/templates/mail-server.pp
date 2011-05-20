@@ -1,4 +1,5 @@
-class web-monitoring($instance_name, 
+class mail-monitoring($instance_name, 
+	$host_name,
 	$service_groups='',
 	$smtp=true,
 	$submission=true,

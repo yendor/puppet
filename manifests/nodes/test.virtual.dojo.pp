@@ -19,6 +19,7 @@ node "test.virtual.dojo" {
 	
 	class { "web-monitoring":
 		instance_name => "home",
+		host_name => $fqdn,
 	}
 	
 	class { "ssh-monitoring":

@@ -1,4 +1,5 @@
 class web-monitoring($instance_name, 
+	$host_name,
 	$service_groups='',
 	$plain=true,
 	$secure=true
