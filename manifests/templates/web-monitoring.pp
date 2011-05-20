@@ -7,7 +7,7 @@ class web-monitoring($instance_name,
 	include nagios::common
 	
 	if ($plain) {
-		nagios::service { "check_http",
+		nagios::service { "check_http":
 			ensure              => present, 
 			host_name           => $host_name, 
 			service_description => "HTTP",
