@@ -28,5 +28,6 @@ define nagios::service(
 		content => template("nagios/nagios-service.erb"),
 		tag     => "nagios_monitored_${instance_name}",
 		require => File["/etc/nagios3/conf.d/${host_name}"],
+		notify  => Service["nagios"],
      }
 }
