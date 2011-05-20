@@ -5,7 +5,7 @@ node "test.virtual.dojo" {
 	include logstash
 	include dotdeb
 
-	class { "nagios::node":
+	nagios::node { $fqdn:
 		instance_name => "home",
 		address => $ipaddress,
 		host_name => $fqdn,

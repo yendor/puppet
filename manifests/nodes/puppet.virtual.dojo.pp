@@ -50,7 +50,7 @@ node "puppet.virtual.dojo" {
 		notify => Exec["rebuild-tinydns-data"]
 	}
 
-	class { "nagios::node":
+	nagios::node { $fqdn:
 		instance_name => "home",
 		address => $ipaddress,
 		host_name => $fqdn,
@@ -58,9 +58,9 @@ node "puppet.virtual.dojo" {
 		contact_groups => "admins"
 	}
 
-	# class { "ssh-monitoring":
-	# 	instance_name => "home",
-	# }
+	class { "ssh-monitoring":
+		instance_name => "home",
+	}
 
 	Dnsrecord <<| |>>
 }
