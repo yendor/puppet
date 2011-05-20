@@ -1,5 +1,5 @@
 class web-monitoring($instance_name, 
-	$ensure => "present",
+	$ensure = "present",
 	$host_name,
 	$service_groups='',
 	$plain=true,
