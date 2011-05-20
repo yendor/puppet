@@ -1,4 +1,4 @@
-class ssh-monitoring($instance_name, $host_name, $ensure => "present", $service_groups='')
+class ssh-monitoring($instance_name, $host_name, $ensure => 'present', $service_groups='')
 {
 	include nagios::common
 	
