@@ -29,6 +29,20 @@ class nagios::server (
         require => Package["nagios"],
     }
 
+    # Fix default debian permissions for the external command file so we can use it from the web interface
+    exec { "fix_nagios_command_permissions_1":
+        command     => "/usr/sbin/dpkg-statoverride --update --add nagios www-data 2710 /var/lib/nagios3/rw",
+        refreshonly => true,
+        subscribe   => Package["nagios"],
+        notify      => Service["nagios"],
+    }
+    exec { "fix_nagios_command_permissions_2":
+        command     => "/usr/sbin/dpkg-statoverride --update --add nagios nagios 751 /var/lib/nagios3",
+        refreshonly => true,
+        subscribe   => Package["nagios"],
+        notify      => Service["nagios"],
+    }
+
    	service { "nagios3":
         alias       => "nagios",
         ensure      => running,
