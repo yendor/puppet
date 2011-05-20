@@ -1,5 +1,4 @@
-define scheduler($scheduler = 'cfq') {
-	include grub
+define disk::scheduler($scheduler = 'cfq') {
 	
 	exec { "live_kernel_scheduler_${name}":
 		command => "/bin/echo ${scheduler} > /sys/block/${name}/queue/scheduler",
