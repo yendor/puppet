@@ -17,7 +17,7 @@ class drobo-monitoring {
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Music Share",
-		check_command       => "check_disk_smb!Music", 
+		check_command       => "check_disk_smb!${drobo_ip}!Music", 
 		instance_name       => $instance_name, 
 		servicegroups       => $service_groups,
 	}
@@ -26,7 +26,7 @@ class drobo-monitoring {
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Movies Share",
-		check_command       => "check_disk_smb!Movies", 
+		check_command       => "check_disk_smb!${drobo_ip}!Movies", 
 		instance_name       => $instance_name, 
 		servicegroups       => $service_groups,
 	}
@@ -35,7 +35,7 @@ class drobo-monitoring {
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "TV Shows Share",
-		check_command       => "check_disk_smb!Tv\ Shows", 
+		check_command       => "check_disk_smb!${drobo_ip}!Tv_Shows", 
 		instance_name       => $instance_name, 
 		servicegroups       => $service_groups,
 	}
@@ -44,7 +44,7 @@ class drobo-monitoring {
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Work Share",
-		check_command       => "check_disk_smb!Work", 
+		check_command       => "check_disk_smb!${drobo_ip}!Work", 
 		instance_name       => $instance_name, 
 		servicegroups       => $service_groups,
 	}
