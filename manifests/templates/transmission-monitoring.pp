@@ -1,7 +1,7 @@
 class transmission-monitoring($instance_name, 
 	$host_name,
 	$ensure = "present",
-	$service_groups='',
+	$service_groups=''
 )
 {
 	include nagios::common
