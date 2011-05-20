@@ -14,6 +14,7 @@ node "leech.virtual.dojo" {
 
 	class { "ssh-monitoring":
 		instance_name => "home",
+		host_name => $fqdn,
 	}
 
 	# augeas { "root_partition_noatime":

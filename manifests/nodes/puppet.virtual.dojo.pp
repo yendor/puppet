@@ -60,6 +60,7 @@ node "puppet.virtual.dojo" {
 
 	class { "ssh-monitoring":
 		instance_name => "home",
+		host_name => $fqdn,
 	}
 
 	Dnsrecord <<| |>>
