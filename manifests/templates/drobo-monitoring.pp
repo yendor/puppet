@@ -5,10 +5,10 @@ class drobo-monitoring {
 	$drobo_ip = "192.168.1.11"
 
 	nagios::host { "${drobo_hostname}.${drobo_domain}":
-		instance_name => "home",
-		address => $drobo_ip,
-		host_name => "${drobo_hostname}.${drobo_domain}",
-		host_alias => $dobo_hostname,
+		instance_name  => "home",
+		address        => $drobo_ip,
+		host_name      => "${drobo_hostname}.${drobo_domain}",
+		host_alias     => "${dobo_hostname}",
 		contact_groups => "admins"
 	}
 
