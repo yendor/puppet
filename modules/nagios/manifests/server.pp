@@ -90,4 +90,13 @@ class nagios::server (
 		backup => false,
 		notify => Service["nagios"],
 	}
+	
+	file { "/etc/nagios3/nagios.cfg":
+		source => "puppet:///modules/nagios/nagios/nagios.cfg",
+		backup => false,
+		mode   => 644,
+		owner  => root,
+		group  => root,
+		notify => Service["nagios"],
+	}
 }
