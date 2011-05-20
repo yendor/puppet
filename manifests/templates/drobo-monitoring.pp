@@ -13,6 +13,15 @@ class drobo-monitoring {
 		contact_groups => "admins"
 	}
 
+	nagios::service { "check_smb_photos":
+		ensure              => present, 
+		host_name           => "${drobo_hostname}.${drobo_domain}", 
+		service_description => "Photos Share",
+		check_command       => "check_disk_smb!${drobo_ip}!Photos", 
+		instance_name       => $instance_name, 
+		servicegroups       => $service_groups,
+	}
+
 	nagios::service { "check_smb_music":
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
@@ -35,7 +44,7 @@ class drobo-monitoring {
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "TV Shows Share",
-		check_command       => "check_disk_smb!${drobo_ip}!Tv_Shows", 
+		check_command       => "check_disk_smb!${drobo_ip}!TvShows", 
 		instance_name       => $instance_name, 
 		servicegroups       => $service_groups,
 	}
