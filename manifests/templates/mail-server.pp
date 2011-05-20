@@ -1,6 +1,6 @@
 class mail-monitoring($instance_name, 
 	$host_name,
-	$ensure => "present",
+	$ensure = "present",
 	$service_groups='',
 	$smtp=true,
 	$submission=true,
