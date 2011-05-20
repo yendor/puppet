@@ -1,0 +1,51 @@
+class drobo-monitoring {
+
+	$drobo_hostname = "drobo-fs"
+	$drobo_domain = "physical.dojo"
+	$drobo_ip = "192.168.1.11"
+
+	nagios::node { "${drobo_hostname}.${drobo_domain}":
+		instance_name => "home",
+		address => $drobo_ip,
+		host_name => "${drobo_hostname}.${drobo_domain}",
+		host_alias => $dobo_hostname,
+		contact_groups => "admins"
+	}
+
+	nagios::service { "check_smb_music":
+		ensure              => present, 
+		host_name           => "${drobo_hostname}.${drobo_domain}", 
+		service_description => "Music Share",
+		check_command       => "check_disk_smb!Music", 
+		instance_name       => $instance_name, 
+		servicegroups       => $service_groups,
+	}
+
+	nagios::service { "check_smb_movies":
+		ensure              => present, 
+		host_name           => "${drobo_hostname}.${drobo_domain}", 
+		service_description => "Movies Share",
+		check_command       => "check_disk_smb!Movies", 
+		instance_name       => $instance_name, 
+		servicegroups       => $service_groups,
+	}
+
+	nagios::service { "check_smb_tvshows":
+		ensure              => present, 
+		host_name           => "${drobo_hostname}.${drobo_domain}", 
+		service_description => "TV Shows Share",
+		check_command       => "check_disk_smb!Tv\ Shows", 
+		instance_name       => $instance_name, 
+		servicegroups       => $service_groups,
+	}
+
+	nagios::service { "check_smb_work":
+		ensure              => present, 
+		host_name           => "${drobo_hostname}.${drobo_domain}", 
+		service_description => "Work Share",
+		check_command       => "check_disk_smb!Work", 
+		instance_name       => $instance_name, 
+		servicegroups       => $service_groups,
+	}
+
+}
