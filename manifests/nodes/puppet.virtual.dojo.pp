@@ -59,6 +59,7 @@ node "puppet.virtual.dojo" {
 	}
 
 	class { "ssh-monitoring":
+		ensure => absent,
 		instance_name => "home",
 		host_name => $fqdn,
 	}

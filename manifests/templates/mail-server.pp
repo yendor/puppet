@@ -1,5 +1,6 @@
 class mail-monitoring($instance_name, 
 	$host_name,
+	$ensure => "present",
 	$service_groups='',
 	$smtp=true,
 	$submission=true,
@@ -14,7 +15,7 @@ class mail-monitoring($instance_name,
 	
 	if ($smtp) {
 		nagios::service { "check_smtp":
-			ensure              => present, 
+			ensure              => $ensure, 
 			host_name           => $host_name, 
 			service_description => "SMTP",
 			check_command       => "check_smtp", 
