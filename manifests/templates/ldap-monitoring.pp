@@ -1,4 +1,4 @@
-class ldap-monitoring($instance_name, $ensure => "present", $service_groups='')
+class ldap-monitoring($instance_name, $ensure = "present", $service_groups='')
 {
 	include nagios::common
 	
