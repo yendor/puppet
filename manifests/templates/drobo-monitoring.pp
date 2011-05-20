@@ -44,7 +44,7 @@ class drobo-monitoring {
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "TV Shows Share",
-		check_command       => "check_disk_smb!${drobo_ip}!TvShows", 
+		check_command       => "check_disk_smb!${drobo_ip}!TVShows", 
 		instance_name       => $instance_name, 
 		servicegroups       => $service_groups,
 	}
