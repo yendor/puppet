@@ -4,7 +4,7 @@ class drobo-monitoring {
 	$drobo_domain = "physical.dojo"
 	$drobo_ip = "192.168.1.11"
 
-	nagios::node { "${drobo_hostname}.${drobo_domain}":
+	nagios::host { "${drobo_hostname}.${drobo_domain}":
 		instance_name => "home",
 		address => $drobo_ip,
 		host_name => "${drobo_hostname}.${drobo_domain}",
