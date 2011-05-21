@@ -78,6 +78,10 @@ class nagios::server (
 		instance_name => $instance_name
 	}
 	
+	file { "/etc/nagios3/conf.d":
+		ensure => directory
+	}
+	
 	file { [
 		"/etc/nagios3/conf.d/localhost_nagios2.cfg",
 		"/etc/nagios3/conf.d/hostgroups_nagios2.cfg",
