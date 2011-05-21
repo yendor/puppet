@@ -17,6 +17,6 @@ class transmission-monitoring($instance_name,
 	
 	nagios::command { "check_transmission":
 		instance_name => $instance_name,
-		command_line => "/usr/lib/nagios/plugins/check_http -H '\$HOSTADDRESS$' -p '\$ARG1'"
+		command_line => "/usr/lib/nagios/plugins/check_http -H '\$HOSTADDRESS$' -p '\$ARG1' -e 'HTTP WARNING: HTTP/1.1 401 Unauthorized'"
 	}
 }
