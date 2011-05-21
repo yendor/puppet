@@ -1,9 +1,12 @@
-class nagios::command { $name, $command
-	nagios_command { "check_nrpe_daemon":
-        ensure          => present,
-        command_name    => $name,
-        command_line    => $command,
-        target          => "/etc/nagios3/conf.d/commands.cfg",
-        notify          => Service["nagios3"],
-    }
+define nagios::command($instance_name,
+	$command_name,
+	$command_line
+) {
+
+	@@file { "/etc/nagios3/conf.d/{$command_name}.cfg":
+		content => template("nagios/nagios-command.erb"),
+		tag     => "nagios_monitored_${instance_name}",
+		require => File["/etc/nagios3/conf.d"],	
+		notify  => Service["nagios"],
+	}
 }
