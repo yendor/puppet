@@ -14,7 +14,7 @@ class nagios3::nrpe($bind_to_ip,
     file { "/etc/nagios/nrpe.cfg":
         ensure => file,
         backup => false,
-        content => template("nagios/nrpe.cfg.erb"),
+        content => template("nagios3/nrpe.cfg.erb"),
         require => Package["nagios-nrpe-server"],
         notify => Service["nagios-nrpe-server"],
     }
