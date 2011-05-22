@@ -23,9 +23,9 @@ node "leech.virtual.dojo" {
 	}
 	
 	class { "nagios3::nrpe":
-		bind_to_ip = $ipaddress,
-		allow_from = "192.168.1.41",
-		instance_name = "home"
+		bind_to_ip => $ipaddress,
+		allow_from => "192.168.1.41",
+		instance_name => "home"
 	}
 
 	# augeas { "root_partition_noatime":
