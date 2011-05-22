@@ -32,4 +32,9 @@ class nagios3::nrpe($bind_to_ip,
         check_command       => "check_nrpe_daemon",
 		instance_name       => $instance_name
 	}
+	
+	nagios3::command { "check_nrpe_daemon":
+		command_line => "/usr/lib/nagios/plugins/check_tcp -H '\$HOSTADDRESS\$' -p 5666 -t 20",
+		instance_name => $instance_name
+	}
 }
