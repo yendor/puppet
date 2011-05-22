@@ -29,6 +29,11 @@ class nagios3::server (
         require => Package["nagios"],
     }
 
+	nagios3::command { "check_nrpe_daemon":
+		command_line => "/usr/lib/nagios/plugins/check_tcp -H '\$HOSTADDRESS\$' -p 5666 -t 20",
+		instance_name => $instance_name
+	}
+
     # Fix default debian permissions for the external command file so we can use it from the web interface
     exec { "fix_nagios_command_permissions_1":
         command     => "/usr/sbin/dpkg-statoverride --update --add nagios www-data 2710 /var/lib/nagios3/rw",
