@@ -51,7 +51,7 @@ class nagios3::server (
     }
 
 	file { "/etc/apache2/sites-available/nagios":
-		content => template("nagios/apache2-nagios.erb"),
+		content => template("nagios3/apache2-nagios.erb"),
 		owner => "root",
 		group => "root",
 		mode => 644,
@@ -96,7 +96,7 @@ class nagios3::server (
 	}
 	
 	file { "/etc/nagios3/nagios.cfg":
-		source => "puppet:///modules/nagios/nagios/nagios.cfg",
+		source => "puppet:///modules/nagios3/nagios/nagios.cfg",
 		backup => false,
 		mode   => 644,
 		owner  => root,

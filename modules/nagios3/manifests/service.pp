@@ -25,7 +25,7 @@ define nagios3::service(
 		ensure  => $ensure,
 		owner   => 'root',
 		group   => 'root',
-		content => template("nagios/nagios-service.erb"),
+		content => template("nagios3/nagios-service.erb"),
 		tag     => "nagios_monitored_${instance_name}",
 		require => File["/etc/nagios3/conf.d/${host_name}"],
 		notify  => Service["nagios"],

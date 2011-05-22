@@ -20,14 +20,14 @@ class nagios3::files {
 
 	# Main Nagios cfg file
     file { "/etc/nagios3/nagios.cfg":
-        content => template("nagios/nagios.cfg.erb"),
+        content => template("nagios3/nagios.cfg.erb"),
         require => Package["nagios"],
         notify => Service["nagios"],
     }
 
     # Cgi config file for controlling access to cgi
     file { "/etc/nagios3/cgi.cfg":
-        source => "puppet://modules/nagios/cgi.cfg",
+        source => "puppet://modules/nagios3/cgi.cfg",
         require => Package["nagios"],
         notify => Service["nagios"],
     }
@@ -40,7 +40,7 @@ class nagios3::files {
     }
 
 	file { "/etc/apache2/sites-available/nagios": 
-		content => template("nagios/apache2-nagios.erb"), 
+		content => template("nagios3/apache2-nagios.erb"), 
 		notify => Service["apache2"]
 	}
 }

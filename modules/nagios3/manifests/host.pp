@@ -20,7 +20,7 @@ define nagios3::host($instance_name,
 	}
 
 	@@file { "/etc/nagios3/conf.d/${host_name}/host.cfg":
-		content => template("nagios/nagios-node.erb"),
+		content => template("nagios3/nagios-node.erb"),
 		tag     => "nagios_monitored_${instance_name}",
 		require => File["/etc/nagios3/conf.d/${host_name}"],	
 		notify  => Service["nagios"],
