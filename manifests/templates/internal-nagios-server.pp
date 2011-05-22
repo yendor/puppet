@@ -7,7 +7,7 @@ class internal-nagios-server($instance_name)
 		ensure => "directory",
 	}
 
-	class { "nagios::server":
+	class { "nagios3::server":
 		instance_name => $instance_name,
 		nagios_version => '3.2.1-2~bpo50+1',
 		nagios_ssl_key_file => "/etc/apache2/ssl/server.key",
