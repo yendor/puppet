@@ -4,7 +4,7 @@ node "leech.virtual.dojo" {
 
 	include transmission
 
-	nagios::host { $fqdn:
+	nagios3::host { $fqdn:
 		instance_name => "home",
 		address => $ipaddress,
 		host_name => $fqdn,

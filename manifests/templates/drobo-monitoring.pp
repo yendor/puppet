@@ -5,7 +5,7 @@ class drobo-monitoring {
 	$drobo_ip = "192.168.1.11"
 	$instance_name = "home"
 
-	nagios::host { "${drobo_hostname}.${drobo_domain}":
+	nagios3::host { "${drobo_hostname}.${drobo_domain}":
 		instance_name  => "home",
 		address        => $drobo_ip,
 		host_name      => "${drobo_hostname}.${drobo_domain}",
@@ -13,7 +13,7 @@ class drobo-monitoring {
 		contact_groups => "admins"
 	}
 
-	nagios::service { "check_smb_photos":
+	nagios3::service { "check_smb_photos":
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Photos Share",
@@ -22,7 +22,7 @@ class drobo-monitoring {
 		servicegroups       => $service_groups,
 	}
 
-	nagios::service { "check_smb_music":
+	nagios3::service { "check_smb_music":
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Music Share",
@@ -31,7 +31,7 @@ class drobo-monitoring {
 		servicegroups       => $service_groups,
 	}
 
-	nagios::service { "check_smb_movies":
+	nagios3::service { "check_smb_movies":
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Movies Share",
@@ -40,7 +40,7 @@ class drobo-monitoring {
 		servicegroups       => $service_groups,
 	}
 
-	nagios::service { "check_smb_tvshows":
+	nagios3::service { "check_smb_tvshows":
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "TV Shows Share",
@@ -49,7 +49,7 @@ class drobo-monitoring {
 		servicegroups       => $service_groups,
 	}
 
-	nagios::service { "check_smb_work":
+	nagios3::service { "check_smb_work":
 		ensure              => present, 
 		host_name           => "${drobo_hostname}.${drobo_domain}", 
 		service_description => "Work Share",

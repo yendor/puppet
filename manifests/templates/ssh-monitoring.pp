@@ -2,7 +2,7 @@ class ssh-monitoring($instance_name, $host_name, $ensure = 'present', $service_g
 {
 	include nagios::common
 	
-	nagios::service { "ssh": 
+	nagios3::service { "ssh": 
         ensure              => $ensure, 
         host_name           => $host_name, 
         service_description => "SSH",

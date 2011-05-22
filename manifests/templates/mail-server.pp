@@ -14,7 +14,7 @@ class mail-monitoring($instance_name,
 	include nagios::common
 	
 	if ($smtp) {
-		nagios::service { "check_smtp":
+		nagios3::service { "check_smtp":
 			ensure              => $ensure, 
 			host_name           => $host_name, 
 			service_description => "SMTP",

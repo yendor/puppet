@@ -9,7 +9,7 @@ class web-monitoring($instance_name,
 	include nagios::common
 	
 	if ($plain) {
-		nagios::service { "check_http":
+		nagios3::service { "check_http":
 			ensure              => $ensure, 
 			host_name           => $host_name, 
 			service_description => "HTTP",
@@ -20,7 +20,7 @@ class web-monitoring($instance_name,
 	}
 	
 	if ($secure) {
-		nagios::service { "check_https":
+		nagios3::service { "check_https":
 			ensure              => $ensure, 
 			host_name           => $host_name, 
 			service_description => "HTTPS",
