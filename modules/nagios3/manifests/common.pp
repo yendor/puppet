@@ -1,4 +1,4 @@
-class nagios::common {
+class nagios3::common {
 	package { "nsca": 
 		ensure => present
 	}

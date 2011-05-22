@@ -1,4 +1,4 @@
-define nagios::service(
+define nagios3::service(
 	$instance_name,
     $check_command,
 	$ensure = present,

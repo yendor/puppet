@@ -1,4 +1,4 @@
-class nagios::files {
+class nagios3::files {
 	# Remove Standard Debian Files that are created from nagios package
     file {[
         "/etc/nagios3/conf.d/contacts_nagios2.cfg",

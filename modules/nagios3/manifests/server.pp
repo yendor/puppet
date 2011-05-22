@@ -1,4 +1,4 @@
-class nagios::server (
+class nagios3::server (
 	$instance_name, 
 	$nagios_ssl_key_file, 
 	$nagios_ssl_cert_file, 

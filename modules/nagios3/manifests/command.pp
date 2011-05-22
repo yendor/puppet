@@ -1,4 +1,4 @@
-define nagios::command($instance_name,
+define nagios3::command($instance_name,
 	$command_line,
 	$ensure='present'
 ) {
