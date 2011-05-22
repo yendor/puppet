@@ -4,7 +4,7 @@ class transmission-monitoring($instance_name,
 	$service_groups=''
 )
 {
-	include nagios::common
+	include nagios3:common
 	
 	nagios3::service { "check_transmission_web":
 		ensure              => $ensure, 

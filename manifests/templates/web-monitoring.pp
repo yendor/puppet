@@ -6,7 +6,7 @@ class web-monitoring($instance_name,
 	$secure=true
 )
 {
-	include nagios::common
+	include nagios3:common
 	
 	if ($plain) {
 		nagios3::service { "check_http":

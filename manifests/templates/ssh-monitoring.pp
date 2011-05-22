@@ -1,6 +1,6 @@
 class ssh-monitoring($instance_name, $host_name, $ensure = 'present', $service_groups='')
 {
-	include nagios::common
+	include nagios3:common
 	
 	nagios3::service { "ssh": 
         ensure              => $ensure, 

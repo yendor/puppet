@@ -1,6 +1,6 @@
 class internal-nagios-server($instance_name)
 {
-	include nagios::common
+	include nagios3:common
 	include apache2::mpm-prefork
 
 	file { "/etc/apache2/ssl":
