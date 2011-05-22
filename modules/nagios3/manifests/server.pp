@@ -74,7 +74,7 @@ class nagios3::server (
         ensure => present
     }
 
-	class { "nagios::resources":
+	class { "nagios3::resources":
 		instance_name => $instance_name
 	}
 	
