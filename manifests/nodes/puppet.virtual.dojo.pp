@@ -89,7 +89,7 @@ node "puppet.virtual.dojo" {
 		owner   => "root",
 		group   => "root",
 		mode    => "0644",
-		content  => template("nagios3/nrpe.d/load.cfg.erb")
+		content  => template("nagios3/nrpe.d/load.cfg.erb"),
 		backup  => false,
 		require => Package["nagios-nrpe-server"],
 		notify  => Service["nagios-nrpe-server"],
