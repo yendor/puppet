@@ -46,5 +46,9 @@ node "test.virtual.dojo" {
 	# }
 	
 	class { "drobo-monitoring": }
+	
+	file { "/etc/nagios/nrpe.d/puppetmaster.cfg":
+	  content => template('nrpe.d/puppetmaster.cfg')
+	}
 
 }

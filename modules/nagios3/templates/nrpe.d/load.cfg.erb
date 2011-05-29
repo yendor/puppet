@@ -1,0 +1,1 @@
+command[check_load]=/usr/lib/nagios/plugins/check_load -w <%= (processorcount.to_i * 1.8).to_i %>,<%= (processorcount.to_i * 1.5).to_i %>,<%= processorcount.to_i %> -c <%= processorcount.to_i * 3 %>,<%= (processorcount.to_i * 2.5).to_i %>,<%= processorcount.to_i * 2 %>

@@ -69,5 +69,37 @@ node "puppet.virtual.dojo" {
 		instance_name => "home"
 	}
 
+	file { "/etc/nagios/nrpe.d/puppet_reports.cfg":
+		owner   => "root",
+		group   => "root",
+		mode    => "0644",
+		source  => "puppet:///nagios3/nrpe.d/puppet_reports.cfg",
+		backup  => false,
+		require => Package["nagios-nrpe-server"],
+		notify  => Service["nagios-nrpe-server"],
+	}
+
+	nagios3::service { "puppet_reports":
+    service_description => "Puppet Reports",
+    check_command       => "check_nrpe_1arg!check_puppet_reports",
+    instance_name       => "home"
+  }
+  
+  file { "/etc/nagios/nrpe.d/load.cfg":
+		owner   => "root",
+		group   => "root",
+		mode    => "0644",
+		content  => template("nagios3/nrpe.d/load.cfg.erb")
+		backup  => false,
+		require => Package["nagios-nrpe-server"],
+		notify  => Service["nagios-nrpe-server"],
+	}
+
+	nagios3::service { "load":
+    service_description => "Load",
+    check_command       => "check_nrpe_1arg!check_load",
+    instance_name       => "home"
+  }
+
 	Dnsrecord <<| |>>
 }
