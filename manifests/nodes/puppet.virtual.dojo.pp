@@ -97,7 +97,7 @@ node "puppet.virtual.dojo" {
 
 	nagios3::service { "load":
     service_description => "Load",
-    check_command       => "check_nrpe_1arg!check_load",
+    check_command       => "check_nrpe_1arg!check_load!/var/lib/puppet/reports",
     instance_name       => "home"
   }
 
