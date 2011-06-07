@@ -45,6 +45,8 @@ node "test.virtual.dojo" {
 	#     changes => "set *[file = '/']/opt errors=remount-ro,noatime,nodiratime",
 	# }
 
+    include iptables
+
 	iptables { "115 create ratelimited custom chain":
         customchain => "RATELIMITED",
         table => "filter",
