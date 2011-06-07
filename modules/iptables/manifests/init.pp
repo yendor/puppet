@@ -32,6 +32,10 @@ class iptables($include_diff=true) {
 	    backup => false,
 	}
 	
+	file { "/etc/firewall/puppet-firewall.conf":
+	    ensure => present,
+	}
+	
 	Iptables { 
 	    require => File["/etc/firewall"]
 	}
