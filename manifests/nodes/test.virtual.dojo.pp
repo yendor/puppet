@@ -59,16 +59,16 @@ node "test.virtual.dojo" {
         table => "filter"
     }
 
-    iptables { "115 create ratelimited custom chain":
+    iptables { "115 create aardvark custom chain":
         customchain => "AARDVARK",
         table => "filter",
     }
 
-    iptables { "zzzz - 1 Set a max rate limit to 30 pps average":
+    iptables { "zzzz - 1 Set a max aardvark rate limit to 30 pps average":
         raw_rule => "-A AARDVARK -m limit --limit 30/sec --limit-burst 6 -j RETURN",
         table => "filter",
     }
-    iptables { "zzzzz - 2 Drop traffic that exceeds the rate limit":
+    iptables { "zzzzz - 2 Drop aardvark traffic that exceeds the rate limit":
         raw_rule => "-A AARDVARK -j DROP",
         table => "filter"
     }
