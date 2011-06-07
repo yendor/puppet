@@ -63,8 +63,8 @@ module Puppet
       }
   end
 
-  @@firewall_conf = '/etc/interspire/puppet-firewall.conf'
-  @@firewall_conf_tmp = '/etc/interspire/puppet-firewall.conf.tmp'
+  @@firewall_conf = '/etc/firewall/puppet-firewall.conf'
+  @@firewall_conf_tmp = '/etc/firewall/puppet-firewall.conf.tmp'
 
   @@usecidr = nil
   @@finalized = false
