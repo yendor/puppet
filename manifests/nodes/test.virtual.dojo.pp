@@ -74,6 +74,8 @@ node "test.virtual.dojo" {
         raw_rule => "-A AARDVARK -j DROP",
         table => "filter"
     }
+    
+    Iptables <<| |>>
 
 	class { "drobo-monitoring": }
 
