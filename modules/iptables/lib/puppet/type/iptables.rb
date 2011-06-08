@@ -57,16 +57,20 @@ module Puppet
       `/sbin/iptables-save`.each do |line|
         next if /^#/.match(line.strip)
         if line.match(/\[\d+:\d+\]/)
+            print "HERE: " + __LINE__.to_s + "\n"
             line.sub!(/\[\d+:\d+\]/, '[0:0]')
             @@current_iptables_rules.push(line.strip)
         elsif chain_matches = line.match('^:(\w+\-) ')
+          print "HERE: " + __LINE__.to_s + "\n"        
           chain_matches = line.match('^:(\w+\-) ')
-          pp(chain_matches)
           if chain_matches
+            print "HERE: " + __LINE__.to_s + "\n"
             @@table_chain_order[current_table].push(chain_matches[1])
           end
         elsif table_matches = line.match('^\*(filter|nat|mangle|raw)$')
+          print "HERE: " + __LINE__.to_s + "\n"
           if table_matches
+            print "HERE: " + __LINE__.to_s + "\n"
             current_table = table_matches[1]
             @@table_order << current_table
             @@table_chain_order[current_table] = []
