@@ -4,6 +4,14 @@ node "test.virtual.dojo" {
 	include common
 	include logstash
 	include dotdeb
+	
+	include iptables
+
+    iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
+        source  => "127.0.0.0/8",
+        chain   => "FORWARD",
+        jump    => "DROP"
+    }
 
 	nagios3::host { $fqdn:
 		instance_name => "home",
@@ -45,13 +53,7 @@ node "test.virtual.dojo" {
 	#     changes => "set *[file = '/']/opt errors=remount-ro,noatime,nodiratime",
 	# }
 
-    include iptables
 
-    iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
-        source  => "127.0.0.0/8",
-        chain   => "FORWARD",
-        jump    => "DROP"
-    }
 
     # iptables { "115 create ratelimited custom chain":
     #         customchain => "RATELIMITED",
