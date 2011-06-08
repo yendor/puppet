@@ -666,7 +666,7 @@ module Puppet
             chain = ":" + value(:customchain).to_s + " - [0:0]"
             @@custom_chains['filter'][chain] = 1
         elsif ! value(:raw_rule).nil?
-            chain = value(:raw_rule).to_s.match('^\-\w (\S+)')
+            chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
             notice("chain:" + chain.to_s)
           
             @@rules[table].push({
