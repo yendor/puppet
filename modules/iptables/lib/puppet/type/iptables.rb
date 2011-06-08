@@ -675,6 +675,10 @@ module Puppet
             chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
             #  
             #  unless chain
+            if @@rules[table][chain].nil?
+              @@rules[table][chain] = []
+            end
+          
           
             @@rules[table][chain].push({
                  'name'         => value(:name).to_s,
