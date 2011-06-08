@@ -673,7 +673,6 @@ module Puppet
             end
         elsif ! value(:raw_rule).nil?
             chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
-            notice("chain:" + chain.to_s)
             #  
             #  unless chain
           
