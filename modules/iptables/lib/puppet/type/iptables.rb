@@ -293,7 +293,6 @@ module Puppet
     # It decides if puppet resources differ from currently active iptables
     # rules and applies the necessary changes.
     def finalize
-      notice("iptables " + __LINE__)
       # Comment out table_order length checking for now, as it will error if a particular server does
       # not have kernel modules enabled that provides specific tables
       # if @@table_order.length != 4
