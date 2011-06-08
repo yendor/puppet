@@ -659,7 +659,7 @@ module Puppet
       pp(value(:table).to_s)
       pp(value(:chain).to_s)
       
-      chain_prio = @@table_chain_order[value(:table).to_s][value(:chain).to_s]
+      chain_prio = @@table_chain_order[value(:table).to_s].find_index(value(:chain).to_s)
 
       debug("iptables param: #{full_string}")
 
