@@ -1,11 +1,7 @@
 require "ipaddr"
 
 module Puppet
-  
-  
-  
-  
-  @@@@@@@default_policies = {
+  @@default_policies = {
     'mangle' => {
         'PREROUTING'  => 'ACCEPT',
         'INPUT'       => 'ACCEPT',
@@ -46,6 +42,8 @@ module Puppet
     'raw'    => 1
   }
   @@table_order = []
+  
+  debug("iptables module loading")
 
   @@current_iptables_rules = []
   if File.exist?('/proc/net/ip_tables_names')
