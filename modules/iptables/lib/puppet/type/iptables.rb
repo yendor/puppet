@@ -44,7 +44,13 @@ module Puppet
   }
   @@table_order = []
   
+  @@table_chain_order = {
+
+  }
+  
   notice("iptables module loading")
+
+  current_table = ''
 
   @@current_iptables_rules = []
   if File.exist?('/proc/net/ip_tables_names')
@@ -60,12 +66,16 @@ module Puppet
         table_matches = line.match('^\*(filter|nat|mangle|raw)$')
         
         if table_matches
-          @@table_order << table_matches[1]
+          current_table = table_matches[1]
+          @@table_order << current_table
+          @@table_chain_order[current_table] = []
           next
         end
         
-        print line
-            
+        chain_matches = line.match('^:(\w+\-) ')
+        if chain_matches
+          @@table_chain_order[current_table].push(chain_matches[1])
+        end
       }
   end
 
@@ -83,12 +93,7 @@ module Puppet
   # location where iptables binaries are to be found
   @@iptables_dir = "/sbin"
 
-  @@table_chain_order = {
-   'mangle' => ['PREROUTING', 'INPUT', 'FORWARD', 'OUTPUT', 'POSTROUTING'],
-   'filter' => ['INPUT', 'FORWARD', 'OUTPUT'],
-   'nat'    => ['PREROUTING', 'POSTROUTING', 'OUTPUT'],
-   'raw'    => ['PREROUTING', 'OUTPUT'],
-  }
+
   
   newtype(:iptables) do
     @doc = "Manipulate iptables rules"
