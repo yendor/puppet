@@ -672,18 +672,18 @@ module Puppet
               @@table_chain_order[value(:table).to_s].push(value(:customchain).to_s)
             end
         elsif ! value(:raw_rule).nil?
-            # chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
-            #  notice("chain:" + chain.to_s)
+            chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
+            notice("chain:" + chain.to_s)
             #  
             #  unless chain
           
-            @@rules[table].push({
+            @@rules[table][chain].push({
                  'name'         => value(:name).to_s,
                  'chain_prio'   => chain_prio.to_s,
                  'full rule'    => value(:raw_rule).to_s,
             })
         else
-            @@rules[table].push({
+            @@rules[table][chain].push({
                  'name'          => value(:name).to_s,
                  'chain'         => value(:chain).to_s,
                  'table'         => value(:table).to_s,
