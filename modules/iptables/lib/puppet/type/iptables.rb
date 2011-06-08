@@ -420,6 +420,7 @@ module Puppet
 
     def initialize(args)
       super(args)
+       debug("iptables initializing")
 
       if @@usecidr == nil
         iptablesversion = `#{@@iptables_dir}/iptables --version`.scan(/ v([0-9\.]+)/)
