@@ -308,6 +308,8 @@ module Puppet
         @@rules[key] = @@rules[key].sort_by {|rule| [rule["chain_prio"], rule["name"]] }
       }
 
+      pp(@@rules)
+
       # load fail2ban dynamic rules
       load_dynamic_rules_from_fail2ban(@@rules)
       # load pre and post rules
@@ -344,7 +346,6 @@ module Puppet
                 }
             end
             #print out the defined rules
-            pp(@@rules)
             if ! @@rules[table].nil? and @@rules[table].size >= 1
                 @@rules[table].each { |value|
                     fh.puts "# rule name: #{value['name']}"
