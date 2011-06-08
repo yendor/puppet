@@ -89,6 +89,13 @@ node "test.virtual.dojo" {
         table => "filter"
     }
     
+    iptables { "allow http(s) traffic":
+        chain => "INPUT",
+        dport => ["80", "443"],
+        proto => "tcp",
+        jump => "ACCEPT"
+    }
+    
 	class { "drobo-monitoring": }
 
 }
