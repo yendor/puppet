@@ -344,6 +344,7 @@ module Puppet
                 }
             end
             #print out the defined rules
+            pp(@@rules)
             if ! @@rules[table].nil? and @@rules[table].size >= 1
                 @@rules[table].each { |value|
                     fh.puts "# rule name: #{value['name']}"
