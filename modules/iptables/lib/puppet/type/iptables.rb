@@ -43,7 +43,7 @@ module Puppet
   }
   @@table_order = []
   
-  debug("iptables module loading")
+  info("iptables module loading")
 
   @@current_iptables_rules = []
   if File.exist?('/proc/net/ip_tables_names')
@@ -293,6 +293,7 @@ module Puppet
     # It decides if puppet resources differ from currently active iptables
     # rules and applies the necessary changes.
     def finalize
+      info("iptables " + __LINE__)
       # Comment out table_order length checking for now, as it will error if a particular server does
       # not have kernel modules enabled that provides specific tables
       # if @@table_order.length != 4
@@ -422,7 +423,7 @@ module Puppet
 
     def initialize(args)
       super(args)
-       debug("iptables initializing")
+      info("iptables initializing")
 
       if @@usecidr == nil
         iptablesversion = `#{@@iptables_dir}/iptables --version`.scan(/ v([0-9\.]+)/)
