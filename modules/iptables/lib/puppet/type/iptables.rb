@@ -78,6 +78,8 @@ module Puppet
         end
       }
   end
+  
+  pp(@@table_chain_order)
 
   @@firewall_conf = '/etc/firewall/puppet-firewall.conf'
   @@firewall_conf_tmp = '/etc/firewall/puppet-firewall.conf.tmp'
@@ -298,7 +300,7 @@ module Puppet
       #   err("The wrong number of tables were found in the iptables-save output. Expected 4 got " + @@table_order.length.to_s)
       #   return
       # end
-      pp(@@table_chain_order)
+      # pp(@@table_chain_order)
       
       # sort rules by alphabetical order, grouped by chain, else they arrive in
       # random order and cause puppet to reload iptables rules.
@@ -306,7 +308,7 @@ module Puppet
         @@rules[key] = @@rules[key].sort_by {|rule| [rule["chain_prio"], rule["name"]] }
       }
 
-      pp(@@rules)
+      # pp(@@rules)
 
       # load fail2ban dynamic rules
       load_dynamic_rules_from_fail2ban(@@rules)
@@ -653,9 +655,9 @@ module Puppet
         end
       end
       
-      pp(@@table_chain_order)
-      pp(value(:table).to_s)
-      pp(value(:chain).to_s)
+      # pp(@@table_chain_order)
+      # pp(value(:table).to_s)
+      # pp(value(:chain).to_s)
       
       
 
