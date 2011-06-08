@@ -335,6 +335,7 @@ module Puppet
                     fh.puts chain
                 }
             end
+            pp(@@custom_chains)
             #print out the defined rules
             if ! @@rules[table].nil? and @@rules[table].size >= 1
                 @@rules[table].each { |value|
