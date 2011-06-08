@@ -300,7 +300,7 @@ module Puppet
       #   return
       # end
       
-      print @@table_chain_order.to_json
+      pp(@@table_chain_order)
       
       # sort rules by alphabetical order, grouped by chain, else they arrive in
       # random order and cause puppet to reload iptables rules.
