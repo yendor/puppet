@@ -1,7 +1,11 @@
 require "ipaddr"
 
 module Puppet
-  @@default_policies = {
+  
+  
+  
+  
+  @@@@@@@default_policies = {
     'mangle' => {
         'PREROUTING'  => 'ACCEPT',
         'INPUT'       => 'ACCEPT',
