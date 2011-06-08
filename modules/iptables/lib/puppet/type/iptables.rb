@@ -48,8 +48,6 @@ module Puppet
 
   }
   
-  notice("iptables module loading")
-
   current_table = ''
 
   @@current_iptables_rules = []
@@ -57,20 +55,14 @@ module Puppet
       `/sbin/iptables-save`.each do |line|
         next if /^#/.match(line.strip)
         
-        print line.match('^:(\w+\-)')
-        
         if chain_matches = line.match('^:([\w\-]+)')
-            print "HERE: " + __LINE__.to_s + "\n"
             line.sub!(/\[\d+:\d+\]/, '[0:0]')
             if chain_matches
-              print "HERE: " + __LINE__.to_s + "\n"
               @@table_chain_order[current_table].push(chain_matches[1])
             end
             @@current_iptables_rules.push(line.strip)
         elsif table_matches = line.match('^\*(filter|nat|mangle|raw)$')
-          print "HERE: " + __LINE__.to_s + "\n"
           if table_matches
-            print "HERE: " + __LINE__.to_s + "\n"
             current_table = table_matches[1]
             @@table_order << current_table
             @@table_chain_order[current_table] = []
@@ -82,8 +74,6 @@ module Puppet
       end
   end
   
-  pp(@@table_chain_order)
-
   @@firewall_conf = '/etc/firewall/puppet-firewall.conf'
   @@firewall_conf_tmp = '/etc/firewall/puppet-firewall.conf.tmp'
 
@@ -297,21 +287,11 @@ module Puppet
     # It decides if puppet resources differ from currently active iptables
     # rules and applies the necessary changes.
     def finalize
-      # Comment out table_order length checking for now, as it will error if a particular server does
-      # not have kernel modules enabled that provides specific tables
-      # if @@table_order.length != 4
-      #   err("The wrong number of tables were found in the iptables-save output. Expected 4 got " + @@table_order.length.to_s)
-      #   return
-      # end
-      # pp(@@table_chain_order)
-      
       # sort rules by alphabetical order, grouped by chain, else they arrive in
       # random order and cause puppet to reload iptables rules.
       @@rules.each_key {|key|
         @@rules[key] = @@rules[key].sort_by {|rule| [rule["chain_prio"], rule["name"]] }
       }
-
-      # pp(@@rules)
 
       # load fail2ban dynamic rules
       load_dynamic_rules_from_fail2ban(@@rules)
@@ -429,7 +409,6 @@ module Puppet
 
     def initialize(args)
       super(args)
-      notice("iptables initializing")
 
       if @@usecidr == nil
         iptablesversion = `#{@@iptables_dir}/iptables --version`.scan(/ v([0-9\.]+)/)
@@ -658,12 +637,6 @@ module Puppet
         end
       end
       
-      # pp(@@table_chain_order)
-      # pp(value(:table).to_s)
-      # pp(value(:chain).to_s)
-      
-      
-
       debug("iptables param: #{full_string}")
 
       if invalidrule != true
