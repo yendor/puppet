@@ -57,9 +57,9 @@ module Puppet
       `/sbin/iptables-save`.each do |line|
         next if /^#/.match(line.strip)
         
-        print line.match('^:(\w+\-) \s* \[\d+:\d+\]\s*$')
+        print line.match('^:(\w+\-)')
         
-        if chain_matches = line.match('^:(\w+\-) \s* \[\d+:\d+\]\s*$')
+        if chain_matches = line.match('^:([\w\-]+)')
             print "HERE: " + __LINE__.to_s + "\n"
             line.sub!(/\[\d+:\d+\]/, '[0:0]')
             if chain_matches
