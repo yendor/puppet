@@ -673,20 +673,14 @@ module Puppet
             end
         elsif ! value(:raw_rule).nil?
             chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
-            #  
-            #  unless chain
-            if @@rules[table][chain].nil?
-              @@rules[table][chain] = []
-            end
           
-          
-            @@rules[table][chain].push({
+            @@rules[table].push({
                  'name'         => value(:name).to_s,
                  'chain_prio'   => chain_prio.to_s,
                  'full rule'    => value(:raw_rule).to_s,
             })
         else
-            @@rules[table][chain].push({
+            @@rules[table].push({
                  'name'          => value(:name).to_s,
                  'chain'         => value(:chain).to_s,
                  'table'         => value(:table).to_s,
