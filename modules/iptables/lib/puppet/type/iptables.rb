@@ -54,29 +54,28 @@ module Puppet
 
   @@current_iptables_rules = []
   if File.exist?('/proc/net/ip_tables_names')
-      `/sbin/iptables-save`.each { |line|
+      `/sbin/iptables-save`.each do |line|
         next if /^#/.match(line.strip)
         if line.match(/\[\d+:\d+\]/)
             line.sub!(/\[\d+:\d+\]/, '[0:0]')
             @@current_iptables_rules.push(line.strip)
+        elsif chain_matches = line.match('^:(\w+\-) ')
+          chain_matches = line.match('^:(\w+\-) ')
+          pp(chain_matches)
+          if chain_matches
+            @@table_chain_order[current_table].push(chain_matches[1])
+          end
+        elsif table_matches = line.match('^\*(filter|nat|mangle|raw)$')
+          if table_matches
+            current_table = table_matches[1]
+            @@table_order << current_table
+            @@table_chain_order[current_table] = []
+            next
+          end
         else
             @@current_iptables_rules.push(line.strip)
         end
-        
-        table_matches = line.match('^\*(filter|nat|mangle|raw)$')
-        
-        if table_matches
-          current_table = table_matches[1]
-          @@table_order << current_table
-          @@table_chain_order[current_table] = []
-          next
-        end
-        
-        chain_matches = line.match('^:(\w+\-) ')
-        if chain_matches
-          @@table_chain_order[current_table].push(chain_matches[1])
-        end
-      }
+      end
   end
   
   pp(@@table_chain_order)
