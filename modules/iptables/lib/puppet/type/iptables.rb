@@ -56,6 +56,9 @@ module Puppet
   if File.exist?('/proc/net/ip_tables_names')
       `/sbin/iptables-save`.each do |line|
         next if /^#/.match(line.strip)
+        
+        print line.strip
+        
         if chain_matches = line.match('^:(\w+\-) \s* \[\d+:\d+\]\s*$')
             print "HERE: " + __LINE__.to_s + "\n"
             line.sub!(/\[\d+:\d+\]/, '[0:0]')
