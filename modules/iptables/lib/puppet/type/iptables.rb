@@ -60,7 +60,7 @@ module Puppet
         table_matches = line.match('^\*(filter|nat|mangle|raw)$')
         
         if table_matches
-          @@table_order << matches[1]
+          @@table_order << table_matches[1]
           next
         end
         
