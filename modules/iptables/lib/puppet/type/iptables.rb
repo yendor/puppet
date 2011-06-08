@@ -674,11 +674,18 @@ module Puppet
             chain = ":" + value(:customchain).to_s + " - [0:0]"
             
             @@custom_chains['filter'][chain] = 1
+            if @@table_chain_order[table].nil?
+              @@table_chain_order[table] = [value(:customchain).to_s]
+            end
+            
             unless @@table_chain_order[value(:table).to_s].include?(value(:customchain).to_s)
               @@table_chain_order[value(:table).to_s].push(value(:customchain).to_s)
             end
         elsif ! value(:raw_rule).nil?
             chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
+            if @@table_chain_order[table].nil?
+              @@table_chain_order[table] = [chain.to_s]
+            end
             chain_prio = @@table_chain_order[value(:table).to_s].find_index(chain)        
             @@rules[table].push({
                  'name'         => value(:name).to_s,
@@ -686,7 +693,11 @@ module Puppet
                  'full rule'    => value(:raw_rule).to_s,
             })
         else
-            chain_prio = @@table_chain_order[value(:table).to_s].find_index(value(:chain).to_s)
+            if @@table_chain_order[table].nil?
+              @@table_chain_order[table] = [value(:chain).to_s]
+            end
+          
+            chain_prio = @@table_chain_order[table].find_index(value(:chain).to_s)
             @@rules[table].push({
                  'name'          => value(:name).to_s,
                  'chain'         => value(:chain).to_s,
