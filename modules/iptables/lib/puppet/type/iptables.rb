@@ -655,7 +655,7 @@ module Puppet
         end
       end
       
-      chain_prio = @@chain_order[value(:chain).to_s]
+      chain_prio = @@table_chain_order[value(:table).to_s][value(:chain).to_s]
 
       debug("iptables param: #{full_string}")
 
@@ -672,6 +672,7 @@ module Puppet
             unless @@table_chain_order[value(:table).to_s].include?(value(:customchain).to_s)
               @@table_chain_order[value(:table).to_s].push(value(:customchain).to_s)
             end
+            @@chain_order[value(:customchain).to_s] = @@chain_order
         elsif ! value(:raw_rule).nil?
             chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
           
