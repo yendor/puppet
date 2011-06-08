@@ -57,11 +57,14 @@ module Puppet
             @@current_iptables_rules.push(line.strip)
         end
         
-        matches = line.match('^\*(filter|nat|mangle|raw)$')
+        table_matches = line.match('^\*(filter|nat|mangle|raw)$')
         
-        if matches
+        if table_matches
           @@table_order << matches[1]
+          next
         end
+        
+        print line
             
       }
   end
@@ -335,7 +338,6 @@ module Puppet
                     fh.puts chain
                 }
             end
-            pp(@@custom_chains)
             #print out the defined rules
             if ! @@rules[table].nil? and @@rules[table].size >= 1
                 @@rules[table].each { |value|
