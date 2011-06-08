@@ -1,4 +1,5 @@
 require "ipaddr"
+require "pp"
 
 module Puppet
   @@default_policies = {
@@ -299,7 +300,6 @@ module Puppet
       #   err("The wrong number of tables were found in the iptables-save output. Expected 4 got " + @@table_order.length.to_s)
       #   return
       # end
-      require 'pp'
       pp(@@table_chain_order)
       
       # sort rules by alphabetical order, grouped by chain, else they arrive in
