@@ -80,23 +80,13 @@ module Puppet
   # location where iptables binaries are to be found
   @@iptables_dir = "/sbin"
 
-  # order in which the differents chains appear in iptables-save's output. Used
-  # to sort the rules the same way iptables-save does.
-  @@chain_order = {
-    'PREROUTING'  => 1,
-    'INPUT'       => 2,
-    'FORWARD'     => 3,
-    'OUTPUT'      => 4,
-    'POSTROUTING' => 5,
-  }
-  
   @@table_chain_order = {
    'mangle' => ['PREROUTING', 'INPUT', 'FORWARD', 'OUTPUT', 'POSTROUTING'],
    'filter' => ['INPUT', 'FORWARD', 'OUTPUT'],
    'nat'    => ['PREROUTING', 'POSTROUTING', 'OUTPUT'],
    'raw'    => ['PREROUTING', 'OUTPUT'],
   }
-
+  
   newtype(:iptables) do
     @doc = "Manipulate iptables rules"
 
@@ -677,7 +667,6 @@ module Puppet
             unless @@table_chain_order[value(:table).to_s].include?(value(:customchain).to_s)
               @@table_chain_order[value(:table).to_s].push(value(:customchain).to_s)
             end
-            @@chain_order[value(:customchain).to_s] = @@chain_order
         elsif ! value(:raw_rule).nil?
             chain = value(:raw_rule).to_s.match('^\-\w (\S+)')[1]
             chain_prio = @@table_chain_order[value(:table).to_s].find_index(chain)        
