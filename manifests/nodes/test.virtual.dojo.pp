@@ -7,6 +7,12 @@ node "test.virtual.dojo" {
 	
 	include iptables
 
+    iptables { "filter-forward-defaultpollicy":
+       defaultpolicy => "DROP",
+       table => "filter",
+       chain => "FORWARD",
+    }
+
     iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
         source  => "127.0.0.0/8",
         chain   => "FORWARD",
