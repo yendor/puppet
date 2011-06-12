@@ -2,15 +2,25 @@
 
 require 'set'
 require 'yaml'
+require 'find'
 
 files = Set.new
 
+if ARGV.empty?
+    print "CRITICAL: no report path specified\n"
+    exit(1)
+end
+
 ARGV.each do |reportpath|
-
-    Dir.glob(reportpath + "/*/*.yaml") do |file| 
-        files.add(file)
-    end
-
+    Find.find(reportpath) do |file|
+        unless File.readable?(file)
+            print "WARNING: the report directory is not readable, puppet run status unknown\n"
+            exit(1)
+        end 
+        if file.end_with?('.yaml')
+            files.add(file)
+        end 
+    end 
 end
 
 failed = Set.new
@@ -20,15 +30,15 @@ files.each do |file|
     node = report.select('/metrics/resources/values')[0]
     unless node
       next
-    end
+    end 
     metrics = node.transform
 
     metrics.each do |metric|
       if metric[0] == :failed
         host = report.select('/host')[0].value
         failed.add(host)
-      end
-    end
+      end 
+    end 
 end
 
 if failed.empty?
