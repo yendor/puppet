@@ -2,7 +2,7 @@ class railsserver {
 	include ruby
 	
 	package { "rails":
-		ensure => "3.0.5",
+		ensure => "3.0.7",
 		provider => "gem",
 		require => Package["rubygems1.8"]
 	}
