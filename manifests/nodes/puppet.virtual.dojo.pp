@@ -84,7 +84,7 @@ node "puppet.virtual.dojo" {
         check_command       => "check_nrpe_1arg!check_puppet_reports",
         instance_name       => "home"
     }
-  
+
     file { "/etc/nagios/nrpe.d/load.cfg":
 		owner   => "root",
 		group   => "root",
@@ -99,6 +99,12 @@ node "puppet.virtual.dojo" {
         service_description => "Load",
         check_command       => "check_nrpe_1arg!check_load!/var/lib/puppet/reports",
         instance_name       => "home"
+    }
+
+    user { "nagios":
+        home => "/var/log/nagios",
+        shell => "/bin/false",
+        groups => "puppet",
     }
 
 	Dnsrecord <<| |>>
