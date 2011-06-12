@@ -11,6 +11,7 @@ node "test.virtual.dojo" {
        defaultpolicy => "DROP",
        table => "filter",
        chain => "FORWARD",
+       aardvark => "moo",
     }
 
     iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
