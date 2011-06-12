@@ -1,14 +1,14 @@
 node "puppet.virtual.dojo" {
-	 $mirror="http://ftp.au.debian.org/debian"
-	 $storedconfig_db_user = "puppet"
-	 $storedconfig_db_pass = "J2RL;wxG"
-	 $storedconfig_db_name = "puppet"
-	 $storedconfig_db_host = "localhost"
+    $mirror="http://ftp.au.debian.org/debian"
+    $storedconfig_db_user = "puppet"
+    $storedconfig_db_pass = "J2RL;wxG"
+    $storedconfig_db_name = "puppet"
+    $storedconfig_db_host = "localhost"
 
-	 include common
-	 include git
-	 include tinydns::setup
-	 include puppetmaster
+    include common
+    include git
+    include tinydns::setup
+    include puppetmaster
 
 	dnsrecord { "nameserver for thdojo":
 		ensure => present,
@@ -80,12 +80,12 @@ node "puppet.virtual.dojo" {
 	}
 
 	nagios3::service { "puppet_reports":
-    service_description => "Puppet Reports",
-    check_command       => "check_nrpe_1arg!check_puppet_reports",
-    instance_name       => "home"
-  }
+        service_description => "Puppet Reports",
+        check_command       => "check_nrpe_1arg!check_puppet_reports",
+        instance_name       => "home"
+    }
   
-  file { "/etc/nagios/nrpe.d/load.cfg":
+    file { "/etc/nagios/nrpe.d/load.cfg":
 		owner   => "root",
 		group   => "root",
 		mode    => "0644",
@@ -96,10 +96,10 @@ node "puppet.virtual.dojo" {
 	}
 
 	nagios3::service { "load":
-    service_description => "Load",
-    check_command       => "check_nrpe_1arg!check_load!/var/lib/puppet/reports",
-    instance_name       => "home"
-  }
+        service_description => "Load",
+        check_command       => "check_nrpe_1arg!check_load!/var/lib/puppet/reports",
+        instance_name       => "home"
+    }
 
 	Dnsrecord <<| |>>
 }
