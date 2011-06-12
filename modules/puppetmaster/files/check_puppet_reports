@@ -46,5 +46,5 @@ if failed.empty?
   exit(0)
 else
   print "CRITICAL: " + failed.to_a.join(', ') + "\n"
-  exit(1)
+  exit(2)
 end
