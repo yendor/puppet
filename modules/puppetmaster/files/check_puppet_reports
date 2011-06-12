@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require 'set'
+require 'yaml'
+
+files = Set.new
+
+ARGV.each do |reportpath|
+
+    Dir.glob(reportpath + "/*/*.yaml") do |file| 
+        files.add(file)
+    end
+
+end
+
+failed = Set.new
+
+files.each do |file|
+    report = YAML::parse_file(file)
+    node = report.select('/metrics/resources/values')[0]
+    unless node
+      next
+    end
+    metrics = node.transform
+
+    metrics.each do |metric|
+      if metric[0] == :failed
+        host = report.select('/host')[0].value
+        failed.add(host)
+      end
+    end
+end
+
+if failed.empty?
+  print "OK - No puppet runs failing\n"
+  exit(0)
+else
+  print "CRITICAL: " + failed.to_a.join(', ') + "\n"
+  exit(1)
+end

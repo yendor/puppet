@@ -1,0 +1,18 @@
+[main]
+logdir=/var/log/puppet
+vardir=/var/lib/puppet
+ssldir=/var/lib/puppet/ssl
+rundir=/var/run/puppet
+factpath=$vardir/lib/facter
+templatedir=$confdir/templates
+
+[master]
+ssl_client_header = SSL_CLIENT_S_DN
+ssl_client_verify_header = SSL_CLIENT_VERIFY
+templatedir=$confdir/templates
+storeconfigs = true
+dbadapter = mysql
+dbuser = <%= storedconfig_db_user %>
+dbpassword = <%= storedconfig_db_pass %>
+dbserver = <%= storedconfig_db_host %>
+dbsocket = /var/run/mysqld/mysqld.sock
