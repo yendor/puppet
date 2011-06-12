@@ -130,7 +130,7 @@ class puppetmaster {
   	
   	cron { "clean-old-puppet-reports":
   	    ensure => present,
-  	    command => "/usr/bin/find -type f -name '*.yaml' -mmin +120 -delete",
+        command => "/usr/bin/find /var/lib/puppet/reports -type f -name '*.yaml' -mmin +120 -delete",
   	    user => "root",
   	    minute => 26,
   	}
