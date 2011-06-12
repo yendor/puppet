@@ -1,7 +1,7 @@
 class ruby {
 
 	$ruby_version = $lsbdistcodename ? {
-	    lenny => "1.8.7.302-2~bpo50+1"
+	    lenny => "1.8.7.302-2~bpo50+1",
 	    default => "present"
 	}
 
