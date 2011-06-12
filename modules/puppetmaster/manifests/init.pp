@@ -127,6 +127,13 @@ class puppetmaster {
   	    owner  => root,
   	    group  => root,
   	}
+  	
+  	cron { "clean-old-puppet-reports":
+  	    ensure => present,
+  	    command => "/usr/bin/find -type f -name '*.yaml' -mmin +120 -delete",
+  	    owner => root,
+  	    minute => 26,
+  	}
 
     # augeas { "puppetmaster_configuration":
     #   context => "/files/etc/puppet/puppet.conf/master",
