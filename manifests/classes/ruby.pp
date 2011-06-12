@@ -1,9 +1,15 @@
 class ruby {
 
-	$ruby_version = "1.8.7.302-2~bpo50+1"
+	$ruby_version = $lsbdistcodename ? {
+	    lenny => "1.8.7.302-2~bpo50+1"
+	    default => "present"
+	}
 
 	package { "rubygems1.8":
-		ensure => "1.3.4-1~bpo50+1"
+		ensure => $lsbdistcodename ? {
+		    lenny => "1.3.4-1~bpo50+1",
+		    default => "present"
+		}
 	}
 
 	package { "libruby1.8":
