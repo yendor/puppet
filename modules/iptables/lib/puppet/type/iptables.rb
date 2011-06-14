@@ -58,7 +58,7 @@ module Puppet
         if chain_matches = line.match('^:([\w\-]+)')
             line.sub!(/\[\d+:\d+\]/, '[0:0]')
             if chain_matches
-              @@table_chain_order[current_table] || = []
+              @@table_chain_order[current_table] ||= []
               @@table_chain_order[current_table].push(chain_matches[1])
             end
             @@current_iptables_rules.push(line.strip)
