@@ -3,7 +3,7 @@ class cvs {
         ensure => present
     }
     
-    file { "/etc/xinit.d/cvs-pserver":
+    file { "/etc/xinetd.d/cvs-pserver":
         source  => "puppet:///modules/cvs/cvs-pserver",
         owner   => "root",
         group   => "root",
