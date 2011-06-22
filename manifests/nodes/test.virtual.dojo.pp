@@ -97,5 +97,12 @@ node "test.virtual.dojo" {
     }
     
 	class { "drobo-monitoring": }
+	
+	package { "xinetd": 
+	    ensure => present
+	}
+	
+	include cvs
+	
 
 }
