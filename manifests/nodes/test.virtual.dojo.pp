@@ -102,6 +102,12 @@ node "test.virtual.dojo" {
 	    ensure => present
 	}
 	
+	service { "xinetd":
+	    ensure     => "running",
+	    hasrestart => true,
+	    hasstatus  => false,
+    }
+	
 	include cvs
 	
 
