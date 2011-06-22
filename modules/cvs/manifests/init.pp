@@ -9,6 +9,7 @@ class cvs {
         group   => "root",
         mode    => "0644",
         backup  => false,
-        require => Package["xinetd"]
+        require => Package["xinetd"],
+        notify  => Service["xinetd"]
     }
 }
