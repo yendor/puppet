@@ -20,6 +20,7 @@ node "leech.virtual.dojo" {
 	class { "transmission-monitoring":
 		instance_name => "home",
 		host_name => $fqdn,
+		ensure => absent,
 	}
 	
 	class { "nagios3::nrpe":
