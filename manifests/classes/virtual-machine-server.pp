@@ -67,7 +67,7 @@ class virtual-machine-server {
 
     # Disable netfilter on the bridge device so that all the guest traffic
     # doesn't end up traversing the vmhosts netfilter as well as it's own
-	sysctl { "net.bridge.bridge-nf-call-ip6tables": val => 0 }
-	sysctl { "net.bridge.bridge-nf-call-iptables":  val => 0 }
-	sysctl { "net.bridge.bridge-nf-call-arptables": val => 0 }
+    # sysctl { "net.bridge.bridge-nf-call-ip6tables": val => 0 }
+    # sysctl { "net.bridge.bridge-nf-call-iptables":  val => 0 }
+    # sysctl { "net.bridge.bridge-nf-call-arptables": val => 0 }
 }
