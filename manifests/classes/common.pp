@@ -13,6 +13,7 @@ class common {
 	package { [
 		"debian-goodies",
 		"strace",
+		"tmux",
 	]:
 		ensure => present
 	}
