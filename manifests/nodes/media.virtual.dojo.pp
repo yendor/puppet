@@ -6,7 +6,7 @@ node "media.virtual.dojo" {
         ensure => installed,
     }
 
-    class airvideoserver { 
+    class { "airvideoserver"  
         runasuser => "rodney.amato",
         jarpath   => "/home/rodney.amato/airvideo/AirVideoServerLinux.jar",
         proppath  => "/home/rodney.amato/airvideo/test.properties",
