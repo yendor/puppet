@@ -32,7 +32,7 @@ class common {
     }
 
     file { "/etc/network/if-up.d/mountnfs":
-        mode => 0000
+        mode => 0755
     }
     
     augeas{ "boot_delay":
