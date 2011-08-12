@@ -11,7 +11,7 @@ class airvideoserver($runasuser, $jarpath, $proppath)
     
     file { "/etc/default/airvideoserver":
         ensure  => file,
-        mode    => 0755,
+        mode    => 0644,
         owner   => root,
         group   => root,
         content => template("airvideoserver/defaults.erb"),
