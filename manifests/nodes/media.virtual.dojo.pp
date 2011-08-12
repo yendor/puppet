@@ -1,14 +1,12 @@
 node "media.virtual.dojo" {
     $mirror="http://ftp.au.debian.org/debian"
     include common   
-    
+
     package { "smbclient":
         ensure => installed,
     }
-    
-    package { "bzip2":
-        ensure => installed,
-    }
+
+    include bzip2
     
     package { "make":
         ensure => installed,
