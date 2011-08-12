@@ -5,6 +5,10 @@ node "media.virtual.dojo" {
     package { "smbclient":
         ensure => installed,
     }
+    
+    package { "tmux":
+        ensure => installed,
+    }
 
     include bzip2
     
