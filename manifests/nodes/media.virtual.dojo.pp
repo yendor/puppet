@@ -56,10 +56,10 @@ node "media.virtual.dojo" {
         require => File["/etc/apt/sources.list.d/multimedia.list"]
     }
     
-    package { "mpeg4ip-server":
-        ensure => installed,
-        require => File["/etc/apt/sources.list.d/multimedia.list"]
-    }
+    # package { "mpeg4ip-server":
+    #     ensure => installed,
+    #     require => File["/etc/apt/sources.list.d/multimedia.list"]
+    # }
     
     package { "pkg-config":
         ensure => installed,
