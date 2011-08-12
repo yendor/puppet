@@ -14,7 +14,7 @@ class airvideoserver($runasuser, $jarpath, $proppath)
         mode    => 0755,
         owner   => root,
         group   => root,
-        content => template("airvideoserver/defaults.erb"),
+        content => template("defaults.erb"),
         backup  => false,
     }
     
