@@ -2,8 +2,6 @@ node "leech.virtual.dojo" {
 	$mirror="http://ftp.au.debian.org/debian"
 	include common
 
-	include transmission
-
 	nagios3::host { $fqdn:
 		instance_name => "home",
 		address => $ipaddress,
@@ -15,12 +13,6 @@ node "leech.virtual.dojo" {
 	class { "ssh-monitoring":
 		instance_name => "home",
 		host_name => $fqdn,
-	}
-	
-	class { "transmission-monitoring":
-		instance_name => "home",
-		host_name => $fqdn,
-		ensure => absent,
 	}
 	
 	class { "nagios3::nrpe":
