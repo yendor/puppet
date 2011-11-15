@@ -42,6 +42,13 @@ class user::virtual {
 		user => "rodney.amato"
 	}
 
+	@ssh_authorized_key{ "rodney-work":
+		ensure => present,
+		key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCu2AwOz+TTGgehU9FXtNjq5vR1l8dXSlTLp44c9Ce/UdF+yyx2S5435Tcw/2EcuQXTEwAr+VjXla/f/2O1UEvFbgTcTt/VNd1oFVueZP0OTAA5HGUpMJNmTbozrGMUIPMM3Ew6NDIpGdJZGjdxn2/ZYg4PHEQqnrSCXM7ZhKKJ1qzrothh84Tna/3eDwMg9qnqaso7d4P29a7YMya+XzDwB0HPk4eWXfSwRvNR+CxSiGMlalY4tDldW7xc9C0KDth1sMG4KjQvc6LlpF2T+P8YismcVAI+YF8jyakjrkhYZyl2GOzM0Wif8/6hTIxRp/XocB3/CrsYdzoevLulSllR",
+		type => "ssh-rsa",
+		user => "rodney.amato"
+	}
+
 	@user { "chris.boulton":
 		ensure	=> absent,
 		uid		=> "5002",
