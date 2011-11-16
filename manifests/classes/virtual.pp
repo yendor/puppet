@@ -48,15 +48,4 @@ class user::virtual {
 		type => "ssh-rsa",
 		user => "rodney.amato"
 	}
-
-	@user { "chris.boulton":
-		ensure	=> absent,
-		uid		=> "5002",
-		gid		=> "users",
-		comment	=> "Chris Boulton",
-		home	=> "/home/chris.boulton",
-		shell	=> "/bin/bash",
-		groups	=> ["sudo"],
-		managehome => "true"
-	}
 }
