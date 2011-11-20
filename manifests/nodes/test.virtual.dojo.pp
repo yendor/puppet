@@ -6,6 +6,8 @@ node "test.virtual.dojo" {
 	include dotdeb
 	
 	include iptables
+	
+	include bind9
 
     iptables { "filter-forward-defaultpollicy":
        defaultpolicy => "DROP",
