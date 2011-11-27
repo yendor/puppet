@@ -7,7 +7,7 @@ node "puppet.virtual.dojo" {
 
     include common
     include git
-    include tinydns::setup
+    # include tinydns::setup
     include puppetmaster
 
 	dnsrecord { "nameserver for thdojo":
@@ -107,5 +107,5 @@ node "puppet.virtual.dojo" {
         groups => "puppet",
     }
 
-	Dnsrecord <<| |>>
+	# Dnsrecord <<| |>>
 }
