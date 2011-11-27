@@ -2,8 +2,6 @@ node "test.virtual.dojo" {
 	$mirror="http://ftp.au.debian.org/debian"
 	$includeBackports=true
 	include common
-	include logstash
-	include dotdeb
 	
 	include iptables
 	
@@ -29,14 +27,14 @@ node "test.virtual.dojo" {
 		contact_groups => "admins"
 	}
 
-	class { "internal-nagios-server":
-		instance_name => "home"
-	}
+    # class { "internal-nagios-server":
+    #   instance_name => "home"
+    # }
 
-	class { "web-monitoring":
-		instance_name => "home",
-		host_name => $fqdn,
-	}
+    # class { "web-monitoring":
+    #   instance_name => "home",
+    #   host_name => $fqdn,
+    # }
 
 	class { "ssh-monitoring":
 		instance_name => "home",
@@ -98,19 +96,19 @@ node "test.virtual.dojo" {
         jump => "ACCEPT"
     }
     
-	class { "drobo-monitoring": }
-	
-	package { "xinetd": 
-	    ensure => present
-	}
-	
-	service { "xinetd":
-	    ensure     => "running",
-	    hasrestart => true,
-	    hasstatus  => false,
-    }
-	
-	include cvs
+    # class { "drobo-monitoring": }
+    # 
+    # package { "xinetd": 
+    #     ensure => present
+    # }
+    # 
+    # service { "xinetd":
+    #     ensure     => "running",
+    #     hasrestart => true,
+    #     hasstatus  => false,
+    #     }
+    # 
+    # include cvs
 	
 
 }
