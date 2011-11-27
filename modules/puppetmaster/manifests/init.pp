@@ -1,5 +1,5 @@
 class puppetmaster {
-    $puppet_version = "2.6.2-4~bpo50+1"
+    $puppet_version = "2.6.2-5+squeeze3"
     package { "puppetmaster":
         ensure => $puppet_version,
         require => [File["/etc/default/puppetmaster"], Package["libapache2-mod-passenger"]]
@@ -9,53 +9,61 @@ class puppetmaster {
         ensure => $puppet_version
     }
 
+    package { "puppetmaster-passenger":
+        ensure => "present"
+    }
+
     package { "libapache2-mod-passenger":
-        ensure => "2.2.11debian-1~bpo50+1",
+        ensure => "present",
         require => Package["apache2"]
     }
 
     package { "rails-ruby1.8":
-        ensure => "2.3.5-1~bpo50+1",
+        ensure => "present",
         require => Package["libactiverecord-ruby1.8", "rake"]
     }
 
     package { "librack-ruby1.8":
-        ensure => "1.1.0-4~bpo50+1"
+        ensure => "present"
     }
 
     package { "librack-ruby":
-        ensure => "1.1.0-4~bpo50+1",
+        ensure => "present",
         require => Package["librack-ruby1.8"]
     }
 
     package { "rake":
-        ensure => "0.8.7-1~bpo50+1"
+        ensure => "present"
     }
 
     package { "libactiverecord-ruby1.8":
-        ensure => "2.3.5-1~bpo50+1",
+        ensure => "present",
         require => Package["libactivesupport-ruby1.8"]
     }
 
     package { "libactivesupport-ruby1.8":
-        ensure => "2.3.5-1~bpo50+1",
+        ensure => "present",
         require => Package["librack-ruby"]
     }
 
     package { "libjs-jquery":
-        ensure => "1.4.2-2~bpo50+1"
+        ensure => "present"
     }
 
     package { "libi18n-ruby1.8":
-        ensure => "0.3.6-1~bpo50+1"
+        ensure => "present"
     }
 
     package { "libtzinfo-ruby1.8":
-        ensure => "0.3.19-1~bpo50+1"
+        ensure => "present",
     }
 
     package { "libmemcache-client-ruby1.8":
-        ensure => "1.7.8-1~bpo50+1"
+        ensure => "present",
+    }
+
+    package { "libmysql-ruby":
+        ensure => "present",
     }
 
     package { "apache2":
@@ -127,7 +135,7 @@ class puppetmaster {
   	    owner  => root,
   	    group  => root,
   	}
-  	
+
   	cron { "clean-old-puppet-reports":
   	    ensure => present,
         command => "/usr/bin/find /var/lib/puppet/reports -type f -name '*.yaml' -mmin +120 -delete",
