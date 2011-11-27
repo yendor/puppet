@@ -102,7 +102,7 @@ node "puppet.virtual.dojo" {
     }
 
     user { "nagios":
-        home => "/var/log/nagios",
+        home => "/var/lib/nagios",
         shell => "/bin/false",
         groups => "puppet",
     }
