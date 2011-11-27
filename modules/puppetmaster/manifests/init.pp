@@ -10,7 +10,12 @@ class puppetmaster {
     }
 
     package { "puppetmaster-passenger":
-        ensure => "present"
+        ensure => $puppet_version,
+        require => Package["puppetmaster-common"]
+    }
+    
+    package { "puppetmaster-common":
+        ensure => $puppet_version
     }
 
     package { "libapache2-mod-passenger":
