@@ -8,6 +8,8 @@ class nagios3::nrpe($bind_to_ip,
     service { "nagios-nrpe-server":
         ensure => true,
         enable => true,
+        hasstatus => false,
+        hasrestart => true,
         pattern => "/usr/sbin/nrpe",
         require => Package["nagios-nrpe-server"],
     }
