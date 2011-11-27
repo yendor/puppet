@@ -23,14 +23,14 @@ class common {
 		backup => false
 	}
 
-    @@dnsrecord { "forward and reverse dns for $fqdn":
-        ensure => "present",
-        type   => "=",
-        fqdn   => "$fqdn",
-        ipaddr => "$ipaddress",
-        ttl    => 300,
-        notify => Exec["rebuild-tinydns-data"]
-    }
+    # @@dnsrecord { "forward and reverse dns for $fqdn":
+    #     ensure => "present",
+    #     type   => "=",
+    #     fqdn   => "$fqdn",
+    #     ipaddr => "$ipaddress",
+    #     ttl    => 300,
+    #     notify => Exec["rebuild-tinydns-data"]
+    # }
 
     file { "/etc/network/if-up.d/mountnfs":
         mode => 0755
