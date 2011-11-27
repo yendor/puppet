@@ -1,5 +1,5 @@
 class puppetmaster {
-    $puppet_version = "2.6.2-5+squeeze3"
+    $puppet_version = "2.7.6-1~bpo60+1"
     package { "puppetmaster":
         ensure => $puppet_version,
         require => [File["/etc/default/puppetmaster"], Package["libapache2-mod-passenger"]]
