@@ -2,10 +2,14 @@ node "test.virtual.dojo" {
 	$mirror="http://ftp.au.debian.org/debian"
 	$includeBackports=true
 	include common
-	
+
 	include iptables
-	
+
 	include bind9
+
+	package { "php5-cli":
+		ensure => present
+	}
 
     iptables { "filter-forward-defaultpollicy":
        defaultpolicy => "DROP",
@@ -88,27 +92,27 @@ node "test.virtual.dojo" {
         raw_rule => "-A AARDVARK -j DROP",
         table => "filter"
     }
-    
+
     iptables { "allow http(s) traffic":
         chain => "INPUT",
         dport => ["80", "443"],
         proto => "tcp",
         jump => "ACCEPT"
     }
-    
+
     # class { "drobo-monitoring": }
-    # 
-    # package { "xinetd": 
+    #
+    # package { "xinetd":
     #     ensure => present
     # }
-    # 
+    #
     # service { "xinetd":
     #     ensure     => "running",
     #     hasrestart => true,
     #     hasstatus  => false,
     #     }
-    # 
+    #
     # include cvs
-	
+
 
 }
