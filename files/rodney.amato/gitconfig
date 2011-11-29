@@ -1,0 +1,33 @@
+[user]
+	name = Rodney Amato
+	email = rodnet@gmail.com
+
+[color]
+	ui = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[alias]
+	st = status
+	spush = !git-svn dcommit
+	spull = !git-svn fetch && git-svn rebase
+
+	# Show files ignored by git:
+    ign = ls-files -o -i --exclude-standard
+
+[core]
+	whitespace = cr-at-eol

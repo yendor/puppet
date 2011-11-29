@@ -22,4 +22,13 @@ class rodney-home {
     source => "puppet:///files/rodney.amato/bash_aliases",
     require => User["rodney.amato"]
   }
+
+  file { "/home/rodney.amato/.gitconfig":
+    owner => "rodney.amato",
+    group => "users",
+    mode => "0644",
+    source => "puppet:///files/rodney.amato/gitconfig",
+    require => User["rodney.amato"]
+  }
+
 }

@@ -2,6 +2,7 @@ class common {
     include vim, bash, ssh-server, less, rsync, apticron, logcheck, mail::aliases, clear-apt-cache, avahi, sudo, htop, bzip2
     include puppet
     include postfix::standard
+    include git
 
     include rodney-home
 
@@ -17,7 +18,7 @@ class common {
 	]:
 		ensure => present
 	}
-	
+
 	file { "/bin/sh":
 		ensure => "bash",
 		backup => false
@@ -35,7 +36,7 @@ class common {
     file { "/etc/network/if-up.d/mountnfs":
         mode => 0755
     }
-    
+
     augeas{ "boot_delay":
         context => $lsbdistcodename ? {
 			lenny   => "/files/boot/grub/menu.lst",
