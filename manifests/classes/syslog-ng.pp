@@ -5,7 +5,7 @@ class syslog-ng {
 
   service { "syslog-ng":
   	ensure => running,
-  	hastatus => false,
+  	hasstatus => false,
   	hasrestart => true,
   }
 
