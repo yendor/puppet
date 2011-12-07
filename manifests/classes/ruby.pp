@@ -9,7 +9,8 @@ class ruby {
 		ensure => $lsbdistcodename ? {
 		    lenny => "1.3.4-1~bpo50+1",
 		    default => "present"
-		}
+		},
+		require => Package["lsb-release"]
 	}
 
 	package { "libruby1.8":

@@ -13,37 +13,43 @@ class virtual-machine-server {
         ensure => $lsbdistcodename ? {
 			lenny => "0.500.3-2~bpo50+1",
 			default => "present",
-		}
+		},
+		require => Package["lsb-release"]
     }
     package { "kvm":
 	    ensure => $lsbdistcodename ? {
 			lenny => "1:0.12.5+dfsg-3~bpo50+1",
 			default => "present",
-		}
+		},
+		require => Package["lsb-release"]
     }
     package { "qemu-kvm":
 	    ensure => $lsbdistcodename ? {
 			lenny => "0.12.5+dfsg-3~bpo50+1",
 			default => "present",
-		}
+		},
+		require => Package["lsb-release"]
     }
     package { "libvirt-bin":
 	    ensure => $lsbdistcodename ? {
 			lenny => "0.8.1-2~bpo50+1",
 			default => "present",
-		}
+		},
+		require => Package["lsb-release"]
     }
     package { "libvirt0":
 	    ensure => $lsbdistcodename ? {
 			lenny => "0.8.1-2~bpo50+1",
 			default => "present",
-		}
+		},
+		require => Package["lsb-release"]
     }
     package { "python-libvirt":
 	    ensure => $lsbdistcodename ? {
 			lenny =>  "0.8.1-2~bpo50+1",
 			default => "present",
-		}
+		},
+		require => Package["lsb-release"]
     }
 
     service { "libvirt-bin":

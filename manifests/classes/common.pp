@@ -46,6 +46,7 @@ class common {
 			lenny   => "set timeout 5",
 			squeeze => "set GRUB_TIMEOUT 5",
 		},
+		require => Package["lsb-release"],
     }
 
 	if ($operatingsystem == "Debian" and $includeBackports) {
