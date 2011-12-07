@@ -18,7 +18,7 @@ class disk {
 					lenny => "set debian/defoptions elevator=${scheduler}",
 				},
 				notify => Exec["update-grub"],
-				require => Package["lsb-release"
+				require => Package["lsb-release"]
 			}
 		}
 	}
