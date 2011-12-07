@@ -1,12 +1,14 @@
 class sources-list {
 	include lsb-release
-	file { "/etc/apt/sources.list":
-		owner => root,
-		group => root,
-		mode => 644,
-		content => template("etc/apt/$lsbdistid.sources.list.erb"),
-		require => Package["lsb-release"],
-		notify => Exec["update-packgelist"]
+	if ($lsbdistid != "") {
+		file { "/etc/apt/sources.list":
+			owner => root,
+			group => root,
+			mode => 644,
+			content => template("etc/apt/$lsbdistid.sources.list.erb"),
+			require => Package["lsb-release"],
+			notify => Exec["update-packgelist"]
+		}
 	}
 
     exec{"update-packgelist":
