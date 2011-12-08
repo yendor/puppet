@@ -15,7 +15,6 @@ class git-server {
 		comment => "Gitolite User",
 		home => "/home/git",
 		shell => "/bin/bash",
-		system => true,
 		uid => 201,
 		gid => "git",
 	}
