@@ -18,4 +18,23 @@ class git-server {
 		uid => 201,
 		gid => "git",
 	}
+
+	file { "/home/git":
+		ensure => directory,
+		owner => "git",
+		group => "git",
+		backup => false,
+		mode => 0700,
+		require => [Group["git"], User["git"]]
+	}
+
+	file { "/home/git/.ssh":
+		ensure => directory,
+		owner => "git",
+		group => "git",
+		mode => 0700,
+		backup => false,
+		require => File["/home/git"]
+	}
+
 }
