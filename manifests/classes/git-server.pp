@@ -43,7 +43,8 @@ class git-server {
 		type => "ssh-rsa",
 		user => "git",
 		target => "/home/git/seed.pub",
-		require => File["/home/git"]
+		require => File["/home/git/seed.pub"],
+		notify => Exec["initialise-gitolite"],
 	}
 
 	file { "/home/git/seed.pub":
@@ -51,7 +52,6 @@ class git-server {
 		owner => "git",
 		group => "git",
 		require => File["/home/git"],
-		notify => Exec["initialise-gitolite"],
 	}
 
 	exec { "initialise-gitolite":
@@ -60,7 +60,7 @@ class git-server {
 		user => "git",
 		group => "git",
 		cwd => "/home/git",
-		require => [File["/home/git"], User["git"]],
+		require => [File["/home/git/seed.pub"], User["git"]],
 	}
 
 }
