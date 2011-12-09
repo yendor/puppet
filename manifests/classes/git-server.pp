@@ -43,7 +43,7 @@ class git-server {
 		type => "ssh-rsa",
 		user => "git",
 		target => "/home/git/seed.key",
-		require => User["git"]
+		require => File["/home/git"]
 	}
 
 	file { "/home/git/seed.key":
