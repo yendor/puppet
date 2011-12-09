@@ -55,7 +55,7 @@ class git-server {
 	}
 
 	exec { "initialise-gitolite":
-		command => "/usr/bin/gl-setup /home/git/seed.key",
+		command => "/usr/bin/gl-setup /home/git/seed.pub",
 		creates => "/home/git/repositories",
 		refreshonly => true,
 	}
