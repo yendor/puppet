@@ -50,7 +50,7 @@ class git-server {
 		mode => "0600",
 		owner => "git",
 		group => "git",
-		require => User["git"],
+		require => File["/home/git"],
 		notify => Exec["initialise-gitolite"],
 	}
 
@@ -58,7 +58,9 @@ class git-server {
 		command => "/usr/bin/gl-setup /home/git/seed.pub",
 		creates => "/home/git/repositories",
 		user => "git",
-		refreshonly => true,
+		group => "git",
+		cwd => "/home/git",
+		require => [File["/home/git"], User["git"]],
 	}
 
 }
