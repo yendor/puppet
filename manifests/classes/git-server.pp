@@ -46,7 +46,7 @@ class git-server {
 		require => File["/home/git"]
 	}
 
-	file { "/home/git/seed.key":
+	file { "/home/git/seed.pub":
 		mode => "0600",
 		owner => "git",
 		group => "git",
