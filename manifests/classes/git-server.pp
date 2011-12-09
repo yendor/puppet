@@ -37,4 +37,27 @@ class git-server {
 		require => File["/home/git"]
 	}
 
+	ssh_authorized_key{ "gitolite-seed":
+		ensure => present,
+		key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCu2AwOz+TTGgehU9FXtNjq5vR1l8dXSlTLp44c9Ce/UdF+yyx2S5435Tcw/2EcuQXTEwAr+VjXla/f/2O1UEvFbgTcTt/VNd1oFVueZP0OTAA5HGUpMJNmTbozrGMUIPMM3Ew6NDIpGdJZGjdxn2/ZYg4PHEQqnrSCXM7ZhKKJ1qzrothh84Tna/3eDwMg9qnqaso7d4P29a7YMya+XzDwB0HPk4eWXfSwRvNR+CxSiGMlalY4tDldW7xc9C0KDth1sMG4KjQvc6LlpF2T+P8YismcVAI+YF8jyakjrkhYZyl2GOzM0Wif8/6hTIxRp/XocB3/CrsYdzoevLulSllR",
+		type => "ssh-rsa",
+		user => "git",
+		target => "/home/git/seed.key",
+		require => User["git"]
+	}
+
+	file { "/home/git/seed.key":
+		mode => "0600",
+		owner => "git",
+		group => "git",
+		require => User["git"],
+		notify => Exec["initialise-gitolite"],
+	}
+
+	exec { "initialise-gitolite":
+		command => "/usr/bin/gl-setup /home/git/seed.key",
+		creates => "/home/git/repositories",
+		refreshonly => true,
+	}
+
 }
