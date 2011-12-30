@@ -12,27 +12,27 @@ node "test.virtual.dojo" {
     ensure => present
   }
 
-    package { "nmap":
-  ensure => present
-    }
+  package { "nmap":
+    ensure => present
+  }
 
-    package { 'puppet-lint':
+  package { 'puppet-lint':
     ensure => present,
     provider => 'gem',
     require => Class['ruby']
   }
 
-    iptables { "filter-forward-defaultpollicy":
-       defaultpolicy => "DROP",
-       table => "filter",
-       chain => "FORWARD",
-    }
+  iptables { "filter-forward-defaultpollicy":
+    defaultpolicy => "DROP",
+    table => "filter",
+    chain => "FORWARD",
+  }
 
-    iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
-        source  => "127.0.0.0/8",
-        chain   => "FORWARD",
-        jump    => "DROP"
-    }
+  iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
+    source  => "127.0.0.0/8",
+    chain   => "FORWARD",
+    jump    => "DROP"
+  }
 
   nagios3::host { $fqdn:
     instance_name => "home",
@@ -42,14 +42,14 @@ node "test.virtual.dojo" {
     contact_groups => "admins"
   }
 
-    # class { "internal-nagios-server":
-    #   instance_name => "home"
-    # }
+  # class { "internal-nagios-server":
+  #   instance_name => "home"
+  # }
 
-    # class { "web-monitoring":
-    #   instance_name => "home",
-    #   host_name => $fqdn,
-    # }
+  # class { "web-monitoring":
+  #   instance_name => "home",
+  #   host_name => $fqdn,
+  # }
 
   class { "ssh-monitoring":
     instance_name => "home",
@@ -76,54 +76,54 @@ node "test.virtual.dojo" {
 
 
 
-    iptables { "115 create ratelimited custom chain":
-        customchain => "RATELIMITED",
-        table => "filter",
-    }
+  iptables { "115 create ratelimited custom chain":
+    customchain => "RATELIMITED",
+    table => "filter",
+  }
 
-    iptables { "zzzz - 1 Set a max rate limit to 30 pps average":
-        raw_rule => "-A RATELIMITED -m limit --limit 30/sec --limit-burst 6 -j RETURN",
-        table => "filter",
-    }
-    iptables { "zzzzz - 2 Drop traffic that exceeds the rate limit":
-        raw_rule => "-A RATELIMITED -j DROP",
-        table => "filter"
-    }
+  iptables { "zzzz - 1 Set a max rate limit to 30 pps average":
+    raw_rule => "-A RATELIMITED -m limit --limit 30/sec --limit-burst 6 -j RETURN",
+    table => "filter",
+  }
+  iptables { "zzzzz - 2 Drop traffic that exceeds the rate limit":
+    raw_rule => "-A RATELIMITED -j DROP",
+    table => "filter"
+  }
 
-    iptables { "115 create aardvark custom chain":
-        customchain => "AARDVARK",
-        table => "filter",
-    }
+  iptables { "115 create aardvark custom chain":
+    customchain => "AARDVARK",
+    table => "filter",
+  }
 
-    iptables { "zzzz - 1 Set a max aardvark rate limit to 30 pps average":
-        raw_rule => "-A AARDVARK -m limit --limit 30/sec --limit-burst 6 -j RETURN",
-        table => "filter",
-    }
-    iptables { "zzzzz - 2 Drop aardvark traffic that exceeds the rate limit":
-        raw_rule => "-A AARDVARK -j DROP",
-        table => "filter"
-    }
+  iptables { "zzzz - 1 Set a max aardvark rate limit to 30 pps average":
+    raw_rule => "-A AARDVARK -m limit --limit 30/sec --limit-burst 6 -j RETURN",
+    table => "filter",
+  }
+  iptables { "zzzzz - 2 Drop aardvark traffic that exceeds the rate limit":
+    raw_rule => "-A AARDVARK -j DROP",
+    table => "filter"
+  }
 
-    iptables { "allow http(s) traffic":
-        chain => "INPUT",
-        dport => ["80", "443"],
-        proto => "tcp",
-        jump => "ACCEPT"
-    }
+  iptables { "allow http(s) traffic":
+    chain => "INPUT",
+    dport => ["80", "443"],
+    proto => "tcp",
+    jump => "ACCEPT"
+  }
 
-    # class { "drobo-monitoring": }
-    #
-    # package { "xinetd":
-    #     ensure => present
-    # }
-    #
-    # service { "xinetd":
-    #     ensure     => "running",
-    #     hasrestart => true,
-    #     hasstatus  => false,
-    #     }
-    #
-    # include cvs
+  # class { "drobo-monitoring": }
+  #
+  # package { "xinetd":
+  #     ensure => present
+  # }
+  #
+  # service { "xinetd":
+  #     ensure     => "running",
+  #     hasrestart => true,
+  #     hasstatus  => false,
+  #     }
+  #
+  # include cvs
 
 
 }
