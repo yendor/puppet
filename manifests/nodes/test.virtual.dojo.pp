@@ -77,16 +77,16 @@ node 'test.virtual.dojo' {
 
 
   iptables { '115 create ratelimited custom chain':
-    customchain => 'RATELIMITED',
+    customchain => 'LIMITED',
     table       => 'filter',
   }
 
   iptables { 'zzzz - 1 Set a max rate limit to 30 pps average':
-    raw_rule => '-A RATELIMITED -m limit --limit 30/sec --limit-burst 6 -j RETURN',
+    raw_rule => '-A LIMITED -m limit --limit 30/sec --limit-burst 6 -j RETURN',
     table    => 'filter',
   }
   iptables { 'zzzzz - 2 Drop traffic that exceeds the rate limit':
-    raw_rule => '-A RATELIMITED -j DROP',
+    raw_rule => '-A LIMITED -j DROP',
     table    => 'filter'
   }
 
