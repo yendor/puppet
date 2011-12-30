@@ -11,6 +11,10 @@ node "test.virtual.dojo" {
 		ensure => present
 	}
 
+    package { "nmap":
+	ensure => present
+    }
+
     iptables { "filter-forward-defaultpollicy":
        defaultpolicy => "DROP",
        table => "filter",
