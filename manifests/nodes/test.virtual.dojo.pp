@@ -6,6 +6,7 @@ node "test.virtual.dojo" {
 	include iptables
 
 	include bind9
+	include ruby
 
 	package { "php5-cli":
 		ensure => present
@@ -17,7 +18,8 @@ node "test.virtual.dojo" {
 
     package { 'puppet-lint':
 		ensure => present,
-		provider => 'gem'
+		provider => 'gem',
+		require => Class['ruby']
 	}
 
     iptables { "filter-forward-defaultpollicy":
