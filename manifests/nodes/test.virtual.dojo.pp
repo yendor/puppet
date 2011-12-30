@@ -17,28 +17,28 @@ node "test.virtual.dojo" {
   }
 
   package { 'puppet-lint':
-    ensure => present,
+    ensure   => present,
     provider => 'gem',
-    require => Class['ruby']
-  }
+    require  => Class['ruby']
+}
 
   iptables { "filter-forward-defaultpollicy":
     defaultpolicy => "DROP",
-    table => "filter",
-    chain => "FORWARD",
+    table         => "filter",
+    chain         => "FORWARD",
   }
 
   iptables { "000 block bogon 127.0.0.0/8 on FORWARD":
-    source  => "127.0.0.0/8",
-    chain   => "FORWARD",
-    jump    => "DROP"
+    source => "127.0.0.0/8",
+    chain  => "FORWARD",
+    jump   => "DROP"
   }
 
   nagios3::host { $fqdn:
-    instance_name => "home",
-    address => $ipaddress,
-    host_name => $fqdn,
-    host_alias => $hostname,
+    instance_name  => "home",
+    address        => $ipaddress,
+    host_name      => $fqdn,
+    host_alias     => $hostname,
     contact_groups => "admins"
   }
 
@@ -53,12 +53,12 @@ node "test.virtual.dojo" {
 
   class { "ssh-monitoring":
     instance_name => "home",
-    host_name => $fqdn,
+    host_name     => $fqdn,
   }
 
   class { "nagios3::nrpe":
-    bind_to_ip => $ipaddress,
-    allow_from => "192.168.1.41",
+    bind_to_ip    => $ipaddress,
+    allow_from    => "192.168.1.41",
     instance_name => "home"
   }
 
@@ -78,37 +78,37 @@ node "test.virtual.dojo" {
 
   iptables { "115 create ratelimited custom chain":
     customchain => "RATELIMITED",
-    table => "filter",
+    table       => "filter",
   }
 
   iptables { "zzzz - 1 Set a max rate limit to 30 pps average":
     raw_rule => "-A RATELIMITED -m limit --limit 30/sec --limit-burst 6 -j RETURN",
-    table => "filter",
+    table    => "filter",
   }
   iptables { "zzzzz - 2 Drop traffic that exceeds the rate limit":
     raw_rule => "-A RATELIMITED -j DROP",
-    table => "filter"
+    table    => "filter"
   }
 
   iptables { "115 create aardvark custom chain":
     customchain => "AARDVARK",
-    table => "filter",
+    table       => "filter",
   }
 
   iptables { "zzzz - 1 Set a max aardvark rate limit to 30 pps average":
     raw_rule => "-A AARDVARK -m limit --limit 30/sec --limit-burst 6 -j RETURN",
-    table => "filter",
+    table    => "filter",
   }
   iptables { "zzzzz - 2 Drop aardvark traffic that exceeds the rate limit":
     raw_rule => "-A AARDVARK -j DROP",
-    table => "filter"
+    table    => "filter"
   }
 
   iptables { "allow http(s) traffic":
     chain => "INPUT",
     dport => ["80", "443"],
     proto => "tcp",
-    jump => "ACCEPT"
+    jump  => "ACCEPT"
   }
 
   # class { "drobo-monitoring": }
