@@ -12,7 +12,10 @@ node 'test.virtual.dojo' {
     ensure => present
   }
 
-  package { 'nmap':
+  package { [
+    'nmap',
+    'autoconf'
+  ]:
     ensure => present
   }
 
