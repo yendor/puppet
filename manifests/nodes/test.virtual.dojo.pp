@@ -15,6 +15,11 @@ node "test.virtual.dojo" {
 	ensure => present
     }
 
+    package { 'puppet-lint':
+		ensure => present,
+		provider => 'gem'
+	}
+
     iptables { "filter-forward-defaultpollicy":
        defaultpolicy => "DROP",
        table => "filter",
