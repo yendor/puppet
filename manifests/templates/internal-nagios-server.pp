@@ -1,22 +1,22 @@
 class internal-nagios-server($instance_name)
 {
-	include nagios3::common
-	include apache2::mpm-prefork
+  include nagios3::common
+  include apache2::mpm-prefork
 
-	file { "/etc/apache2/ssl":
-		ensure => "directory",
-	}
+  file { "/etc/apache2/ssl":
+    ensure => "directory",
+  }
 
-	class { "nagios3::server":
-		instance_name => $instance_name,
-		nagios_version => '3.2.1-2~bpo50+1',
-		nagios_ssl_key_file => "/etc/apache2/ssl/server.key",
-		nagios_ssl_cert_file => "/etc/apache2/ssl/server.crt",
-		nagios_web_ip => "*"
-	}
+  class { "nagios3::server":
+    instance_name => $instance_name,
+    nagios_version => '3.2.1-2~bpo50+1',
+    nagios_ssl_key_file => "/etc/apache2/ssl/server.key",
+    nagios_ssl_cert_file => "/etc/apache2/ssl/server.crt",
+    nagios_web_ip => "*"
+  }
 
-	file { "/etc/apache2/ssl/server.key":
-		content => "-----BEGIN PRIVATE KEY-----
+  file { "/etc/apache2/ssl/server.key":
+    content => "-----BEGIN PRIVATE KEY-----
 MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQD3vr9QMLrN5XYI
 FKLz8aVfnYOPinrdHPPZx7i3FotgnwauM+Ys6HU8Qm9pfEOD/+xse/JKxUkKk2g+
 OOchRXqG0hYvDumzJAcdlv5plJxUEVV9vI1K4GAiadpwCuStPQmbVW0qX1f38yn6
@@ -44,11 +44,11 @@ NjjVMAXABltIeXHx471lz4NgBzdwCbh1P+JxZICTkI/6wyEsbKF1LBCiaQbiRE1N
 LCI0fvv5PrvyM3gjy0/uFpCDSRAosNnygBD/93qdy12cJMIPEnRRu6mkBCYjtuY1
 gTvsxMYQnl3MZt9B4XQh0g==
 -----END PRIVATE KEY-----
-		"
-	}
+    "
+  }
 
-	file { "/etc/apache2/ssl/server.crt":
-		content => "-----BEGIN CERTIFICATE-----
+  file { "/etc/apache2/ssl/server.crt":
+    content => "-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKfU/uVJvZgYMA0GCSqGSIb3DQEBBQUAMFcxCzAJBgNV
 BAYTAkFVMRgwFgYDVQQIDA9OZXcgU291dGggV2FsZXMxFTATBgNVBAoMDFJvZG5l
 eXMgVGVzdDEXMBUGA1UEAwwOKi52aXJ0dWFsLmRvam8wHhcNMTEwNTE4MDA0NjI5
@@ -69,6 +69,6 @@ emBnXa8NdljCSD32aB4Ng64pQ8gBFJ7i4IiscmfPwsnr6hgTF7I5sDYcM0rfczdz
 7uCzpf93T5bTVGM4A4L5KmA9rqp5UYCc+eja7RkmCzAopuCJI+I1YoQVltbT5Ldw
 bxjgnrluoQtm8ac6WCLvTYeBirKhMCLzp4NYrd+ONZUXlS5ujA==
 -----END CERTIFICATE-----
-		"
-	}
+    "
+  }
 }

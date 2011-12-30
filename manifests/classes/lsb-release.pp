@@ -1,5 +1,5 @@
 class lsb-release {
-	package { "lsb-release":
-		ensure => "installed"
-	}
+  package { "lsb-release":
+    ensure => "installed"
+  }
 }

@@ -1,55 +1,55 @@
 class virtual-machine-server {
 
-	if ($lsbdistcodename == "lenny") {
-	    package {  "linux-image-2.6.32-bpo.5-amd64":
-	        ensure => present
-	    }
-	}
+  if ($lsbdistcodename == "lenny") {
+      package {  "linux-image-2.6.32-bpo.5-amd64":
+          ensure => present
+      }
+  }
     package { "bridge-utils":
         ensure => present
     }
 
     package { "virtinst":
         ensure => $lsbdistcodename ? {
-			lenny => "0.500.3-2~bpo50+1",
-			default => "present",
-		},
-		require => Package["lsb-release"]
+      lenny => "0.500.3-2~bpo50+1",
+      default => "present",
+    },
+    require => Package["lsb-release"]
     }
     package { "kvm":
-	    ensure => $lsbdistcodename ? {
-			lenny => "1:0.12.5+dfsg-3~bpo50+1",
-			default => "present",
-		},
-		require => Package["lsb-release"]
+      ensure => $lsbdistcodename ? {
+      lenny => "1:0.12.5+dfsg-3~bpo50+1",
+      default => "present",
+    },
+    require => Package["lsb-release"]
     }
     package { "qemu-kvm":
-	    ensure => $lsbdistcodename ? {
-			lenny => "0.12.5+dfsg-3~bpo50+1",
-			default => "present",
-		},
-		require => Package["lsb-release"]
+      ensure => $lsbdistcodename ? {
+      lenny => "0.12.5+dfsg-3~bpo50+1",
+      default => "present",
+    },
+    require => Package["lsb-release"]
     }
     package { "libvirt-bin":
-	    ensure => $lsbdistcodename ? {
-			lenny => "0.8.1-2~bpo50+1",
-			default => "present",
-		},
-		require => Package["lsb-release"]
+      ensure => $lsbdistcodename ? {
+      lenny => "0.8.1-2~bpo50+1",
+      default => "present",
+    },
+    require => Package["lsb-release"]
     }
     package { "libvirt0":
-	    ensure => $lsbdistcodename ? {
-			lenny => "0.8.1-2~bpo50+1",
-			default => "present",
-		},
-		require => Package["lsb-release"]
+      ensure => $lsbdistcodename ? {
+      lenny => "0.8.1-2~bpo50+1",
+      default => "present",
+    },
+    require => Package["lsb-release"]
     }
     package { "python-libvirt":
-	    ensure => $lsbdistcodename ? {
-			lenny =>  "0.8.1-2~bpo50+1",
-			default => "present",
-		},
-		require => Package["lsb-release"]
+      ensure => $lsbdistcodename ? {
+      lenny =>  "0.8.1-2~bpo50+1",
+      default => "present",
+    },
+    require => Package["lsb-release"]
     }
 
     service { "libvirt-bin":
@@ -65,11 +65,11 @@ class virtual-machine-server {
         backup => false
     }
 
-	exec { "enable_ksm":
-		command => "/bin/echo 1 > /sys/kernel/mm/ksm/run",
-		unless => "/usr/bin/test $(cat /sys/kernel/mm/ksm/run) = '1'",
-		onlyif => "/usr/bin/test -f /sys/kernel/mm/ksm/run",
-	}
+  exec { "enable_ksm":
+    command => "/bin/echo 1 > /sys/kernel/mm/ksm/run",
+    unless => "/usr/bin/test $(cat /sys/kernel/mm/ksm/run) = '1'",
+    onlyif => "/usr/bin/test -f /sys/kernel/mm/ksm/run",
+  }
 
     # Disable netfilter on the bridge device so that all the guest traffic
     # doesn't end up traversing the vmhosts netfilter as well as it's own

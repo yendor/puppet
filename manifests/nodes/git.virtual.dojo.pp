@@ -1,7 +1,7 @@
 node "git.virtual.dojo" {
-	$mirror="http://ftp.au.debian.org/debian"
-	$includeBackports=true
-	include common
+  $mirror="http://ftp.au.debian.org/debian"
+  $includeBackports=true
+  include common
 
-	include git-server
+  include git-server
 }

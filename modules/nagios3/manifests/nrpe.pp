@@ -1,10 +1,10 @@
 class nagios3::nrpe($bind_to_ip,
-	$allow_from,
-	$instance_name
+  $allow_from,
+  $instance_name
 ) {
-	package { "nagios-nrpe-server": 
-		ensure => present
-	}
+  package { "nagios-nrpe-server": 
+    ensure => present
+  }
     service { "nagios-nrpe-server":
         ensure => true,
         enable => true,
@@ -29,10 +29,10 @@ class nagios3::nrpe($bind_to_ip,
         notify  => Service["nagios-nrpe-server"],
     }
 
-	nagios3::service { "nrpe":
+  nagios3::service { "nrpe":
         service_description => "NRPE",
         check_command       => "check_nrpe_daemon",
-		instance_name       => $instance_name
-	}
+    instance_name       => $instance_name
+  }
 
 }

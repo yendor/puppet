@@ -1,5 +1,5 @@
 class nagios3::files {
-	# Remove Standard Debian Files that are created from nagios package
+  # Remove Standard Debian Files that are created from nagios package
     file {[
         "/etc/nagios3/conf.d/contacts_nagios2.cfg",
         "/etc/nagios3/conf.d/localhost_nagios3.cfg",
@@ -18,7 +18,7 @@ class nagios3::files {
         notify  => Service["nagios"],
     }
 
-	# Main Nagios cfg file
+  # Main Nagios cfg file
     file { "/etc/nagios3/nagios.cfg":
         content => template("nagios3/nagios.cfg.erb"),
         require => Package["nagios"],
@@ -39,8 +39,8 @@ class nagios3::files {
         notify  => Service["nagios"],
     }
 
-	file { "/etc/apache2/sites-available/nagios": 
-		content => template("nagios3/apache2-nagios.erb"), 
-		notify => Service["apache2"]
-	}
+  file { "/etc/apache2/sites-available/nagios": 
+    content => template("nagios3/apache2-nagios.erb"), 
+    notify => Service["apache2"]
+  }
 }

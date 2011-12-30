@@ -8,16 +8,16 @@ class virtual-machine {
         $nic1       = "bridge:vmbr0",
         $vg         = "kvm_vg",
         $autostart  = "yes",
-		$domain     = "virtual.dojo",
+    $domain     = "virtual.dojo",
         $extra_args = ""
     ){
         $network = "--network=${nic1}"
-		if ($autostart=="yes") {
-			$autostart_arg = "--autostart"
-		} else {
-			$autostart_arg = ""
-		}
-		
+    if ($autostart=="yes") {
+      $autostart_arg = "--autostart"
+    } else {
+      $autostart_arg = ""
+    }
+    
         $extra_args_to_use = "hostname=${name} domain=${domain} ${autostart_arg} ${extra_args}"
 
         case $ensure {
@@ -41,10 +41,10 @@ class virtual-machine {
                 }
             }
             absent: {
-	            exec { "virt_remove_vm_${name}":
+              exec { "virt_remove_vm_${name}":
                     command => "/usr/bin/virsh -c qemu:///system undefine ${name}",
                     onlyif => "/usr/bin/virsh -c qemu:///system domstate ${name} | /bin/grep -q 'shut off'",
-					require => Exec["virt_stop_vm_${name}"]
+          require => Exec["virt_stop_vm_${name}"]
                 }
 
                 exec { "virt_stop_vm_${name}":
@@ -70,6 +70,6 @@ class virtual-machine {
                     require => Exec["virt_remove_vm_${name}"],
                 }
             }
-		}
+    }
     }
 }

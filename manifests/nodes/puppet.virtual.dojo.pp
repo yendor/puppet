@@ -50,52 +50,52 @@ node "puppet.virtual.dojo" {
     #   notify => Exec["rebuild-tinydns-data"]
     # }
 
-	nagios3::host { $fqdn:
-		instance_name => "home",
-		address => $ipaddress,
-		host_name => $fqdn,
-		host_alias => $hostname,
-		contact_groups => "admins"
-	}
+  nagios3::host { $fqdn:
+    instance_name => "home",
+    address => $ipaddress,
+    host_name => $fqdn,
+    host_alias => $hostname,
+    contact_groups => "admins"
+  }
 
-	class { "ssh-monitoring":
-		instance_name => "home",
-		host_name => $fqdn,
-	}
+  class { "ssh-monitoring":
+    instance_name => "home",
+    host_name => $fqdn,
+  }
 
-	class { "nagios3::nrpe":
-		bind_to_ip => $ipaddress,
-		allow_from => "192.168.1.41",
-		instance_name => "home"
-	}
+  class { "nagios3::nrpe":
+    bind_to_ip => $ipaddress,
+    allow_from => "192.168.1.41",
+    instance_name => "home"
+  }
 
-	file { "/etc/nagios/nrpe.d/puppet_reports.cfg":
-		owner   => "root",
-		group   => "root",
-		mode    => "0644",
-		source  => "puppet:///nagios3/nrpe.d/puppet_reports.cfg",
-		backup  => false,
-		require => Package["nagios-nrpe-server"],
-		notify  => Service["nagios-nrpe-server"],
-	}
+  file { "/etc/nagios/nrpe.d/puppet_reports.cfg":
+    owner   => "root",
+    group   => "root",
+    mode    => "0644",
+    source  => "puppet:///nagios3/nrpe.d/puppet_reports.cfg",
+    backup  => false,
+    require => Package["nagios-nrpe-server"],
+    notify  => Service["nagios-nrpe-server"],
+  }
 
-	nagios3::service { "puppet_reports":
+  nagios3::service { "puppet_reports":
         service_description => "Puppet Reports",
         check_command       => "check_nrpe_1arg!check_puppet_reports",
         instance_name       => "home"
     }
 
     file { "/etc/nagios/nrpe.d/load.cfg":
-		owner   => "root",
-		group   => "root",
-		mode    => "0644",
-		content  => template("nagios3/nrpe.d/load.cfg.erb"),
-		backup  => false,
-		require => Package["nagios-nrpe-server"],
-		notify  => Service["nagios-nrpe-server"],
-	}
+    owner   => "root",
+    group   => "root",
+    mode    => "0644",
+    content  => template("nagios3/nrpe.d/load.cfg.erb"),
+    backup  => false,
+    require => Package["nagios-nrpe-server"],
+    notify  => Service["nagios-nrpe-server"],
+  }
 
-	nagios3::service { "load":
+  nagios3::service { "load":
         service_description => "Load",
         check_command       => "check_nrpe_1arg!check_load!/var/lib/puppet/reports",
         instance_name       => "home"
@@ -107,5 +107,5 @@ node "puppet.virtual.dojo" {
         groups => "puppet",
     }
 
-	# Dnsrecord <<| |>>
+  # Dnsrecord <<| |>>
 }

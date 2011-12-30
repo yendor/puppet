@@ -133,20 +133,20 @@ class puppetmaster {
         backup => false,
     }
 
-  	file { "/usr/local/bin/check_puppet_reports":
-  	    ensure => present,
-  	    source => "puppet:///modules/puppetmaster/check_puppet_reports",
-  	    mode   => 0755,
-  	    owner  => root,
-  	    group  => root,
-  	}
+    file { "/usr/local/bin/check_puppet_reports":
+        ensure => present,
+        source => "puppet:///modules/puppetmaster/check_puppet_reports",
+        mode   => 0755,
+        owner  => root,
+        group  => root,
+    }
 
-  	cron { "clean-old-puppet-reports":
-  	    ensure => present,
+    cron { "clean-old-puppet-reports":
+        ensure => present,
         command => "/usr/bin/find /var/lib/puppet/reports -type f -name '*.yaml' -mmin +120 -delete",
-  	    user => "root",
-  	    minute => 26,
-  	}
+        user => "root",
+        minute => 26,
+    }
 
     # augeas { "puppetmaster_configuration":
     #   context => "/files/etc/puppet/puppet.conf/master",

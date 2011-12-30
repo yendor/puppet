@@ -1,5 +1,5 @@
 class python-gamin {
-	package { "python-gamin":
-		ensure => present
-	}
+  package { "python-gamin":
+    ensure => present
+  }
 }

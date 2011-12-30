@@ -1,6 +1,6 @@
 class git {
     package { "git-core":
-    	ensure => installed
+      ensure => installed
     }
 
     # package { "git-commit-notifier":

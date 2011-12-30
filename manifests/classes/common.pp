@@ -11,18 +11,18 @@ class common {
 
     include user::unixadmins
 
-	package { [
-		"debian-goodies",
-		"strace",
-		"tmux",
-	]:
-		ensure => present
-	}
+  package { [
+    "debian-goodies",
+    "strace",
+    "tmux",
+  ]:
+    ensure => present
+  }
 
-	file { "/bin/sh":
-		ensure => "bash",
-		backup => false
-	}
+  file { "/bin/sh":
+    ensure => "bash",
+    backup => false
+  }
 
     # @@dnsrecord { "forward and reverse dns for $fqdn":
     #     ensure => "present",
@@ -39,20 +39,20 @@ class common {
 
     augeas{ "boot_delay":
         context => $lsbdistcodename ? {
-			lenny   => "/files/boot/grub/menu.lst",
-			squeeze => "/files/etc/default/grub",
-		},
+      lenny   => "/files/boot/grub/menu.lst",
+      squeeze => "/files/etc/default/grub",
+    },
         changes => $lsbdistcodename ? {
-			lenny   => "set timeout 5",
-			squeeze => "set GRUB_TIMEOUT 5",
-		},
-		require => Package["lsb-release"],
+      lenny   => "set timeout 5",
+      squeeze => "set GRUB_TIMEOUT 5",
+    },
+    require => Package["lsb-release"],
     }
 
-	if ($operatingsystem == "Debian" and $includeBackports) {
-		file { "/etc/apt/preferences":
-			content => template("apt/preferences.erb")
-		}
-	}
+  if ($operatingsystem == "Debian" and $includeBackports) {
+    file { "/etc/apt/preferences":
+      content => template("apt/preferences.erb")
+    }
+  }
 
 }

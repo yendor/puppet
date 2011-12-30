@@ -1,7 +1,7 @@
 define nagios3::service(
-	$instance_name,
+  $instance_name,
     $check_command,
-	$ensure = present,
+  $ensure = present,
     $host_name = "${fqdn}",
     $use = 'generic-service',
     $notification_period = "24x7",
@@ -21,13 +21,13 @@ define nagios3::service(
     $depends_on_service = '',
     $depends_on_host_name = ''
 ) {
-	 @@file { "/etc/nagios3/conf.d/${host_name}/${name}.cfg":
-		ensure  => $ensure,
-		owner   => 'root',
-		group   => 'root',
-		content => template("nagios3/nagios-service.erb"),
-		tag     => "nagios_monitored_${instance_name}",
-		require => File["/etc/nagios3/conf.d/${host_name}"],
-		notify  => Service["nagios"],
+   @@file { "/etc/nagios3/conf.d/${host_name}/${name}.cfg":
+    ensure  => $ensure,
+    owner   => 'root',
+    group   => 'root',
+    content => template("nagios3/nagios-service.erb"),
+    tag     => "nagios_monitored_${instance_name}",
+    require => File["/etc/nagios3/conf.d/${host_name}"],
+    notify  => Service["nagios"],
      }
 }
