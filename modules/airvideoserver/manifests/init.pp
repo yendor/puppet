@@ -8,7 +8,7 @@ class airvideoserver($runasuser, $jarpath, $proppath)
         group  => root,
         backup => false,
     }
-    
+
     file { "/etc/default/airvideoserver":
         ensure  => file,
         mode    => 0644,
@@ -17,14 +17,14 @@ class airvideoserver($runasuser, $jarpath, $proppath)
         content => template("airvideoserver/defaults.erb"),
         backup  => false,
     }
-    
+
     file { "/var/run/airvideoserver":
         ensure => directory,
         owner  => $runasuser,
         backup => false,
         mode   => 0755,
     }
-    
+
     include bzip2
 
      package { "make":
@@ -39,9 +39,9 @@ class airvideoserver($runasuser, $jarpath, $proppath)
          ensure => installed,
      }
 
-     package { "git-core":
-         ensure => installed,
-     }
+     #package { "git-core":
+     #    ensure => installed,
+     #}
 
      package { "x264":
          ensure => absent,
@@ -78,5 +78,5 @@ class airvideoserver($runasuser, $jarpath, $proppath)
      package { "openjdk-6-jdk":
          ensure => installed,
      }
-    
+
 }
