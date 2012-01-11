@@ -107,5 +107,10 @@ node 'puppet.virtual.dojo' {
     groups => 'puppet',
   }
 
+  package { 'puppet-module':
+    ensure   => present,
+    provider => gem,
+  }
+
   # Dnsrecord <<| |>>
 }
