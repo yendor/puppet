@@ -25,7 +25,7 @@ class common {
   }
 
   package { "portmap":
-	ensure absent
+	ensure => absent
   }
 
   # @@dnsrecord { "forward and reverse dns for $fqdn":
