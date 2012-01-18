@@ -5,7 +5,6 @@ node 'test.virtual.dojo' {
 
   include iptables
 
-  include bind9
   include ruby
 
   package { 'php5-cli':
