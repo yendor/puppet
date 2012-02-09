@@ -13,7 +13,8 @@ node 'test.virtual.dojo' {
 
   package { [
     'nmap',
-    'autoconf'
+    'autoconf',
+	'zlib1g-dev'
   ]:
     ensure => present
   }
