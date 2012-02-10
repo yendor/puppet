@@ -46,7 +46,7 @@ class git-server {
 
   ssh_authorized_key{ "gitolite-seed":
     ensure => present,
-    key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCu2AwOz+TTGgehU9FXtNjq5vR1l8dXSlTLp44c9Ce/UdF+yyx2S5435Tcw/2EcuQXTEwAr+VjXla/f/2O1UEvFbgTcTt/VNd1oFVueZP0OTAA5HGUpMJNmTbozrGMUIPMM3Ew6NDIpGdJZGjdxn2/ZYg4PHEQqnrSCXM7ZhKKJ1qzrothh84Tna/3eDwMg9qnqaso7d4P29a7YMya+XzDwB0HPk4eWXfSwRvNR+CxSiGMlalY4tDldW7xc9C0KDth1sMG4KjQvc6LlpF2T+P8YismcVAI+YF8jyakjrkhYZyl2GOzM0Wif8/6hTIxRp/XocB3/CrsYdzoevLulSllR",
+    key => "AAAAB3NzaC1yc2EAAAABJQAAAQEAuHykU4qcf4UAFzXG4LPp+ulYY3gCNoOiyUe9Nko+02a+FW/jKkw2ZDoRBhBFzv5kprXyxT+3TvEM2+6T/+aNwCn3vnvNLB21TA/G4CyeSeuHq9VCUxBY5DYrbIB/ZlhHzGjWR8ryaxi2eO7jlN3S7KIk7LVtw0ThK4v+w1zqCcS3eEmtl2m8kfs62ofJ4xtBTWrHHA+2WMb5qDnx6h4oUu18DoFpg2iPZS5pS6It0AxvIgCMJ+63o3YGkQvYKXrAlK9h3XqJU3AEOnkvvkITwdRAXmCH2BFRLErj8MfNyEvIv41XhAP8LITrgBctxSf5zDlPFy37jp4XSt65OgQhDQ==",
     type => "ssh-rsa",
 	user => "git",
     target => "/home/git/seed.pub",
