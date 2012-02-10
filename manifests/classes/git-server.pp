@@ -24,7 +24,7 @@ class git-server {
     owner => "git",
     group => "git",
     backup => false,
-    mode => 0700,
+    mode => 0750,
     require => [Group["git"], User["git"]]
   }
 
