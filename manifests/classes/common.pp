@@ -15,6 +15,7 @@ class common {
     "debian-goodies",
     "strace",
     "tmux",
+	'psmisc'
   ]:
     ensure => present
   }
