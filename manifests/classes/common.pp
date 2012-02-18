@@ -60,4 +60,6 @@ class common {
     }
   }
 
+  File <<| tag == 'use-apt-proxy' |>>
+
 }
