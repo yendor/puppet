@@ -5,7 +5,6 @@ class freeswitch::server {
     comment => "FreeSwitch Voice Platform",
     uid => 200,
     gid => 1,
-    groups => "audio",
-    system => true
+    groups => "audio"
   }
 }
