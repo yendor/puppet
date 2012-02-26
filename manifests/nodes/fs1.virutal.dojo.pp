@@ -4,5 +4,6 @@ node "fs1.virtual.dojo" {
   include common
 
   include freeswitch::build
+  include freeswitch::server
 
 }
