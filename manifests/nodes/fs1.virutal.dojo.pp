@@ -3,10 +3,6 @@ node "fs1.virtual.dojo" {
   $includeBackports=true
   include common
 
-  package { [
-	"build-essential",
-	"git"
-	]:
-	ensure => present
-  }
+  include freeswitch::build
+
 }
