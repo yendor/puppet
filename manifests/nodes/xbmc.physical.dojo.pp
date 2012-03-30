@@ -4,7 +4,6 @@ node 'xbmc.physical.dojo' {
   package {[
 	'smbfs',
 	'aptitude',
-	'htop',
 	'git',
 	'sabnzbdplus'
 	]:
