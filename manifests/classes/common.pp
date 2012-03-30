@@ -46,10 +46,12 @@ class common {
 	context => $lsbdistcodename ? {
       lenny   => "/files/boot/grub/menu.lst",
       squeeze => "/files/etc/default/grub",
+      oneric => "/files/etc/default/grub",
 	},
 	changes => $lsbdistcodename ? {
       lenny   => "set timeout 5",
       squeeze => "set GRUB_TIMEOUT 5",
+      oneric => "set GRUB_TIMEOUT 5",
     },
     require => Package["lsb-release"],
   }
