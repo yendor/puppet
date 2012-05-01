@@ -1,3 +1,9 @@
+if has("autocmd")
+	filetype on
+	filetype indent on
+	filetype plugin on
+endif
+
 " Colourisation settings
 syntax enable
 set bg=dark
@@ -5,6 +11,11 @@ set bg=dark
 "Set tabs to look like 4 spaces
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+set backspace=eol,start,indent
+set nobackup
 
 " Search options
 set nohlsearch
@@ -38,4 +49,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\[HEX=\%02
 " Command to force a write using sudo
 command W w !sudo tee % > /dev/null
 
+let pascal_delphi=1
 
+let php_sql_query = 1
+let php_htmlInStrings = 1
