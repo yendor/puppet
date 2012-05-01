@@ -6,4 +6,8 @@ node "fs1.virtual.dojo" {
   include freeswitch::build
   include freeswitch::server
 
+  package { 'imagemagick':
+    ensure => present
+  }
+
 }
