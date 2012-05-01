@@ -62,6 +62,18 @@ class common {
     }
   }
 
+	if ($domain == "virtual.dojo" or $domain == "physical.dojo") {
+		file { "/etc/resolv.conf":
+			owner => "root",
+			group => "root",
+			mode => "0644",
+			content => template('etc/resolv.conf.erb')
+		}
+	}
+
+
+
+
   File <<| tag == 'use-apt-proxy' |>>
 
 }
