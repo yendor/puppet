@@ -118,7 +118,7 @@ node 'test.virtual.dojo' {
 	owner => "root",
 	group => "root",
 	mode => "0644",
-	content => template('etc/resolv.conf')
+	content => template('etc/resolv.conf.erb')
   }
 
   # class { 'drobo-monitoring': }
