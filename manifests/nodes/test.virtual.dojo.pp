@@ -128,5 +128,15 @@ node 'test.virtual.dojo' {
   #
   # include cvs
 
+  package { [
+      'yacc',
+      'bison',
+      'flex',
+      'pkg-config',
+      'libgcrypt11-dev',
+      'libgcrypt11',
+    ]:
+    ensure => present
+  }
 
 }
