@@ -129,7 +129,6 @@ node 'test.virtual.dojo' {
   # include cvs
 
   package { [
-      'yacc',
       'bison',
       'flex',
       'pkg-config',
